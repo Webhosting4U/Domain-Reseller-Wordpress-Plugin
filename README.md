@@ -3,7 +3,7 @@
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
 [![WordPress](https://img.shields.io/badge/WordPress-6.2%2B-21759B?logo=wordpress)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777BB4?logo=php)](https://www.php.net/)
-[![Version](https://img.shields.io/badge/version-1.1.0-blue)](https://github.com/Webhosting4U/Domain-Reseller-Wordpress-Plugin/releases)
+[![Version](https://img.shields.io/badge/version-1.2.0-blue)](https://github.com/Webhosting4U/Domain-Reseller-Wordpress-Plugin/releases)
 
 ### Summary
 
@@ -123,10 +123,29 @@ Without valid credentials and nameservers, the domain search will not work and o
 
 ### 4. Shopping cart redirect (optional)
 
+If you use **WHMCS**, **Blesta**, **ClientExec**, **Upmind**, or another billing cart, you can send customers there with the domain pre-filled when they click **Register** or **Transfer** on the domain search results. Otherwise they use the built-in form on your WordPress site.
+
 - In the **General** tab, scroll to **Shopping Cart Redirect**.
-- If you use **WHMCS**, **Blesta**, **ClientExec**, or **Upmind**, choose that from **Cart Type** and enter your **Cart Base URL** (e.g. `https://billing.example.com`, no trailing slash). When a visitor clicks **Register** or **Transfer**, they will be sent to your cart with the domain pre-filled.
-- If you use another cart, choose **Custom URL template** and enter full URLs for **Register URL Template** and **Transfer URL Template**, using `{domain}`, `{sld}`, or `{tld}` where the domain (or its parts) should appear (e.g. `https://billing.example.com/cart.php?a=add&domain=register&sld={sld}&tld={tld}`).
-- Leave **Cart Type** set to **None** to keep using the built-in registration/transfer form on the WordPress site.
+- **Cart Type:** Choose your cart or **None** to keep the built-in form only.
+
+**Preset carts (WHMCS, Blesta, ClientExec, Upmind):**
+
+- Set **Cart Type** to your cart.
+- Enter **Cart Base URL** with no trailing slash (e.g. `https://billing.example.com` or `https://yourdomain.com/whmcs`).
+- The plugin builds the correct link for each cart:
+  - **WHMCS:** `cart.php?a=add&domain=register` or `domain=transfer` with `sld` and `tld`.
+  - **Blesta:** `order/main/index/` with `domain` in the query.
+  - **ClientExec:** `order.php?step=1&productGroup=2` with `domain`.
+  - **Upmind:** base URL with `domain` and `action`.
+
+**Custom cart (other systems):**
+
+- Set **Cart Type** to **Custom URL template**.
+- **Register URL Template:** full URL with placeholders, e.g.  
+  `https://billing.example.com/cart.php?a=add&domain=register&sld={sld}&tld={tld}`
+- **Transfer URL Template:** full URL with placeholders, e.g.  
+  `https://billing.example.com/cart.php?a=add&domain=transfer&sld={sld}&tld={tld}`
+- Placeholders: `{domain}` (full domain), `{sld}` (name part), `{tld}` (extension). Use only HTTPS URLs.
 
 ### 5. Appearance tab (optional)
 
@@ -208,6 +227,10 @@ Yes. The plugin is translation-ready. Greek is included. You can add more langua
 ---
 
 ## Changelog
+
+### 1.2.0
+
+- **Shopping cart redirect:** Optional redirect to WHMCS, Blesta, ClientExec, Upmind, or a custom URL when visitors click Register or Transfer. Domain (or sld/tld) is passed in the URL so the cart opens with the chosen domain. Configure under Domains > Settings > General (Shopping Cart Redirect).
 
 ### 1.1.0
 
