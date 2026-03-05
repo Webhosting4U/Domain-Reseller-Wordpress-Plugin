@@ -1,0 +1,275 @@
+/**
+ * WH4U Domains - Minimal CSS (Layout & Spacing Only)
+ *
+ * Provides structure and spacing without visual styling.
+ * Theme controls all colors, fonts, borders, and decorations.
+ */
+
+.wh4u-domains {
+	max-width: 720px;
+	margin: 0 auto;
+	box-sizing: border-box;
+	line-height: 1.5;
+}
+
+.wh4u-domains *,
+.wh4u-domains *::before,
+.wh4u-domains *::after {
+	box-sizing: inherit;
+}
+
+.wh4u-domains__form {
+	margin: 0;
+}
+
+.wh4u-domains__input-wrap {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.wh4u-domains__search-icon {
+	display: flex;
+	align-items: center;
+	flex-shrink: 0;
+}
+
+.wh4u-domains__input {
+	flex: 1;
+	min-width: 0;
+	padding: 10px 12px;
+	font-size: 1rem;
+	font-family: inherit;
+}
+
+.wh4u-domains__btn,
+.wh4u-domains__btn-primary,
+.wh4u-domains__btn-secondary,
+.wh4u-domains__register-btn,
+.wh4u-domains__transfer-btn {
+	padding: 10px 20px;
+	font-family: inherit;
+	cursor: pointer;
+	white-space: nowrap;
+	line-height: 1.5;
+}
+
+.wh4u-domains__btn-spinner {
+	display: none;
+}
+
+.wh4u-domains__btn:disabled .wh4u-domains__btn-spinner,
+.wh4u-domains__btn-primary:disabled .wh4u-domains__btn-spinner {
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	border: 2px solid currentColor;
+	border-top-color: transparent;
+	border-radius: 50%;
+	animation: wh4u-spin 0.6s linear infinite;
+}
+
+.wh4u-domains__btn:disabled .wh4u-domains__btn-text,
+.wh4u-domains__btn-primary:disabled .wh4u-domains__btn-text {
+	display: none;
+}
+
+@keyframes wh4u-spin {
+	to { transform: rotate(360deg); }
+}
+
+.wh4u-domains__loading {
+	height: 3px;
+	overflow: hidden;
+	margin-top: 1rem;
+}
+
+.wh4u-domains__loading-bar {
+	height: 100%;
+	animation: wh4u-loading 1.5s ease infinite;
+}
+
+@keyframes wh4u-loading {
+	0% { width: 0; margin-left: 0; }
+	50% { width: 60%; margin-left: 20%; }
+	100% { width: 0; margin-left: 100%; }
+}
+
+.wh4u-domains__error {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 12px 16px;
+	margin-top: 1rem;
+}
+
+.wh4u-domains__error svg {
+	flex-shrink: 0;
+}
+
+.wh4u-domains__error p {
+	margin: 0;
+}
+
+.wh4u-domains__results {
+	margin-top: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.wh4u-domains__result-card {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding: 12px 16px;
+}
+
+.wh4u-domains__result-domain {
+	flex: 1;
+	min-width: 0;
+}
+
+.wh4u-domains__result-domain-name {
+	font-weight: 600;
+	word-break: break-all;
+}
+
+.wh4u-domains__result-status {
+	white-space: nowrap;
+}
+
+.wh4u-domains__result-action {
+	flex-shrink: 0;
+}
+
+.wh4u-domains__no-results {
+	text-align: center;
+	padding: 1.5rem;
+}
+
+.wh4u-domains__form-section {
+	margin-top: 1.5rem;
+}
+
+.wh4u-domains__form-header {
+	text-align: center;
+	margin-bottom: 1.5rem;
+}
+
+.wh4u-domains__form-domain-badge {
+	display: inline-block;
+	padding: 4px 12px;
+	margin-bottom: 8px;
+	font-weight: 700;
+}
+
+.wh4u-domains__form-title {
+	margin: 0 0 4px;
+}
+
+.wh4u-domains__form-desc {
+	margin: 0;
+}
+
+.wh4u-domains__register-form {
+	margin: 0;
+}
+
+.wh4u-domains__form-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1rem;
+}
+
+.wh4u-domains__field {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.wh4u-domains__field--full {
+	grid-column: 1 / -1;
+}
+
+.wh4u-domains__field--period {
+	margin-top: 1rem;
+}
+
+.wh4u-domains__field input,
+.wh4u-domains__field select {
+	padding: 8px 12px;
+	font-family: inherit;
+	font-size: inherit;
+}
+
+.wh4u-domains__hp {
+	position: absolute;
+	left: -9999px;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	opacity: 0;
+}
+
+.wh4u-domains__form-actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 12px;
+	margin-top: 1.5rem;
+	padding-top: 1rem;
+}
+
+.wh4u-domains__success {
+	text-align: center;
+	padding: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+.wh4u-domains__success h3 {
+	margin: 0 0 8px;
+}
+
+.wh4u-domains__success p {
+	margin: 0 0 1.5rem;
+}
+
+.wh4u-domains__success-cta {
+	padding: 8px 20px;
+	cursor: pointer;
+}
+
+@media (max-width: 600px) {
+	.wh4u-domains__input-wrap {
+		flex-direction: column;
+	}
+
+	.wh4u-domains__search-icon {
+		display: none;
+	}
+
+	.wh4u-domains__input {
+		width: 100%;
+	}
+
+	.wh4u-domains__btn {
+		width: 100%;
+	}
+
+	.wh4u-domains__result-card {
+		flex-wrap: wrap;
+	}
+
+	.wh4u-domains__form-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.wh4u-domains__form-actions {
+		flex-direction: column-reverse;
+	}
+
+	.wh4u-domains__btn-primary,
+	.wh4u-domains__btn-secondary {
+		width: 100%;
+	}
+}

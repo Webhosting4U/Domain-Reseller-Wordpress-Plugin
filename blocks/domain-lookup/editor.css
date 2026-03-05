@@ -1,0 +1,26 @@
+/**
+ * WH4U Domain Lookup - Editor Preview Styles
+ *
+ * Ensures the block preview is non-interactive and properly
+ * contained within the editor content column.
+ */
+
+.wp-block-wh4u-domain-lookup {
+	width: 100%;
+}
+
+.wp-block-wh4u-domain-lookup .wh4u-domains {
+	pointer-events: none;
+	opacity: 0.85;
+	max-width: 100%;
+}
+
+.wp-block-wh4u-domain-lookup .wh4u-domains__btn,
+.wp-block-wh4u-domain-lookup .wh4u-domains__input {
+	cursor: default;
+}
+
+.wp-block-wh4u-domain-lookup .wh4u-domains__form-section,
+.wp-block-wh4u-domain-lookup .wh4u-domains__success {
+	display: none;
+}

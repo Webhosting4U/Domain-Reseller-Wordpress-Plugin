@@ -1,0 +1,14 @@
+# Excluded from repository and distribution
+.github/
+.git/
+
+# OS and editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Composer / npm (if used later)
+/vendor/
+node_modules/

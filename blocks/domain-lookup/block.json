@@ -1,0 +1,70 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wh4u/domain-lookup",
+	"version": "1.1.0",
+	"title": "Domain Lookup",
+	"category": "widgets",
+	"icon": "admin-site-alt3",
+	"description": "A domain availability search form powered by WH4U Domains.",
+	"keywords": [ "domain", "search", "lookup", "availability", "whois", "register" ],
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"color": {
+			"text": true,
+			"background": true,
+			"link": true
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true
+		},
+		"spacing": {
+			"padding": true,
+			"margin": true
+		}
+	},
+	"textdomain": "wh4u-domains",
+	"attributes": {
+		"placeholder": {
+			"type": "string",
+			"default": "Search for your perfect domain..."
+		},
+		"buttonText": {
+			"type": "string",
+			"default": "Search"
+		},
+		"accentColor": {
+			"type": "string",
+			"default": ""
+		},
+		"styleVariant": {
+			"type": "string",
+			"default": "elevated",
+			"enum": [ "elevated", "flat", "bordered", "minimal" ]
+		},
+		"showPricing": {
+			"type": "boolean",
+			"default": false
+		},
+		"showSuggestions": {
+			"type": "boolean",
+			"default": true
+		},
+		"formTitle": {
+			"type": "string",
+			"default": "Register this domain"
+		},
+		"formDescription": {
+			"type": "string",
+			"default": "Fill in your details below to secure this domain."
+		},
+		"borderRadius": {
+			"type": "string",
+			"default": "12"
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css"
+}
