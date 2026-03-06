@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       WH4U Domains
  * Description:       Domain reseller plugin for searching, registering, and transferring domains via the DomainsReseller API.
- * Version:           1.2.0
+ * Version:           1.3.0
  * Requires at least: 6.2
  * Requires PHP:      7.4
  * Author:            WebHosting4U
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'WH4U_DOMAINS_VERSION', '1.2.0' );
+define( 'WH4U_DOMAINS_VERSION', '1.3.0' );
 define( 'WH4U_DOMAINS_DB_VERSION', '1.1.0' );
 define( 'WH4U_DOMAINS_PLUGIN_FILE', __FILE__ );
 define( 'WH4U_DOMAINS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );

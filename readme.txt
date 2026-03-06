@@ -4,7 +4,7 @@ Tags: domains, domain search, domain registration, reseller, tld
 Requires at least: 6.2
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -90,6 +90,20 @@ Yes. Under Domains > Settings > General, use the Shopping Cart Redirect section.
 Yes. The plugin is fully internationalized. A Greek translation is included. Additional translations can be added via .po/.mo files in the `languages/` directory.
 
 == Changelog ==
+
+= 1.3.0 =
+* Enriched domain lookup frontend with skeleton shimmer loading cards during API calls
+* Added popular TLD chips below the search bar (configurable in Appearance > Search Bar)
+* Primary result card now highlighted with accent styling and "Best match" badge
+* Pricing display on available domain results when show-pricing is enabled
+* Dark mode support via prefers-color-scheme media query (respects user color overrides)
+* Animated SVG status icons (checkmark/X) on result cards with entrance animation
+* Copy-to-clipboard button on each result card with tooltip feedback
+* Animated placeholder text cycling through example domains in the search input
+* Automatic theme design adoption: plugin detects active theme colors, fonts, spacing, and border radius from theme.json
+* Theme compatibility banner in Appearance settings showing detected design tokens
+* Fixed appearance settings not passing to frontend when using global defaults
+* Improved i18n: removed hardcoded English fallback strings in JavaScript
 
 = 1.2.0 =
 * Added shopping cart redirect: optional redirect to WHMCS, Blesta, ClientExec, Upmind, or custom URL when visitors click Register or Transfer
