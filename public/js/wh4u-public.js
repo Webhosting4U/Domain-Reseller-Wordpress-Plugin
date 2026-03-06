@@ -16,6 +16,7 @@
 	var pricingPromise = null;
 	var placeholderTimer = null;
 	var lastSearchTerm = '';
+	var turnstileWidgets = {};
 
 	var SVG_CHECK = '<svg class="wh4u-domains__status-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>';
 	var SVG_X = '<svg class="wh4u-domains__status-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>';
@@ -61,6 +62,65 @@
 		initTldChips();
 		initPlaceholderCycling();
 		prefetchPricing();
+		initTurnstile();
+	}
+
+	/* ─── Turnstile ─────────────────────────────────────────── */
+
+	function initTurnstile() {
+		if ( ! config.turnstileSiteKey ) {
+			return;
+		}
+
+		var containers = [
+			{ id: 'wh4u-turnstile-register', key: 'register' },
+			{ id: 'wh4u-turnstile-transfer', key: 'transfer' }
+		];
+
+		function renderWidgets() {
+			for ( var i = 0; i < containers.length; i++ ) {
+				var el = document.getElementById( containers[i].id );
+				if ( el && typeof turnstileWidgets[ containers[i].key ] === 'undefined' ) {
+					turnstileWidgets[ containers[i].key ] = window.turnstile.render( '#' + containers[i].id, {
+						sitekey: config.turnstileSiteKey,
+						theme: 'auto',
+						size: 'normal'
+					} );
+				}
+			}
+		}
+
+		if ( window.turnstile ) {
+			renderWidgets();
+		} else {
+			var poll = setInterval( function() {
+				if ( window.turnstile ) {
+					clearInterval( poll );
+					renderWidgets();
+				}
+			}, 200 );
+		}
+	}
+
+	function getTurnstileToken( formKey ) {
+		if ( ! config.turnstileSiteKey ) {
+			return '';
+		}
+		var widgetId = turnstileWidgets[ formKey ];
+		if ( typeof widgetId === 'undefined' || ! window.turnstile ) {
+			return '';
+		}
+		return window.turnstile.getResponse( widgetId ) || '';
+	}
+
+	function resetTurnstile( formKey ) {
+		if ( ! config.turnstileSiteKey || ! window.turnstile ) {
+			return;
+		}
+		var widgetId = turnstileWidgets[ formKey ];
+		if ( typeof widgetId !== 'undefined' ) {
+			window.turnstile.reset( widgetId );
+		}
 	}
 
 	/* ─── TLD Chips ──────────────────────────────────────────── */
@@ -501,6 +561,11 @@
 
 		clearFieldErrors( form );
 
+		if ( config.turnstileSiteKey && ! getTurnstileToken( 'transfer' ) ) {
+			showError( config.i18n.turnstileRequired || 'Please complete the security check.' );
+			return;
+		}
+
 		var fields = {
 			domain:         currentDomain,
 			regperiod:      parseInt( form.querySelector( '[name="regperiod"]' ).value, 10 ) || 1,
@@ -515,7 +580,8 @@
 			state:          val( form, 'state' ),
 			country:        val( form, 'country' ).toUpperCase(),
 			zip:            val( form, 'zip' ),
-			wh4u_hp_check:  val( form, 'wh4u_hp_check' )
+			wh4u_hp_check:  val( form, 'wh4u_hp_check' ),
+			'cf-turnstile-response': getTurnstileToken( 'transfer' )
 		};
 
 		var validationError = validateFields( fields, form );
@@ -541,6 +607,7 @@
 			} )
 			.catch( function( err ) {
 				showError( err.message || config.i18n.error );
+				resetTurnstile( 'transfer' );
 			} )
 			.finally( function() {
 				if ( submitBtn ) {
@@ -557,6 +624,11 @@
 
 		clearFieldErrors( form );
 
+		if ( config.turnstileSiteKey && ! getTurnstileToken( 'register' ) ) {
+			showError( config.i18n.turnstileRequired || 'Please complete the security check.' );
+			return;
+		}
+
 		var fields = {
 			domain:         currentDomain,
 			regperiod:      parseInt( form.querySelector( '[name="regperiod"]' ).value, 10 ) || 1,
@@ -570,7 +642,8 @@
 			state:          val( form, 'state' ),
 			country:        val( form, 'country' ).toUpperCase(),
 			zip:            val( form, 'zip' ),
-			wh4u_hp_check:  val( form, 'wh4u_hp_check' )
+			wh4u_hp_check:  val( form, 'wh4u_hp_check' ),
+			'cf-turnstile-response': getTurnstileToken( 'register' )
 		};
 
 		var validationError = validateFields( fields, form );
@@ -596,6 +669,7 @@
 			} )
 			.catch( function( err ) {
 				showError( err.message || config.i18n.error );
+				resetTurnstile( 'register' );
 			} )
 			.finally( function() {
 				if ( submitBtn ) {

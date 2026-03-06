@@ -3,15 +3,15 @@
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
 [![WordPress](https://img.shields.io/badge/WordPress-6.2%2B-21759B?logo=wordpress)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777BB4?logo=php)](https://www.php.net/)
-[![Version](https://img.shields.io/badge/version-1.2.0-blue)](https://github.com/Webhosting4U/Domain-Reseller-Wordpress-Plugin/releases)
+[![Version](https://img.shields.io/badge/version-1.4.0-blue)](https://github.com/Webhosting4U/Domain-Reseller-Wordpress-Plugin/releases)
 
 ### Summary
 
-WordPress plugin for domain resellers: search, register, and transfer domains via the DomainsReseller API. Optional redirect to WHMCS, Blesta, ClientExec, or Upmind with the domain pre-filled.
+WordPress plugin for domain resellers: search, register, and transfer domains via the DomainsReseller API. Optional redirect to WHMCS, Blesta, ClientExec, or Upmind with the domain pre-filled. Bot protection via Cloudflare Turnstile.
 
 ### Description
 
-**WH4U Domains** lets you offer domain registration and transfer from your WordPress site. Visitors search for a domain; available domains can be registered and taken domains can be transferred. Orders are managed in the WordPress admin (approve/reject). The plugin integrates with the **DomainsReseller API** (WebHosting4U). You can use the built-in form or send customers to your billing cart (WHMCS, Blesta, ClientExec, Upmind, or a custom URL) with the chosen domain passed in the link. Supports per-user reseller credentials, retry queue for failed API calls, and translations (Greek included).
+**WH4U Domains** lets you offer domain registration and transfer from your WordPress site. Visitors search for a domain; available domains can be registered and taken domains can be transferred. Orders are managed in the WordPress admin (approve/reject). The plugin integrates with the **DomainsReseller API** (WebHosting4U). You can use the built-in form or send customers to your billing cart (WHMCS, Blesta, ClientExec, Upmind, or a custom URL) with the chosen domain passed in the link. Supports per-user reseller credentials, retry queue for failed API calls, Cloudflare Turnstile bot protection, and translations (Greek included).
 
 ---
 
@@ -22,6 +22,7 @@ WordPress plugin for domain resellers: search, register, and transfer domains vi
 - [What you need before you start](#what-you-need-before-you-start)
 - [Installation (step by step)](#installation-step-by-step)
 - [Configuration (step by step)](#configuration-step-by-step)
+- [Bot protection (optional)](#bot-protection-optional)
 - [Putting the domain search on your site](#putting-the-domain-search-on-your-site)
 - [Managing orders as an administrator](#managing-orders-as-an-administrator)
 - [Third-party service and your data](#third-party-service-and-your-data)
@@ -52,6 +53,9 @@ All domain operations go through the **DomainsReseller API** provided by WebHost
 | **Reseller support** | Different WordPress users can use different API credentials (multi-reseller). |
 | **Retry queue** | Failed API calls are retried automatically with exponential backoff. |
 | **Shopping cart redirect** | Optional: send customers to WHMCS, Blesta, ClientExec, Upmind, or a custom cart URL with the domain pre-filled when they click Register or Transfer. |
+| **Enriched frontend** | Skeleton loading, TLD chips, primary result highlighting, pricing display, dark mode, animated status icons, copy-to-clipboard, animated placeholder cycling. |
+| **Theme compatibility** | Automatically detects active theme colors, fonts, spacing, and border radius from `theme.json`. |
+| **Bot protection** | Optional Cloudflare Turnstile integration -- free, privacy-friendly CAPTCHA alternative. |
 | **Translations** | Plugin is translation-ready; Greek is included. |
 
 ---
@@ -153,6 +157,21 @@ If you use **WHMCS**, **Blesta**, **ClientExec**, **Upmind**, or another billing
 
 ---
 
+## Bot protection (optional)
+
+The plugin supports **Cloudflare Turnstile** -- a free, privacy-friendly alternative to reCAPTCHA. When enabled, a challenge widget appears on the registration and transfer forms, and submissions are verified server-side before the order is created.
+
+### Setup
+
+1. Go to the [Cloudflare Turnstile dashboard](https://dash.cloudflare.com/?to=/:account/turnstile) and create a widget for your site.
+2. Copy the **Site Key** and **Secret Key**.
+3. In WordPress, go to **Domains > Settings > General**, scroll to **Cloudflare Turnstile**, and paste both keys.
+4. Click **Save Changes**.
+
+The widget appears automatically on both forms. Leave the fields empty to disable Turnstile -- the forms will work without it.
+
+---
+
 ## Putting the domain search on your site
 
 You can show the domain search form on any page in two ways.
@@ -204,6 +223,14 @@ This plugin talks to the **DomainsReseller API** run by WebHosting4U. When you o
 - **Terms of Service:** [webhosting4u.gr/terms-of-service.php](https://webhosting4u.gr/terms-of-service.php)
 - **Privacy Policy:** [webhosting4u.gr/privacy-policy.php](https://webhosting4u.gr/privacy-policy.php)
 
+### Cloudflare Turnstile (optional)
+
+When Turnstile bot protection is enabled in Settings, the plugin loads the Cloudflare Turnstile JavaScript widget on pages with the domain lookup form and sends the challenge response token to Cloudflare for server-side verification before processing public orders.
+
+- **Provider:** [Cloudflare, Inc.](https://www.cloudflare.com/products/turnstile/)
+- **Terms of Service:** [cloudflare.com/terms](https://www.cloudflare.com/terms/)
+- **Privacy Policy:** [cloudflare.com/privacypolicy](https://www.cloudflare.com/privacypolicy/)
+
 ---
 
 ## Frequently asked questions
@@ -227,6 +254,16 @@ Yes. The plugin is translation-ready. Greek is included. You can add more langua
 ---
 
 ## Changelog
+
+### 1.4.0
+
+- **Cloudflare Turnstile bot protection:** Optional Turnstile integration for public registration and transfer forms. Site key and secret key configurable under Domains > Settings > General. Client-side widget with auto theme detection; server-side token verification on public order REST endpoints. Fully optional -- forms work without it when keys are not configured.
+
+### 1.3.0
+
+- **Enriched frontend:** Skeleton shimmer loading cards, popular TLD chips below the search bar, primary result card highlighting with "Best match" badge, pricing display on available results, dark mode support via `prefers-color-scheme`, animated SVG status icons, copy-to-clipboard button with tooltip, animated placeholder text cycling.
+- **Theme compatibility:** Plugin automatically detects active theme colors, fonts, spacing, and border radius from `theme.json`. Theme compatibility banner in Appearance settings.
+- **Bug fixes:** Fixed appearance settings not passing to frontend when using global defaults. Removed hardcoded English fallback strings in JavaScript for better i18n support.
 
 ### 1.2.0
 

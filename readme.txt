@@ -4,7 +4,7 @@ Tags: domains, domain search, domain registration, reseller, tld
 Requires at least: 6.2
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.3.0
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,6 +57,15 @@ This plugin connects to the **DomainsReseller API** provided by WebHosting4U to 
 * **Terms of Service**: [https://webhosting4u.gr/terms-of-service.php](https://webhosting4u.gr/terms-of-service.php)
 * **Privacy Policy**: [https://webhosting4u.gr/privacy-policy.php](https://webhosting4u.gr/privacy-policy.php)
 
+= Cloudflare Turnstile (optional) =
+
+When Turnstile bot protection is enabled in Settings, this plugin loads the Cloudflare Turnstile JavaScript widget on pages with the domain lookup form and sends the challenge response token to Cloudflare for server-side verification before processing public orders.
+
+* **Service provider**: Cloudflare, Inc.
+* **Service URL**: [https://www.cloudflare.com/products/turnstile/](https://www.cloudflare.com/products/turnstile/)
+* **Terms of Service**: [https://www.cloudflare.com/terms/](https://www.cloudflare.com/terms/)
+* **Privacy Policy**: [https://www.cloudflare.com/privacypolicy/](https://www.cloudflare.com/privacypolicy/)
+
 == Installation ==
 
 1. Upload the `wh4u-domains` folder to `/wp-content/plugins/`
@@ -90,6 +99,13 @@ Yes. Under Domains > Settings > General, use the Shopping Cart Redirect section.
 Yes. The plugin is fully internationalized. A Greek translation is included. Additional translations can be added via .po/.mo files in the `languages/` directory.
 
 == Changelog ==
+
+= 1.4.0 =
+* Added optional Cloudflare Turnstile bot protection for public registration and transfer forms
+* Turnstile site key and secret key configurable under Domains > Settings > General
+* Client-side Turnstile widget rendered explicitly with auto theme detection
+* Server-side token verification on public order REST endpoints before order creation
+* Turnstile is fully optional -- forms work without it when keys are not configured
 
 = 1.3.0 =
 * Enriched domain lookup frontend with skeleton shimmer loading cards during API calls

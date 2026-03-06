@@ -105,6 +105,9 @@ class WH4U_Public {
 		$show_search_icon = isset( $appearance['show_search_icon'] ) ? $appearance['show_search_icon'] : true;
 		$show_transfer    = isset( $appearance['show_transfer'] ) ? $appearance['show_transfer'] : true;
 
+		$turnstile_enabled  = class_exists( 'WH4U_Admin_Settings' ) && WH4U_Admin_Settings::is_turnstile_enabled();
+		$turnstile_site_key = $turnstile_enabled ? WH4U_Admin_Settings::get_turnstile_site_key() : '';
+
 		$popular_tlds_raw = isset( $appearance['popular_tlds'] ) ? $appearance['popular_tlds'] : '.com, .net, .io, .org, .gr';
 		$popular_tlds     = array_filter( array_map( 'trim', explode( ',', $popular_tlds_raw ) ) );
 
@@ -324,6 +327,10 @@ class WH4U_Public {
 					</select>
 				</div>
 
+				<?php if ( $turnstile_enabled ) : ?>
+				<div class="wh4u-domains__turnstile" id="wh4u-turnstile-register" data-sitekey="<?php echo esc_attr( $turnstile_site_key ); ?>"></div>
+				<?php endif; ?>
+
 				<div class="wh4u-domains__form-actions">
 					<button type="button" class="wh4u-domains__btn-secondary" id="wh4u-form-cancel">
 							<?php esc_html_e( 'Back to results', 'wh4u-domains' ); ?>
@@ -429,6 +436,10 @@ class WH4U_Public {
 					</select>
 				</div>
 
+				<?php if ( $turnstile_enabled ) : ?>
+				<div class="wh4u-domains__turnstile" id="wh4u-turnstile-transfer" data-sitekey="<?php echo esc_attr( $turnstile_site_key ); ?>"></div>
+				<?php endif; ?>
+
 				<div class="wh4u-domains__form-actions">
 					<button type="button" class="wh4u-domains__btn-secondary" id="wh4u-transfer-cancel">
 							<?php esc_html_e( 'Back to results', 'wh4u-domains' ); ?>
@@ -520,6 +531,17 @@ class WH4U_Public {
 		$placeholder_text = ! empty( $appearance['placeholder'] ) ? $appearance['placeholder'] : '';
 		$search_placeholder = $placeholder_text ? $placeholder_text : __( 'Search for your perfect domain...', 'wh4u-domains' );
 
+		$turnstile_enabled = class_exists( 'WH4U_Admin_Settings' ) && WH4U_Admin_Settings::is_turnstile_enabled();
+		if ( $turnstile_enabled ) {
+			wp_enqueue_script(
+				'cf-turnstile',
+				'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit',
+				array(),
+				null, // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion -- external CDN
+				true
+			);
+		}
+
 		wp_localize_script( 'wh4u-public-js', 'wh4uPublic', array(
 			'restUrl'               => esc_url_raw( rest_url( 'wh4u/v1/' ) ),
 			'nonce'                 => wp_create_nonce( 'wp_rest' ),
@@ -527,6 +549,7 @@ class WH4U_Public {
 			'adminUrl'              => is_user_logged_in() ? esc_url( admin_url( 'admin.php' ) ) : '',
 			'cartRedirectEnabled'   => $cart_redirect_enabled,
 			'customPlaceholder'     => ! empty( $placeholder_text ),
+			'turnstileSiteKey'      => $turnstile_enabled ? esc_attr( WH4U_Admin_Settings::get_turnstile_site_key() ) : '',
 			'i18n'                  => array(
 				'searching'         => __( 'Searching...', 'wh4u-domains' ),
 				'available'         => __( 'Available', 'wh4u-domains' ),
@@ -549,6 +572,7 @@ class WH4U_Public {
 				'transferSuccess'   => __( 'Your domain transfer request has been submitted. We will contact you shortly.', 'wh4u-domains' ),
 				'bestMatch'         => __( 'Best match', 'wh4u-domains' ),
 				'searchPlaceholder' => $search_placeholder,
+				'turnstileRequired' => __( 'Please complete the security check.', 'wh4u-domains' ),
 			),
 		) );
 	}

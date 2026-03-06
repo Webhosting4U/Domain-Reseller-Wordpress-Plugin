@@ -503,6 +503,13 @@
 	opacity: 0;
 }
 
+/* Turnstile */
+.wh4u-domains__turnstile {
+	margin-top: var(--wh4u-gap);
+	display: flex;
+	justify-content: center;
+}
+
 /* Form Actions */
 .wh4u-domains__form-actions {
 	display: flex;

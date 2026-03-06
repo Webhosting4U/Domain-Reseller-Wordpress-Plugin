@@ -93,6 +93,29 @@ class WH4U_Admin_Settings {
             'wh4u-domains-settings',
             'wh4u_cart_section'
         );
+
+        add_settings_section(
+            'wh4u_turnstile_section',
+            __( 'Cloudflare Turnstile', 'wh4u-domains' ),
+            array( __CLASS__, 'render_turnstile_section' ),
+            'wh4u-domains-settings'
+        );
+
+        add_settings_field(
+            'wh4u_turnstile_site_key',
+            __( 'Site Key', 'wh4u-domains' ),
+            array( __CLASS__, 'render_turnstile_site_key_field' ),
+            'wh4u-domains-settings',
+            'wh4u_turnstile_section'
+        );
+
+        add_settings_field(
+            'wh4u_turnstile_secret_key',
+            __( 'Secret Key', 'wh4u-domains' ),
+            array( __CLASS__, 'render_turnstile_secret_key_field' ),
+            'wh4u-domains-settings',
+            'wh4u_turnstile_section'
+        );
     }
 
     /**
@@ -121,6 +144,9 @@ class WH4U_Admin_Settings {
         // Custom URL templates: allow only https and placeholders {domain}, {sld}, {tld} (esc_url_raw would strip braces).
         $sanitized['cart_register_url'] = isset( $input['cart_register_url'] ) ? self::sanitize_cart_template( $input['cart_register_url'] ) : '';
         $sanitized['cart_transfer_url'] = isset( $input['cart_transfer_url'] ) ? self::sanitize_cart_template( $input['cart_transfer_url'] ) : '';
+
+        $sanitized['turnstile_site_key']   = isset( $input['turnstile_site_key'] ) ? sanitize_text_field( wp_unslash( $input['turnstile_site_key'] ) ) : '';
+        $sanitized['turnstile_secret_key'] = isset( $input['turnstile_secret_key'] ) ? sanitize_text_field( wp_unslash( $input['turnstile_secret_key'] ) ) : '';
 
         return $sanitized;
     }
@@ -249,6 +275,109 @@ class WH4U_Admin_Settings {
                class="large-text" placeholder="https://billing.example.com/cart.php?a=add&domain=transfer&sld={sld}&tld={tld}" />
         <p class="description"><?php esc_html_e( 'Only for Custom cart type. Use {domain}, {sld}, or {tld} as placeholders.', 'wh4u-domains' ); ?></p>
         <?php
+    }
+
+    /* ─── Turnstile ──────────────────────────────────────────────── */
+
+    /** @return void */
+    public static function render_turnstile_section() {
+        $link = '<a href="https://dash.cloudflare.com/?to=/:account/turnstile" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Cloudflare dashboard', 'wh4u-domains' ) . '</a>';
+        echo '<p>';
+        echo wp_kses(
+            sprintf(
+                /* translators: %s: link to Cloudflare Turnstile dashboard */
+                __( 'Optional: protect public registration and transfer forms with Cloudflare Turnstile (free). Get your keys from the %s.', 'wh4u-domains' ),
+                $link
+            ),
+            array( 'a' => array( 'href' => array(), 'target' => array(), 'rel' => array() ) )
+        );
+        echo '</p>';
+    }
+
+    /** @return void */
+    public static function render_turnstile_site_key_field() {
+        $settings = get_option( 'wh4u_settings', array() );
+        $value    = isset( $settings['turnstile_site_key'] ) ? $settings['turnstile_site_key'] : '';
+        ?>
+        <input type="text" name="wh4u_settings[turnstile_site_key]"
+               value="<?php echo esc_attr( $value ); ?>"
+               class="regular-text" placeholder="0x..." autocomplete="off" />
+        <?php
+    }
+
+    /** @return void */
+    public static function render_turnstile_secret_key_field() {
+        $settings = get_option( 'wh4u_settings', array() );
+        $value    = isset( $settings['turnstile_secret_key'] ) ? $settings['turnstile_secret_key'] : '';
+        ?>
+        <input type="password" name="wh4u_settings[turnstile_secret_key]"
+               value="<?php echo esc_attr( $value ); ?>"
+               class="regular-text" placeholder="0x..." autocomplete="off" />
+        <p class="description"><?php esc_html_e( 'Leave both fields empty to disable Turnstile protection.', 'wh4u-domains' ); ?></p>
+        <?php
+    }
+
+    /**
+     * Check whether Turnstile is configured.
+     *
+     * @return bool
+     */
+    public static function is_turnstile_enabled() {
+        $settings = get_option( 'wh4u_settings', array() );
+        return ! empty( $settings['turnstile_site_key'] ) && ! empty( $settings['turnstile_secret_key'] );
+    }
+
+    /**
+     * Get the Turnstile site key.
+     *
+     * @return string
+     */
+    public static function get_turnstile_site_key() {
+        $settings = get_option( 'wh4u_settings', array() );
+        return isset( $settings['turnstile_site_key'] ) ? $settings['turnstile_site_key'] : '';
+    }
+
+    /**
+     * Get the Turnstile secret key.
+     *
+     * @return string
+     */
+    public static function get_turnstile_secret_key() {
+        $settings = get_option( 'wh4u_settings', array() );
+        return isset( $settings['turnstile_secret_key'] ) ? $settings['turnstile_secret_key'] : '';
+    }
+
+    /**
+     * Verify a Turnstile response token server-side.
+     *
+     * @param string $token The cf-turnstile-response token from the client.
+     * @return bool True if valid.
+     */
+    public static function verify_turnstile_token( $token ) {
+        if ( ! self::is_turnstile_enabled() ) {
+            return true;
+        }
+
+        if ( empty( $token ) ) {
+            return false;
+        }
+
+        $response = wp_remote_post( 'https://challenges.cloudflare.com/turnstile/v0/siteverify', array(
+            'body' => array(
+                'secret'   => self::get_turnstile_secret_key(),
+                'response' => $token,
+                'remoteip' => isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '',
+            ),
+            'timeout' => 10,
+        ) );
+
+        if ( is_wp_error( $response ) ) {
+            return false;
+        }
+
+        $body = json_decode( wp_remote_retrieve_body( $response ), true );
+
+        return is_array( $body ) && ! empty( $body['success'] );
     }
 
     /* ─── Page Rendering ──────────────────────────────────────────── */

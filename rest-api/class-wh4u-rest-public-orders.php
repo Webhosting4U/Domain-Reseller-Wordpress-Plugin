@@ -192,6 +192,12 @@ class WH4U_REST_Public_Orders extends WH4U_REST_Controller {
 				'sanitize_callback' => 'sanitize_text_field',
 				'default'           => '',
 			),
+			'cf-turnstile-response' => array(
+				'required'          => false,
+				'type'              => 'string',
+				'sanitize_callback' => 'sanitize_text_field',
+				'default'           => '',
+			),
 		);
 	}
 
@@ -210,6 +216,17 @@ class WH4U_REST_Public_Orders extends WH4U_REST_Controller {
 				'success' => true,
 				'message' => __( 'Your request has been submitted.', 'wh4u-domains' ),
 			), 201 );
+		}
+
+		if ( class_exists( 'WH4U_Admin_Settings' ) && WH4U_Admin_Settings::is_turnstile_enabled() ) {
+			$token = $request->get_param( 'cf-turnstile-response' );
+			if ( ! WH4U_Admin_Settings::verify_turnstile_token( $token ) ) {
+				return new WP_Error(
+					'wh4u_turnstile_failed',
+					__( 'Security verification failed. Please try again.', 'wh4u-domains' ),
+					array( 'status' => 403 )
+				);
+			}
 		}
 
 		$ip      = self::get_client_ip();
@@ -297,6 +314,17 @@ class WH4U_REST_Public_Orders extends WH4U_REST_Controller {
 				'success' => true,
 				'message' => __( 'Your request has been submitted.', 'wh4u-domains' ),
 			), 201 );
+		}
+
+		if ( class_exists( 'WH4U_Admin_Settings' ) && WH4U_Admin_Settings::is_turnstile_enabled() ) {
+			$token = $request->get_param( 'cf-turnstile-response' );
+			if ( ! WH4U_Admin_Settings::verify_turnstile_token( $token ) ) {
+				return new WP_Error(
+					'wh4u_turnstile_failed',
+					__( 'Security verification failed. Please try again.', 'wh4u-domains' ),
+					array( 'status' => 403 )
+				);
+			}
 		}
 
 		$ip      = self::get_client_ip();
