@@ -28,41 +28,32 @@
 	"textdomain": "wh4u-domains",
 	"attributes": {
 		"placeholder": {
-			"type": "string",
-			"default": "Search for your perfect domain..."
+			"type": "string"
 		},
 		"buttonText": {
-			"type": "string",
-			"default": "Search"
+			"type": "string"
 		},
 		"accentColor": {
-			"type": "string",
-			"default": ""
+			"type": "string"
 		},
 		"styleVariant": {
 			"type": "string",
-			"default": "elevated",
 			"enum": [ "elevated", "flat", "bordered", "minimal" ]
 		},
 		"showPricing": {
-			"type": "boolean",
-			"default": false
+			"type": "boolean"
 		},
 		"showSuggestions": {
-			"type": "boolean",
-			"default": true
+			"type": "boolean"
 		},
 		"formTitle": {
-			"type": "string",
-			"default": "Register this domain"
+			"type": "string"
 		},
 		"formDescription": {
-			"type": "string",
-			"default": "Fill in your details below to secure this domain."
+			"type": "string"
 		},
 		"borderRadius": {
-			"type": "string",
-			"default": "12"
+			"type": "string"
 		}
 	},
 	"editorScript": "file:./index.js",

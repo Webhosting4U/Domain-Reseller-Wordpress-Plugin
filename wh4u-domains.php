@@ -32,6 +32,7 @@ require_once WH4U_DOMAINS_PLUGIN_DIR . 'includes/class-wh4u-rate-limiter.php';
 require_once WH4U_DOMAINS_PLUGIN_DIR . 'includes/class-wh4u-api-client.php';
 require_once WH4U_DOMAINS_PLUGIN_DIR . 'includes/class-wh4u-queue.php';
 require_once WH4U_DOMAINS_PLUGIN_DIR . 'includes/class-wh4u-cart-redirect.php';
+require_once WH4U_DOMAINS_PLUGIN_DIR . 'includes/class-wh4u-theme-compat.php';
 require_once WH4U_DOMAINS_PLUGIN_DIR . 'includes/class-wh4u-activator.php';
 require_once WH4U_DOMAINS_PLUGIN_DIR . 'includes/class-wh4u-deactivator.php';
 

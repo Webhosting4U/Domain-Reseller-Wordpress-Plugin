@@ -58,6 +58,7 @@ class WH4U_Admin_Appearance {
 			'success_title'       => '',
 			'success_message'     => '',
 			'search_another_text' => '',
+			'popular_tlds'        => '.com, .net, .io, .org, .gr',
 		);
 	}
 
@@ -174,6 +175,10 @@ class WH4U_Admin_Appearance {
 		$sanitized['show_suggestions'] = ! empty( $input['show_suggestions'] );
 		$sanitized['show_transfer']    = ! empty( $input['show_transfer'] );
 
+		$sanitized['popular_tlds'] = isset( $input['popular_tlds'] )
+			? sanitize_text_field( wp_unslash( $input['popular_tlds'] ) )
+			: $defaults['popular_tlds'];
+
 		$sanitized['suggestion_count'] = isset( $input['suggestion_count'] )
 			? max( 3, min( 10, absint( $input['suggestion_count'] ) ) )
 			: $defaults['suggestion_count'];
@@ -240,6 +245,7 @@ class WH4U_Admin_Appearance {
 						<?php submit_button( __( 'Save Appearance', 'wh4u-domains' ), 'primary', 'submit-top', false ); ?>
 					</div>
 
+					<?php self::render_theme_banner(); ?>
 					<?php self::render_section_style_mode( $settings ); ?>
 					<?php self::render_section_colors( $settings ); ?>
 					<?php self::render_section_typography( $settings ); ?>
@@ -269,6 +275,86 @@ class WH4U_Admin_Appearance {
 	}
 
 	/* ─── Section Renderers ─────────────────────────────────────── */
+
+	/**
+	 * Render a banner showing theme detection status.
+	 *
+	 * @return void
+	 */
+	private static function render_theme_banner() {
+		if ( ! class_exists( 'WH4U_Theme_Compat' ) ) {
+			return;
+		}
+
+		$tokens = WH4U_Theme_Compat::get_tokens();
+		$theme  = wp_get_theme();
+		$name   = $theme->get( 'Name' );
+
+		if ( empty( $tokens ) ) {
+			?>
+			<div class="wh4u-theme-banner">
+				<span class="dashicons dashicons-info"></span>
+				<span>
+					<?php
+					echo esc_html(
+						sprintf(
+							/* translators: %s: active theme name */
+							__( 'Theme "%s" does not provide design tokens (theme.json). The plugin will use its own defaults. You can customize everything below.', 'wh4u-domains' ),
+							$name
+						)
+					);
+					?>
+				</span>
+			</div>
+			<?php
+			return;
+		}
+
+		$detected = array();
+		if ( ! empty( $tokens['accent_color'] ) ) {
+			$detected[] = __( 'accent color', 'wh4u-domains' );
+		}
+		if ( ! empty( $tokens['text_color'] ) ) {
+			$detected[] = __( 'text color', 'wh4u-domains' );
+		}
+		if ( ! empty( $tokens['bg_color'] ) ) {
+			$detected[] = __( 'background', 'wh4u-domains' );
+		}
+		if ( ! empty( $tokens['font_family_value'] ) ) {
+			$detected[] = __( 'font family', 'wh4u-domains' );
+		}
+		if ( ! empty( $tokens['border_radius'] ) ) {
+			$detected[] = __( 'border radius', 'wh4u-domains' );
+		}
+		?>
+		<div class="wh4u-theme-banner">
+			<span class="dashicons dashicons-admin-appearance"></span>
+			<span>
+				<strong>
+				<?php
+				echo esc_html(
+					sprintf(
+						/* translators: %s: active theme name */
+						__( 'Auto-adapting to "%s"', 'wh4u-domains' ),
+						$name
+					)
+				);
+				?>
+				</strong>
+				&mdash;
+				<?php
+				echo esc_html(
+					sprintf(
+						/* translators: %s: comma-separated list of detected tokens */
+						__( 'Detected: %s. Set a value below to override any of these.', 'wh4u-domains' ),
+						implode( ', ', $detected )
+					)
+				);
+				?>
+			</span>
+		</div>
+		<?php
+	}
 
 	/**
 	 * @param array $s Current settings.
@@ -319,12 +405,16 @@ class WH4U_Admin_Appearance {
 			'available_color'   => __( 'Available Status', 'wh4u-domains' ),
 			'unavailable_color' => __( 'Unavailable Status', 'wh4u-domains' ),
 		);
+
+		$theme_tokens = class_exists( 'WH4U_Theme_Compat' ) ? WH4U_Theme_Compat::get_tokens() : array();
 		?>
 		<div class="wh4u-appearance-section">
 			<h3><?php esc_html_e( 'Colors', 'wh4u-domains' ); ?></h3>
-			<p class="description"><?php esc_html_e( 'Leave empty to use your theme defaults.', 'wh4u-domains' ); ?></p>
+			<p class="description"><?php esc_html_e( 'Leave empty to auto-detect from your theme. Detected theme colors are shown as swatches.', 'wh4u-domains' ); ?></p>
 			<table class="form-table">
-				<?php foreach ( $colors as $key => $label ) : ?>
+				<?php foreach ( $colors as $key => $label ) :
+					$theme_val = ! empty( $theme_tokens[ $key ] ) ? $theme_tokens[ $key ] : '';
+				?>
 				<tr>
 					<th scope="row"><?php echo esc_html( $label ); ?></th>
 					<td>
@@ -334,6 +424,20 @@ class WH4U_Admin_Appearance {
 							   value="<?php echo esc_attr( $s[ $key ] ); ?>"
 							   data-preview="<?php echo esc_attr( $key ); ?>"
 							   data-default-color="" />
+						<?php if ( $theme_val && empty( $s[ $key ] ) ) : ?>
+							<p class="description wh4u-theme-hint">
+								<span class="wh4u-theme-swatch" style="background:<?php echo esc_attr( $theme_val ); ?>"></span>
+								<?php
+								echo esc_html(
+									sprintf(
+										/* translators: %s: hex color value */
+										__( 'Using theme color: %s', 'wh4u-domains' ),
+										$theme_val
+									)
+								);
+								?>
+							</p>
+						<?php endif; ?>
 					</td>
 				</tr>
 				<?php endforeach; ?>
@@ -347,6 +451,18 @@ class WH4U_Admin_Appearance {
 	 * @return void
 	 */
 	private static function render_section_typography( $s ) {
+		$theme_tokens = class_exists( 'WH4U_Theme_Compat' ) ? WH4U_Theme_Compat::get_tokens() : array();
+		$detected_font = ! empty( $theme_tokens['font_family_value'] ) ? $theme_tokens['font_family_value'] : '';
+		$inherit_label = __( 'Inherit from theme', 'wh4u-domains' );
+		if ( $detected_font ) {
+			$short_font = strtok( $detected_font, ',' );
+			$short_font = trim( $short_font, " \t\n\r\0\x0B\"'" );
+			$inherit_label = sprintf(
+				/* translators: %s: detected font family name */
+				__( 'Inherit from theme (%s)', 'wh4u-domains' ),
+				$short_font
+			);
+		}
 		?>
 		<div class="wh4u-appearance-section">
 			<h3><?php esc_html_e( 'Typography', 'wh4u-domains' ); ?></h3>
@@ -355,7 +471,7 @@ class WH4U_Admin_Appearance {
 					<th scope="row"><?php esc_html_e( 'Font Family', 'wh4u-domains' ); ?></th>
 					<td>
 						<select name="<?php echo esc_attr( self::OPTION_KEY ); ?>[font_family]" data-preview="font_family" id="wh4u-font-family-select">
-							<option value="inherit" <?php selected( $s['font_family'], 'inherit' ); ?>><?php esc_html_e( 'Inherit from theme', 'wh4u-domains' ); ?></option>
+							<option value="inherit" <?php selected( $s['font_family'], 'inherit' ); ?>><?php echo esc_html( $inherit_label ); ?></option>
 							<option value="system" <?php selected( $s['font_family'], 'system' ); ?>><?php esc_html_e( 'System UI', 'wh4u-domains' ); ?></option>
 							<option value="custom" <?php selected( $s['font_family'], 'custom' ); ?>><?php esc_html_e( 'Custom (Google Fonts)', 'wh4u-domains' ); ?></option>
 						</select>
@@ -485,6 +601,16 @@ class WH4U_Admin_Appearance {
 								   <?php checked( $s['show_search_icon'] ); ?> />
 							<?php esc_html_e( 'Display the magnifying glass icon inside the search input', 'wh4u-domains' ); ?>
 						</label>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row"><?php esc_html_e( 'Popular TLDs', 'wh4u-domains' ); ?></th>
+					<td>
+						<input type="text" class="regular-text"
+							   name="<?php echo esc_attr( self::OPTION_KEY ); ?>[popular_tlds]"
+							   value="<?php echo esc_attr( $s['popular_tlds'] ); ?>"
+							   placeholder=".com, .net, .io, .org, .gr" />
+						<p class="description"><?php esc_html_e( 'Comma-separated list of TLD chips shown below the search bar. Leave empty to hide.', 'wh4u-domains' ); ?></p>
 					</td>
 				</tr>
 			</table>

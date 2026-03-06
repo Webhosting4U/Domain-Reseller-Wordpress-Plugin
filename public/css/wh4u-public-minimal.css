@@ -239,6 +239,87 @@
 	cursor: pointer;
 }
 
+/* Skeleton cards */
+.wh4u-domains__skeleton-card {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding: 12px 16px;
+}
+
+.wh4u-domains__skeleton-line {
+	height: 16px;
+	border-radius: 4px;
+	background: currentColor;
+	opacity: 0.08;
+}
+
+.wh4u-domains__skeleton-line--wide {
+	flex: 1;
+	min-width: 0;
+}
+
+.wh4u-domains__skeleton-line--pill {
+	width: 70px;
+	flex-shrink: 0;
+}
+
+.wh4u-domains__skeleton-line--btn {
+	width: 90px;
+	flex-shrink: 0;
+}
+
+/* TLD Chips */
+.wh4u-domains__tld-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-top: 10px;
+}
+
+.wh4u-domains__tld-chip {
+	padding: 4px 12px;
+	font-family: inherit;
+	cursor: pointer;
+	white-space: nowrap;
+	line-height: 1.5;
+}
+
+/* Copy button */
+.wh4u-domains__copy-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	padding: 0;
+	margin-left: 6px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+/* Price display */
+.wh4u-domains__result-price {
+	white-space: nowrap;
+	flex-shrink: 0;
+}
+
+/* Status icon */
+.wh4u-domains__status-icon {
+	display: inline-block;
+	vertical-align: -2px;
+	margin-right: 4px;
+}
+
+/* Primary card badge */
+.wh4u-domains__result-badge {
+	display: inline-block;
+	margin-left: 8px;
+	font-size: 0.75rem;
+}
+
 @media (max-width: 600px) {
 	.wh4u-domains__input-wrap {
 		flex-direction: column;

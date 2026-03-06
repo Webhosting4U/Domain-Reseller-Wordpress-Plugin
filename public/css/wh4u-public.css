@@ -33,8 +33,8 @@
 	--wh4u-gap: var(--wp--preset--spacing--30, 1rem);
 	--wh4u-gap-lg: var(--wp--preset--spacing--40, 1.5rem);
 
-	/* Radius - overridable via block attribute */
-	--wh4u-radius: 12px;
+	/* Radius - uses theme custom.border.radius when available */
+	--wh4u-radius: var(--wp--custom--border--radius, 12px);
 
 	/* Transitions */
 	--wh4u-ease: cubic-bezier(0.4, 0, 0.2, 1);
@@ -680,6 +680,245 @@
 		width: 100%;
 		justify-content: center;
 	}
+
+	.wh4u-domains__skeleton-card {
+		padding: 14px 16px;
+	}
+
+	.wh4u-domains__tld-chips {
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+		scrollbar-width: none;
+		padding-bottom: 4px;
+	}
+
+	.wh4u-domains__tld-chips::-webkit-scrollbar {
+		display: none;
+	}
+
+	.wh4u-domains__copy-btn {
+		opacity: 1;
+	}
+
+	.wh4u-domains__result-badge {
+		display: block;
+		margin-left: 0;
+		margin-top: 4px;
+		width: fit-content;
+	}
+
+	.wh4u-domains__result-price {
+		flex-basis: 100%;
+	}
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Skeleton Loading Cards
+   ────────────────────────────────────────────────────────────── */
+.wh4u-domains__skeleton-card {
+	display: flex;
+	align-items: center;
+	gap: var(--wh4u-gap);
+	padding: 20px;
+	border: 1px solid var(--wh4u-border);
+	border-radius: calc(var(--wh4u-radius) - 4px);
+	background: var(--wh4u-surface);
+	animation: wh4u-fadeIn 0.3s var(--wh4u-ease) both;
+}
+
+.wh4u-domains__skeleton-line {
+	height: 16px;
+	border-radius: 8px;
+	background: linear-gradient(
+		90deg,
+		var(--wh4u-border) 25%,
+		color-mix(in srgb, var(--wh4u-text) 6%, transparent) 50%,
+		var(--wh4u-border) 75%
+	);
+	background-size: 200% 100%;
+	animation: wh4u-shimmer 1.5s infinite linear;
+}
+
+.wh4u-domains__skeleton-line--wide {
+	flex: 1;
+	min-width: 0;
+	height: 18px;
+}
+
+.wh4u-domains__skeleton-line--pill {
+	width: 70px;
+	height: 24px;
+	border-radius: 9999px;
+	flex-shrink: 0;
+}
+
+.wh4u-domains__skeleton-line--btn {
+	width: 90px;
+	height: 34px;
+	border-radius: calc(var(--wh4u-radius) - 4px);
+	flex-shrink: 0;
+}
+
+@keyframes wh4u-shimmer {
+	from { background-position: 200% 0; }
+	to { background-position: -200% 0; }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   TLD Chips
+   ────────────────────────────────────────────────────────────── */
+.wh4u-domains__tld-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-top: 12px;
+	padding: 0 2px;
+}
+
+.wh4u-domains__tld-chip {
+	display: inline-flex;
+	align-items: center;
+	padding: 5px 14px;
+	font-size: 0.8125rem;
+	font-weight: 500;
+	font-family: inherit;
+	color: var(--wh4u-text-secondary);
+	background: transparent;
+	border: 1.5px solid var(--wh4u-border);
+	border-radius: 9999px;
+	cursor: pointer;
+	transition:
+		border-color var(--wh4u-duration) var(--wh4u-ease),
+		color var(--wh4u-duration) var(--wh4u-ease),
+		background var(--wh4u-duration) var(--wh4u-ease);
+	white-space: nowrap;
+	line-height: 1.5;
+}
+
+.wh4u-domains__tld-chip:hover {
+	border-color: var(--wh4u-accent);
+	color: var(--wh4u-accent);
+	background: var(--wh4u-accent-light);
+}
+
+.wh4u-domains__tld-chip:active {
+	transform: scale(0.96);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Primary Result Card Highlight
+   ────────────────────────────────────────────────────────────── */
+.wh4u-domains__result-card--primary.wh4u-domains__result-card--available {
+	border-left: 4px solid var(--wh4u-accent);
+	background: var(--wh4u-accent-light);
+	border-color: color-mix(in srgb, var(--wh4u-accent) 24%, transparent);
+	box-shadow: 0 2px 12px -4px color-mix(in srgb, var(--wh4u-accent) 18%, transparent);
+	padding: 18px 22px;
+}
+
+.wh4u-domains__result-card--primary .wh4u-domains__result-domain-name {
+	font-size: 1.0625rem;
+	font-weight: 700;
+}
+
+.wh4u-domains__result-badge {
+	display: inline-block;
+	margin-left: 10px;
+	padding: 2px 8px;
+	font-size: 0.6875rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--wh4u-accent);
+	background: color-mix(in srgb, var(--wh4u-accent) 14%, transparent);
+	border-radius: 4px;
+	vertical-align: middle;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Pricing Display
+   ────────────────────────────────────────────────────────────── */
+.wh4u-domains__result-price {
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: var(--wh4u-text-secondary);
+	white-space: nowrap;
+	flex-shrink: 0;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Animated Status Icons
+   ────────────────────────────────────────────────────────────── */
+.wh4u-domains__status-icon {
+	display: inline-block;
+	vertical-align: -2px;
+	margin-right: 4px;
+	animation: wh4u-statusPop 0.35s var(--wh4u-ease) both;
+}
+
+@keyframes wh4u-statusPop {
+	0% { transform: scale(0.5); opacity: 0; }
+	70% { transform: scale(1.12); }
+	100% { transform: scale(1); opacity: 1; }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Copy Domain Button
+   ────────────────────────────────────────────────────────────── */
+.wh4u-domains__copy-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	padding: 0;
+	margin-left: 8px;
+	vertical-align: middle;
+	background: transparent;
+	border: 1px solid transparent;
+	border-radius: 6px;
+	cursor: pointer;
+	color: var(--wh4u-text-muted);
+	opacity: 0;
+	transition:
+		opacity var(--wh4u-duration) var(--wh4u-ease),
+		color var(--wh4u-duration) var(--wh4u-ease),
+		background var(--wh4u-duration) var(--wh4u-ease),
+		border-color var(--wh4u-duration) var(--wh4u-ease);
+	position: relative;
+}
+
+.wh4u-domains__result-card:hover .wh4u-domains__copy-btn {
+	opacity: 1;
+}
+
+.wh4u-domains__copy-btn:hover {
+	color: var(--wh4u-accent);
+	background: var(--wh4u-accent-light);
+	border-color: var(--wh4u-accent-light);
+}
+
+.wh4u-domains__copy-btn--copied::after {
+	content: 'Copied!';
+	position: absolute;
+	bottom: calc(100% + 6px);
+	left: 50%;
+	transform: translateX(-50%);
+	padding: 3px 8px;
+	font-size: 0.6875rem;
+	font-weight: 600;
+	color: #fff;
+	background: var(--wh4u-text);
+	border-radius: 4px;
+	white-space: nowrap;
+	pointer-events: none;
+	animation: wh4u-tooltipIn 0.2s var(--wh4u-ease) both;
+}
+
+@keyframes wh4u-tooltipIn {
+	from { opacity: 0; transform: translateX(-50%) translateY(4px); }
+	to { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 
 /* ──────────────────────────────────────────────────────────────
@@ -701,5 +940,82 @@
 
 	.wh4u-domains__result-status--unavailable {
 		background: rgba(0, 0, 0, 0.04);
+	}
+
+	.wh4u-domains__skeleton-line {
+		background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+		background-size: 200% 100%;
+		animation: wh4u-shimmer 1.5s infinite linear;
+	}
+
+	.wh4u-domains__copy-btn--copied::after {
+		background: #1e293b;
+	}
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Dark Mode (prefers-color-scheme)
+   Inline style="--wh4u-*" overrides from Appearance tab win over
+   these defaults since inline custom properties have higher priority.
+   ────────────────────────────────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+	.wh4u-domains {
+		--wh4u-text: #e2e8f0;
+		--wh4u-bg: #0f172a;
+		--wh4u-surface: #1e293b;
+		--wh4u-surface-raised: #1e293b;
+		--wh4u-border: rgba(255, 255, 255, 0.1);
+		--wh4u-border-focus: var(--wh4u-accent);
+		--wh4u-accent-hover: color-mix(in srgb, var(--wh4u-accent) 80%, #fff);
+		--wh4u-accent-light: color-mix(in srgb, var(--wh4u-accent) 12%, transparent);
+		--wh4u-accent-soft: color-mix(in srgb, var(--wh4u-accent) 18%, transparent);
+		--wh4u-available: #34d399;
+		--wh4u-unavailable: #f87171;
+	}
+
+	.wh4u-domains__error {
+		background: rgba(239, 68, 68, 0.1);
+		border-color: rgba(239, 68, 68, 0.25);
+		color: #fca5a5;
+	}
+
+	.wh4u-domains__skeleton-line {
+		background: linear-gradient(
+			90deg,
+			rgba(255, 255, 255, 0.06) 25%,
+			rgba(255, 255, 255, 0.1) 50%,
+			rgba(255, 255, 255, 0.06) 75%
+		);
+		background-size: 200% 100%;
+	}
+
+	.wh4u-domains__result-card--primary.wh4u-domains__result-card--available {
+		background: color-mix(in srgb, var(--wh4u-accent) 8%, var(--wh4u-surface));
+		border-color: color-mix(in srgb, var(--wh4u-accent) 30%, transparent);
+	}
+
+	.wh4u-domains__copy-btn--copied::after {
+		background: #e2e8f0;
+		color: #0f172a;
+	}
+
+	.wh4u-domains__tld-chip {
+		border-color: rgba(255, 255, 255, 0.12);
+		color: #94a3b8;
+	}
+
+	.wh4u-domains__result-card {
+		background: var(--wh4u-surface);
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	@supports not (color: color-mix(in srgb, red 50%, blue)) {
+		.wh4u-domains {
+			--wh4u-accent-hover: #60a5fa;
+			--wh4u-accent-light: rgba(59, 130, 246, 0.12);
+			--wh4u-accent-soft: rgba(59, 130, 246, 0.18);
+			--wh4u-border: rgba(255, 255, 255, 0.1);
+		}
 	}
 }

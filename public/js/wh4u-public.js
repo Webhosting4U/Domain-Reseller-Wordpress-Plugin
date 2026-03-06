@@ -12,6 +12,14 @@
 	var config = window.wh4uPublic || {};
 	var currentDomain = '';
 	var currentOrderType = 'register';
+	var pricingCache = null;
+	var pricingPromise = null;
+	var placeholderTimer = null;
+	var lastSearchTerm = '';
+
+	var SVG_CHECK = '<svg class="wh4u-domains__status-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>';
+	var SVG_X = '<svg class="wh4u-domains__status-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>';
+	var SVG_COPY = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
 
 	function init() {
 		var form = document.getElementById( 'wh4u-public-lookup-form' );
@@ -49,6 +57,159 @@
 				submitTransfer();
 			} );
 		}
+
+		initTldChips();
+		initPlaceholderCycling();
+		prefetchPricing();
+	}
+
+	/* ─── TLD Chips ──────────────────────────────────────────── */
+
+	function initTldChips() {
+		var chips = document.querySelectorAll( '.wh4u-domains__tld-chip' );
+		if ( ! chips.length ) {
+			return;
+		}
+		for ( var i = 0; i < chips.length; i++ ) {
+			chips[i].addEventListener( 'click', function() {
+				var tld = this.getAttribute( 'data-tld' );
+				if ( ! tld ) {
+					return;
+				}
+				var input = document.getElementById( 'wh4u-public-search' );
+				if ( ! input ) {
+					return;
+				}
+				var current = input.value.trim();
+				var dot = current.indexOf( '.' );
+				var sld = dot > 0 ? current.substring( 0, dot ) : current;
+				if ( ! sld ) {
+					sld = 'example';
+				}
+				input.value = sld + tld;
+				stopPlaceholderCycling();
+				performLookup();
+			} );
+		}
+	}
+
+	/* ─── Animated Placeholder ───────────────────────────────── */
+
+	function initPlaceholderCycling() {
+		var input = document.getElementById( 'wh4u-public-search' );
+		if ( ! input ) {
+			return;
+		}
+
+		if ( config.customPlaceholder ) {
+			return;
+		}
+
+		var examples = [ 'mybusiness.com', 'myshop.io', 'myname.gr', 'startup.net', 'brand.org', 'ideas.co' ];
+		var exIndex = 0;
+		var charIndex = 0;
+		var isDeleting = false;
+		var pauseCount = 0;
+
+		function tick() {
+			var target = examples[ exIndex ];
+			if ( pauseCount > 0 ) {
+				pauseCount--;
+				return;
+			}
+
+			if ( ! isDeleting ) {
+				charIndex++;
+				input.setAttribute( 'placeholder', target.substring( 0, charIndex ) + '|' );
+				if ( charIndex >= target.length ) {
+					input.setAttribute( 'placeholder', target );
+					pauseCount = 20;
+					isDeleting = true;
+				}
+			} else {
+				charIndex--;
+				input.setAttribute( 'placeholder', charIndex > 0 ? target.substring( 0, charIndex ) + '|' : '' );
+				if ( charIndex <= 0 ) {
+					isDeleting = false;
+					exIndex = ( exIndex + 1 ) % examples.length;
+					pauseCount = 4;
+				}
+			}
+		}
+
+		placeholderTimer = setInterval( tick, 80 );
+
+		input.addEventListener( 'focus', stopPlaceholderCycling );
+		input.addEventListener( 'input', stopPlaceholderCycling );
+	}
+
+	function stopPlaceholderCycling() {
+		if ( placeholderTimer ) {
+			clearInterval( placeholderTimer );
+			placeholderTimer = null;
+			var input = document.getElementById( 'wh4u-public-search' );
+			if ( input ) {
+				input.setAttribute( 'placeholder', config.i18n.searchPlaceholder || '' );
+			}
+		}
+	}
+
+	/* ─── Pricing Prefetch ───────────────────────────────────── */
+
+	function prefetchPricing() {
+		var container = document.querySelector( '.wh4u-domains' );
+		if ( ! container || container.getAttribute( 'data-show-pricing' ) !== 'true' ) {
+			return;
+		}
+		pricingPromise = fetchJSON( config.restUrl + 'tlds/pricing', { method: 'GET' } )
+			.then( function( data ) {
+				pricingCache = {};
+				var items = Array.isArray( data ) ? data : [];
+				for ( var i = 0; i < items.length; i++ ) {
+					var tld = items[i].tld || '';
+					if ( tld && ! tld.startsWith( '.' ) ) {
+						tld = '.' + tld;
+					}
+					pricingCache[ tld.toLowerCase() ] = items[i].register || '';
+				}
+				return pricingCache;
+			} )
+			.catch( function() {
+				pricingCache = {};
+				return pricingCache;
+			} );
+	}
+
+	function getPriceForTld( tld ) {
+		if ( ! pricingCache ) {
+			return '';
+		}
+		tld = ( tld || '' ).toLowerCase();
+		if ( ! tld.startsWith( '.' ) ) {
+			tld = '.' + tld;
+		}
+		return pricingCache[ tld ] || '';
+	}
+
+	/* ─── Skeleton Loading ───────────────────────────────────── */
+
+	function showSkeletons() {
+		var container = document.getElementById( 'wh4u-public-results' );
+		if ( ! container ) {
+			return;
+		}
+		container.innerHTML = '';
+		for ( var i = 0; i < 4; i++ ) {
+			var skel = document.createElement( 'div' );
+			skel.className = 'wh4u-domains__skeleton-card';
+			skel.style.animationDelay = ( i * 80 ) + 'ms';
+			skel.innerHTML =
+				'<div class="wh4u-domains__skeleton-line wh4u-domains__skeleton-line--wide"></div>' +
+				'<div class="wh4u-domains__skeleton-line wh4u-domains__skeleton-line--pill"></div>' +
+				'<div class="wh4u-domains__skeleton-line wh4u-domains__skeleton-line--btn"></div>';
+			container.appendChild( skel );
+		}
+		show( container );
 	}
 
 	/* ─── Search ──────────────────────────────────────────────── */
@@ -61,6 +222,9 @@
 			return;
 		}
 
+		lastSearchTerm = searchTerm;
+		stopPlaceholderCycling();
+
 		var btn          = document.getElementById( 'wh4u-public-search-btn' );
 		var loading      = document.getElementById( 'wh4u-public-loading' );
 		var errorEl      = document.getElementById( 'wh4u-public-error' );
@@ -69,12 +233,12 @@
 		var transferSect = document.getElementById( 'wh4u-public-transfer-section' );
 		var successEl    = document.getElementById( 'wh4u-public-success' );
 
-		hide( results );
 		hide( errorEl );
 		hide( formSect );
 		hide( transferSect );
 		hide( successEl );
 		show( loading );
+		showSkeletons();
 
 		if ( btn ) {
 			btn.disabled = true;
@@ -90,6 +254,7 @@
 				renderResults( lookupData );
 			} )
 			.catch( function( err ) {
+				hide( results );
 				showError( err.message || config.i18n.error );
 			} )
 			.finally( function() {
@@ -118,28 +283,74 @@
 			return;
 		}
 
+		var showPricing = container.closest( '.wh4u-domains' ) &&
+			container.closest( '.wh4u-domains' ).getAttribute( 'data-show-pricing' ) === 'true';
+
 		items.forEach( function( item, index ) {
 			var domain      = item.domainName || item.domain || item.sld || '';
 			var isAvailable = item.status === 'available' || item.isAvailable === true || item.available === true;
+			var isPrimary   = index === 0 || domain.toLowerCase() === lastSearchTerm.toLowerCase();
 
 			var card = document.createElement( 'div' );
-			card.className = 'wh4u-domains__result-card wh4u-domains__result-card--' + ( isAvailable ? 'available' : 'unavailable' );
+			var classes = 'wh4u-domains__result-card wh4u-domains__result-card--' + ( isAvailable ? 'available' : 'unavailable' );
+			if ( isPrimary && index === 0 ) {
+				classes += ' wh4u-domains__result-card--primary';
+			}
+			card.className = classes;
 			card.style.animationDelay = ( index * 50 ) + 'ms';
 
 			var nameParts = splitDomain( domain );
 
 			var domainEl = document.createElement( 'div' );
 			domainEl.className = 'wh4u-domains__result-domain';
-			domainEl.innerHTML = '<span class="wh4u-domains__result-domain-name">' +
+
+			var nameHtml = '<span class="wh4u-domains__result-domain-name">' +
 				escHtml( nameParts.sld ) +
 				'<span class="wh4u-domains__result-tld">' + escHtml( nameParts.tld ) + '</span>' +
 				'</span>';
+
+			if ( isPrimary && index === 0 && isAvailable ) {
+				nameHtml += '<span class="wh4u-domains__result-badge">' + escHtml( config.i18n.bestMatch || 'Best match' ) + '</span>';
+			}
+
+			domainEl.innerHTML = nameHtml;
+
+			var copyBtn = document.createElement( 'button' );
+			copyBtn.type = 'button';
+			copyBtn.className = 'wh4u-domains__copy-btn';
+			copyBtn.setAttribute( 'aria-label', 'Copy' );
+			copyBtn.setAttribute( 'data-domain', domain );
+			copyBtn.innerHTML = SVG_COPY;
+			copyBtn.addEventListener( 'click', function( e ) {
+				e.stopPropagation();
+				var d = this.getAttribute( 'data-domain' );
+				var self = this;
+				if ( navigator.clipboard && navigator.clipboard.writeText ) {
+					navigator.clipboard.writeText( d ).then( function() {
+						self.classList.add( 'wh4u-domains__copy-btn--copied' );
+						setTimeout( function() {
+							self.classList.remove( 'wh4u-domains__copy-btn--copied' );
+						}, 1500 );
+					} );
+				}
+			} );
+			domainEl.appendChild( copyBtn );
 			card.appendChild( domainEl );
 
 			var statusEl = document.createElement( 'span' );
 			statusEl.className = 'wh4u-domains__result-status wh4u-domains__result-status--' + ( isAvailable ? 'available' : 'unavailable' );
-			statusEl.textContent = isAvailable ? config.i18n.available : config.i18n.unavailable;
+			statusEl.innerHTML = ( isAvailable ? SVG_CHECK : SVG_X ) + ' ' + escHtml( isAvailable ? config.i18n.available : config.i18n.unavailable );
 			card.appendChild( statusEl );
+
+			if ( showPricing && isAvailable ) {
+				var price = getPriceForTld( nameParts.tld );
+				if ( price ) {
+					var priceEl = document.createElement( 'span' );
+					priceEl.className = 'wh4u-domains__result-price';
+					priceEl.textContent = price + '/yr';
+					card.appendChild( priceEl );
+				}
+			}
 
 			var actionEl = document.createElement( 'div' );
 			actionEl.className = 'wh4u-domains__result-action';
@@ -160,7 +371,7 @@
 				var xferBtn = document.createElement( 'button' );
 				xferBtn.type = 'button';
 				xferBtn.className = 'wh4u-domains__transfer-btn';
-				xferBtn.textContent = config.i18n.transfer || 'Transfer';
+				xferBtn.textContent = config.i18n.transfer || '';
 				xferBtn.setAttribute( 'data-domain', domain );
 				xferBtn.addEventListener( 'click', function() {
 					tryCartRedirect( domain, 'transfer', function() {

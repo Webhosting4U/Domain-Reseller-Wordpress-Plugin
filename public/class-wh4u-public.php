@@ -44,19 +44,22 @@ class WH4U_Public {
 
 		$this->enqueue_frontend_assets();
 
-		$atts = shortcode_atts( array(
-			'placeholder'      => __( 'Search for your perfect domain...', 'wh4u-domains' ),
-			'button_text'      => __( 'Search', 'wh4u-domains' ),
-			'accent_color'     => '',
-			'style_variant'    => 'elevated',
-			'show_pricing'     => 'false',
-			'show_suggestions' => 'true',
-			'form_title'       => __( 'Register this domain', 'wh4u-domains' ),
-			'form_description' => __( 'Fill in your details below to secure this domain.', 'wh4u-domains' ),
-			'border_radius'    => '12',
-		), $atts, 'wh4u_domain_lookup' );
+		$known_keys = array(
+			'placeholder', 'button_text', 'accent_color', 'style_variant',
+			'show_pricing', 'show_suggestions', 'form_title', 'form_description',
+			'border_radius',
+		);
 
-		return self::get_lookup_html( $atts );
+		$filtered = array();
+		if ( is_array( $atts ) ) {
+			foreach ( $atts as $key => $value ) {
+				if ( in_array( $key, $known_keys, true ) ) {
+					$filtered[ $key ] = $value;
+				}
+			}
+		}
+
+		return self::get_lookup_html( $filtered );
 	}
 
 	/**
@@ -73,16 +76,20 @@ class WH4U_Public {
 			? WH4U_Admin_Appearance::get_settings()
 			: array();
 
+		$theme_tokens = class_exists( 'WH4U_Theme_Compat' )
+			? WH4U_Theme_Compat::get_tokens()
+			: array();
+
 		$defaults = array(
 			'placeholder'      => ! empty( $appearance['placeholder'] ) ? $appearance['placeholder'] : __( 'Search for your perfect domain...', 'wh4u-domains' ),
 			'button_text'      => ! empty( $appearance['button_text'] ) ? $appearance['button_text'] : __( 'Search', 'wh4u-domains' ),
-			'accent_color'     => ! empty( $appearance['accent_color'] ) ? $appearance['accent_color'] : '',
+			'accent_color'     => ! empty( $appearance['accent_color'] ) ? $appearance['accent_color'] : ( ! empty( $theme_tokens['accent_color'] ) ? $theme_tokens['accent_color'] : '' ),
 			'style_variant'    => ! empty( $appearance['style_variant'] ) ? $appearance['style_variant'] : 'elevated',
 			'show_pricing'     => ! empty( $appearance['show_pricing'] ) ? 'true' : 'false',
 			'show_suggestions' => isset( $appearance['show_suggestions'] ) ? ( $appearance['show_suggestions'] ? 'true' : 'false' ) : 'true',
 			'form_title'       => ! empty( $appearance['form_title'] ) ? $appearance['form_title'] : __( 'Register this domain', 'wh4u-domains' ),
 			'form_description' => ! empty( $appearance['form_description'] ) ? $appearance['form_description'] : __( 'Fill in your details below to secure this domain.', 'wh4u-domains' ),
-			'border_radius'    => isset( $appearance['border_radius'] ) ? (string) $appearance['border_radius'] : '12',
+			'border_radius'    => isset( $appearance['border_radius'] ) ? (string) $appearance['border_radius'] : ( ! empty( $theme_tokens['border_radius'] ) ? (string) $theme_tokens['border_radius'] : '12' ),
 		);
 
 		$atts = wp_parse_args( $atts, $defaults );
@@ -98,15 +105,26 @@ class WH4U_Public {
 		$show_search_icon = isset( $appearance['show_search_icon'] ) ? $appearance['show_search_icon'] : true;
 		$show_transfer    = isset( $appearance['show_transfer'] ) ? $appearance['show_transfer'] : true;
 
+		$popular_tlds_raw = isset( $appearance['popular_tlds'] ) ? $appearance['popular_tlds'] : '.com, .net, .io, .org, .gr';
+		$popular_tlds     = array_filter( array_map( 'trim', explode( ',', $popular_tlds_raw ) ) );
+
 		$style_parts = array();
+
 		if ( ! empty( $atts['accent_color'] ) ) {
-			$style_parts[] = '--wh4u-accent: ' . sanitize_hex_color( $atts['accent_color'] );
+			$hex = sanitize_hex_color( $atts['accent_color'] );
+			if ( $hex ) {
+				$style_parts[] = '--wh4u-accent: ' . $hex;
+			}
 		}
 		if ( ! empty( $appearance['text_color'] ) ) {
 			$style_parts[] = '--wh4u-text: ' . sanitize_hex_color( $appearance['text_color'] );
+		} elseif ( ! empty( $theme_tokens['text_color'] ) ) {
+			$style_parts[] = '--wh4u-text: ' . sanitize_hex_color( $theme_tokens['text_color'] );
 		}
 		if ( ! empty( $appearance['bg_color'] ) ) {
 			$style_parts[] = '--wh4u-bg: ' . sanitize_hex_color( $appearance['bg_color'] );
+		} elseif ( ! empty( $theme_tokens['bg_color'] ) ) {
+			$style_parts[] = '--wh4u-bg: ' . sanitize_hex_color( $theme_tokens['bg_color'] );
 		}
 		if ( ! empty( $appearance['border_color'] ) ) {
 			$style_parts[] = '--wh4u-border: ' . sanitize_hex_color( $appearance['border_color'] );
@@ -125,6 +143,8 @@ class WH4U_Public {
 		}
 		if ( ! empty( $appearance['font_size'] ) && (int) $appearance['font_size'] !== 16 ) {
 			$style_parts[] = 'font-size: ' . absint( $appearance['font_size'] ) . 'px';
+		} elseif ( ! empty( $theme_tokens['font_size'] ) ) {
+			$style_parts[] = 'font-size: ' . absint( $theme_tokens['font_size'] ) . 'px';
 		}
 
 		$font_family_mode = isset( $appearance['font_family'] ) ? $appearance['font_family'] : 'inherit';
@@ -132,6 +152,8 @@ class WH4U_Public {
 			$style_parts[] = 'font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif';
 		} elseif ( $font_family_mode === 'custom' && ! empty( $appearance['custom_font'] ) ) {
 			$style_parts[] = 'font-family: "' . esc_attr( sanitize_text_field( $appearance['custom_font'] ) ) . '", sans-serif';
+		} elseif ( $font_family_mode === 'inherit' && ! empty( $theme_tokens['font_family_value'] ) ) {
+			$style_parts[] = 'font-family: ' . esc_attr( $theme_tokens['font_family_value'] );
 		}
 
 		$spacing_mode = isset( $appearance['spacing'] ) ? $appearance['spacing'] : 'default';
@@ -141,6 +163,13 @@ class WH4U_Public {
 		} elseif ( $spacing_mode === 'relaxed' ) {
 			$style_parts[] = '--wh4u-gap: 1.25rem';
 			$style_parts[] = '--wh4u-gap-lg: 2rem';
+		} elseif ( $spacing_mode === 'default' ) {
+			if ( ! empty( $theme_tokens['spacing_base'] ) ) {
+				$style_parts[] = '--wh4u-gap: ' . esc_attr( $theme_tokens['spacing_base'] );
+			}
+			if ( ! empty( $theme_tokens['spacing_lg'] ) ) {
+				$style_parts[] = '--wh4u-gap-lg: ' . esc_attr( $theme_tokens['spacing_lg'] );
+			}
 		}
 
 		$style_attr    = ! empty( $style_parts ) ? implode( '; ', $style_parts ) : '';
@@ -178,6 +207,22 @@ class WH4U_Public {
 						</button>
 					</div>
 				</form>
+
+				<?php if ( ! empty( $popular_tlds ) ) : ?>
+				<div class="wh4u-domains__tld-chips" aria-label="<?php esc_attr_e( 'Popular extensions', 'wh4u-domains' ); ?>">
+					<?php foreach ( $popular_tlds as $tld ) :
+						$tld = sanitize_text_field( $tld );
+						if ( empty( $tld ) ) {
+							continue;
+						}
+						if ( '.' !== $tld[0] ) {
+							$tld = '.' . $tld;
+						}
+					?>
+					<button type="button" class="wh4u-domains__tld-chip" data-tld="<?php echo esc_attr( $tld ); ?>"><?php echo esc_html( $tld ); ?></button>
+					<?php endforeach; ?>
+				</div>
+				<?php endif; ?>
 			</div>
 
 			<div class="wh4u-domains__loading" id="wh4u-public-loading" aria-live="polite" style="display:none;">
@@ -472,32 +517,38 @@ class WH4U_Public {
 
 		$cart_redirect_enabled = class_exists( 'WH4U_Cart_Redirect' ) && WH4U_Cart_Redirect::is_configured();
 
+		$placeholder_text = ! empty( $appearance['placeholder'] ) ? $appearance['placeholder'] : '';
+		$search_placeholder = $placeholder_text ? $placeholder_text : __( 'Search for your perfect domain...', 'wh4u-domains' );
+
 		wp_localize_script( 'wh4u-public-js', 'wh4uPublic', array(
 			'restUrl'               => esc_url_raw( rest_url( 'wh4u/v1/' ) ),
 			'nonce'                 => wp_create_nonce( 'wp_rest' ),
 			'isLoggedIn'            => is_user_logged_in(),
 			'adminUrl'              => is_user_logged_in() ? esc_url( admin_url( 'admin.php' ) ) : '',
 			'cartRedirectEnabled'   => $cart_redirect_enabled,
+			'customPlaceholder'     => ! empty( $placeholder_text ),
 			'i18n'                  => array(
-				'searching'       => __( 'Searching...', 'wh4u-domains' ),
-				'available'       => __( 'Available', 'wh4u-domains' ),
-				'unavailable'     => __( 'Taken', 'wh4u-domains' ),
-				'register'        => __( 'Register', 'wh4u-domains' ),
-				'error'           => __( 'An error occurred. Please try again.', 'wh4u-domains' ),
-				'noResults'       => __( 'No results found for this search.', 'wh4u-domains' ),
-				'buttonText'      => $button_text,
-				'submitting'      => __( 'Submitting...', 'wh4u-domains' ),
-				'successTitle'    => $success_title,
-				'successMessage'  => $success_message,
-				'searchAnother'   => $search_another,
-				'invalidEmail'    => __( 'Please enter a valid email address.', 'wh4u-domains' ),
-				'invalidPhone'    => __( 'Please enter a valid phone number.', 'wh4u-domains' ),
-				'invalidCountry'  => __( 'Please enter a 2-letter country code (e.g. US, GR, DE).', 'wh4u-domains' ),
-				'requiredFields'  => __( 'Please fill in all required fields.', 'wh4u-domains' ),
+				'searching'         => __( 'Searching...', 'wh4u-domains' ),
+				'available'         => __( 'Available', 'wh4u-domains' ),
+				'unavailable'       => __( 'Taken', 'wh4u-domains' ),
+				'register'          => __( 'Register', 'wh4u-domains' ),
+				'error'             => __( 'An error occurred. Please try again.', 'wh4u-domains' ),
+				'noResults'         => __( 'No results found for this search.', 'wh4u-domains' ),
+				'buttonText'        => $button_text,
+				'submitting'        => __( 'Submitting...', 'wh4u-domains' ),
+				'successTitle'      => $success_title,
+				'successMessage'    => $success_message,
+				'searchAnother'     => $search_another,
+				'invalidEmail'      => __( 'Please enter a valid email address.', 'wh4u-domains' ),
+				'invalidPhone'      => __( 'Please enter a valid phone number.', 'wh4u-domains' ),
+				'invalidCountry'    => __( 'Please enter a 2-letter country code (e.g. US, GR, DE).', 'wh4u-domains' ),
+				'requiredFields'    => __( 'Please fill in all required fields.', 'wh4u-domains' ),
 				'transfer'          => __( 'Transfer', 'wh4u-domains' ),
 				'transferTitle'     => __( 'Transfer this domain', 'wh4u-domains' ),
 				'transferDesc'      => __( 'Fill in your details and the EPP/Auth code to transfer this domain.', 'wh4u-domains' ),
 				'transferSuccess'   => __( 'Your domain transfer request has been submitted. We will contact you shortly.', 'wh4u-domains' ),
+				'bestMatch'         => __( 'Best match', 'wh4u-domains' ),
+				'searchPlaceholder' => $search_placeholder,
 			),
 		) );
 	}
@@ -514,9 +565,41 @@ class WH4U_Public {
 			return;
 		}
 
-		register_block_type( $block_dir, array(
+		$block_type = register_block_type( $block_dir, array(
 			'render_callback' => array( $this, 'render_block' ),
 		) );
+
+		if ( $block_type && $block_type->editor_script_handles ) {
+			$handle = $block_type->editor_script_handles[0];
+			add_action( 'enqueue_block_editor_assets', function () use ( $handle ) {
+				if ( ! wp_script_is( $handle, 'registered' ) ) {
+					return;
+				}
+				$appearance   = class_exists( 'WH4U_Admin_Appearance' ) ? WH4U_Admin_Appearance::get_settings() : array();
+				$theme_tokens = class_exists( 'WH4U_Theme_Compat' ) ? WH4U_Theme_Compat::get_tokens() : array();
+
+				$accent = ! empty( $appearance['accent_color'] )
+					? $appearance['accent_color']
+					: ( ! empty( $theme_tokens['accent_color'] ) ? $theme_tokens['accent_color'] : '' );
+
+				$radius = isset( $appearance['border_radius'] )
+					? (string) $appearance['border_radius']
+					: ( ! empty( $theme_tokens['border_radius'] ) ? (string) $theme_tokens['border_radius'] : '12' );
+
+				wp_localize_script( $handle, 'wh4uBlockDefaults', array(
+					'placeholder'     => ! empty( $appearance['placeholder'] ) ? $appearance['placeholder'] : __( 'Search for your perfect domain...', 'wh4u-domains' ),
+					'buttonText'      => ! empty( $appearance['button_text'] ) ? $appearance['button_text'] : __( 'Search', 'wh4u-domains' ),
+					'accentColor'     => $accent,
+					'styleVariant'    => ! empty( $appearance['style_variant'] ) ? $appearance['style_variant'] : 'elevated',
+					'showPricing'     => ! empty( $appearance['show_pricing'] ),
+					'showSuggestions' => isset( $appearance['show_suggestions'] ) ? (bool) $appearance['show_suggestions'] : true,
+					'formTitle'       => ! empty( $appearance['form_title'] ) ? $appearance['form_title'] : __( 'Register this domain', 'wh4u-domains' ),
+					'formDescription' => ! empty( $appearance['form_description'] ) ? $appearance['form_description'] : __( 'Fill in your details below to secure this domain.', 'wh4u-domains' ),
+					'borderRadius'    => $radius,
+					'themeName'       => wp_get_theme()->get( 'Name' ),
+				) );
+			} );
+		}
 	}
 
 	/**
@@ -529,17 +612,30 @@ class WH4U_Public {
 		self::$shortcode_used = true;
 		$this->enqueue_frontend_assets();
 
-		$atts = array(
-			'placeholder'      => isset( $attributes['placeholder'] ) ? sanitize_text_field( $attributes['placeholder'] ) : __( 'Search for your perfect domain...', 'wh4u-domains' ),
-			'button_text'      => isset( $attributes['buttonText'] ) ? sanitize_text_field( $attributes['buttonText'] ) : __( 'Search', 'wh4u-domains' ),
-			'accent_color'     => isset( $attributes['accentColor'] ) ? sanitize_text_field( $attributes['accentColor'] ) : '',
-			'style_variant'    => isset( $attributes['styleVariant'] ) ? sanitize_text_field( $attributes['styleVariant'] ) : 'elevated',
-			'show_pricing'     => isset( $attributes['showPricing'] ) ? ( $attributes['showPricing'] ? 'true' : 'false' ) : 'false',
-			'show_suggestions' => isset( $attributes['showSuggestions'] ) ? ( $attributes['showSuggestions'] ? 'true' : 'false' ) : 'true',
-			'form_title'       => isset( $attributes['formTitle'] ) ? sanitize_text_field( $attributes['formTitle'] ) : __( 'Register this domain', 'wh4u-domains' ),
-			'form_description' => isset( $attributes['formDescription'] ) ? sanitize_text_field( $attributes['formDescription'] ) : __( 'Fill in your details below to secure this domain.', 'wh4u-domains' ),
-			'border_radius'    => isset( $attributes['borderRadius'] ) ? sanitize_text_field( $attributes['borderRadius'] ) : '12',
+		$attr_map = array(
+			'placeholder'      => 'placeholder',
+			'buttonText'       => 'button_text',
+			'accentColor'      => 'accent_color',
+			'styleVariant'     => 'style_variant',
+			'showPricing'      => 'show_pricing',
+			'showSuggestions'  => 'show_suggestions',
+			'formTitle'        => 'form_title',
+			'formDescription'  => 'form_description',
+			'borderRadius'     => 'border_radius',
 		);
+
+		$atts = array();
+		foreach ( $attr_map as $block_key => $html_key ) {
+			if ( ! isset( $attributes[ $block_key ] ) ) {
+				continue;
+			}
+			$val = $attributes[ $block_key ];
+			if ( is_bool( $val ) ) {
+				$atts[ $html_key ] = $val ? 'true' : 'false';
+			} else {
+				$atts[ $html_key ] = sanitize_text_field( (string) $val );
+			}
+		}
 
 		return self::get_lookup_html( $atts );
 	}

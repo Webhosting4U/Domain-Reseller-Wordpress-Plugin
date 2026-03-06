@@ -182,8 +182,11 @@ class WH4U_Admin {
                 WH4U_DOMAINS_VERSION,
                 true
             );
+            $theme_tokens = class_exists( 'WH4U_Theme_Compat' ) ? WH4U_Theme_Compat::get_tokens() : array();
             wp_localize_script( 'wh4u-appearance-js', 'wh4uAppearance', array(
-                'optionKey' => WH4U_Admin_Appearance::OPTION_KEY,
+                'optionKey'   => WH4U_Admin_Appearance::OPTION_KEY,
+                'themeTokens' => $theme_tokens,
+                'themeName'   => wp_get_theme()->get( 'Name' ),
             ) );
         }
 
