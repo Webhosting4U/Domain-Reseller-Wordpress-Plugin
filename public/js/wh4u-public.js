@@ -15,12 +15,11 @@
 	var pricingCache = null;
 	var pricingPromise = null;
 	var placeholderTimer = null;
-	var lastSearchTerm = '';
 	var turnstileWidgets = {};
 
 	var SVG_CHECK = '<svg class="wh4u-domains__status-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>';
 	var SVG_X = '<svg class="wh4u-domains__status-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>';
-	var SVG_COPY = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+	
 
 	function init() {
 		var form = document.getElementById( 'wh4u-public-lookup-form' );
@@ -282,7 +281,6 @@
 			return;
 		}
 
-		lastSearchTerm = searchTerm;
 		stopPlaceholderCycling();
 
 		var btn          = document.getElementById( 'wh4u-public-search-btn' );
@@ -349,52 +347,19 @@
 		items.forEach( function( item, index ) {
 			var domain      = item.domainName || item.domain || item.sld || '';
 			var isAvailable = item.status === 'available' || item.isAvailable === true || item.available === true;
-			var isPrimary   = index === 0 || domain.toLowerCase() === lastSearchTerm.toLowerCase();
 
 			var card = document.createElement( 'div' );
-			var classes = 'wh4u-domains__result-card wh4u-domains__result-card--' + ( isAvailable ? 'available' : 'unavailable' );
-			if ( isPrimary && index === 0 ) {
-				classes += ' wh4u-domains__result-card--primary';
-			}
-			card.className = classes;
+			card.className = 'wh4u-domains__result-card wh4u-domains__result-card--' + ( isAvailable ? 'available' : 'unavailable' );
 			card.style.animationDelay = ( index * 50 ) + 'ms';
 
 			var nameParts = splitDomain( domain );
 
 			var domainEl = document.createElement( 'div' );
 			domainEl.className = 'wh4u-domains__result-domain';
-
-			var nameHtml = '<span class="wh4u-domains__result-domain-name">' +
+			domainEl.innerHTML = '<span class="wh4u-domains__result-domain-name">' +
 				escHtml( nameParts.sld ) +
 				'<span class="wh4u-domains__result-tld">' + escHtml( nameParts.tld ) + '</span>' +
 				'</span>';
-
-			if ( isPrimary && index === 0 && isAvailable ) {
-				nameHtml += '<span class="wh4u-domains__result-badge">' + escHtml( config.i18n.bestMatch || 'Best match' ) + '</span>';
-			}
-
-			domainEl.innerHTML = nameHtml;
-
-			var copyBtn = document.createElement( 'button' );
-			copyBtn.type = 'button';
-			copyBtn.className = 'wh4u-domains__copy-btn';
-			copyBtn.setAttribute( 'aria-label', 'Copy' );
-			copyBtn.setAttribute( 'data-domain', domain );
-			copyBtn.innerHTML = SVG_COPY;
-			copyBtn.addEventListener( 'click', function( e ) {
-				e.stopPropagation();
-				var d = this.getAttribute( 'data-domain' );
-				var self = this;
-				if ( navigator.clipboard && navigator.clipboard.writeText ) {
-					navigator.clipboard.writeText( d ).then( function() {
-						self.classList.add( 'wh4u-domains__copy-btn--copied' );
-						setTimeout( function() {
-							self.classList.remove( 'wh4u-domains__copy-btn--copied' );
-						}, 1500 );
-					} );
-				}
-			} );
-			domainEl.appendChild( copyBtn );
 			card.appendChild( domainEl );
 
 			var statusEl = document.createElement( 'span' );

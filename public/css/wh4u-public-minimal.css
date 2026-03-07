@@ -285,21 +285,6 @@
 	line-height: 1.5;
 }
 
-/* Copy button */
-.wh4u-domains__copy-btn {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	width: 28px;
-	height: 28px;
-	padding: 0;
-	margin-left: 6px;
-	background: transparent;
-	border: none;
-	cursor: pointer;
-	vertical-align: middle;
-}
-
 /* Price display */
 .wh4u-domains__result-price {
 	white-space: nowrap;
@@ -311,13 +296,6 @@
 	display: inline-block;
 	vertical-align: -2px;
 	margin-right: 4px;
-}
-
-/* Primary card badge */
-.wh4u-domains__result-badge {
-	display: inline-block;
-	margin-left: 8px;
-	font-size: 0.75rem;
 }
 
 @media (max-width: 600px) {

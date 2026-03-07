@@ -704,17 +704,6 @@
 		display: none;
 	}
 
-	.wh4u-domains__copy-btn {
-		opacity: 1;
-	}
-
-	.wh4u-domains__result-badge {
-		display: block;
-		margin-left: 0;
-		margin-top: 4px;
-		width: fit-content;
-	}
-
 	.wh4u-domains__result-price {
 		flex-basis: 100%;
 	}
@@ -813,35 +802,6 @@
 	transform: scale(0.96);
 }
 
-/* ──────────────────────────────────────────────────────────────
-   Primary Result Card Highlight
-   ────────────────────────────────────────────────────────────── */
-.wh4u-domains__result-card--primary.wh4u-domains__result-card--available {
-	border-left: 4px solid var(--wh4u-accent);
-	background: var(--wh4u-accent-light);
-	border-color: color-mix(in srgb, var(--wh4u-accent) 24%, transparent);
-	box-shadow: 0 2px 12px -4px color-mix(in srgb, var(--wh4u-accent) 18%, transparent);
-	padding: 18px 22px;
-}
-
-.wh4u-domains__result-card--primary .wh4u-domains__result-domain-name {
-	font-size: 1.0625rem;
-	font-weight: 700;
-}
-
-.wh4u-domains__result-badge {
-	display: inline-block;
-	margin-left: 10px;
-	padding: 2px 8px;
-	font-size: 0.6875rem;
-	font-weight: 600;
-	text-transform: uppercase;
-	letter-spacing: 0.04em;
-	color: var(--wh4u-accent);
-	background: color-mix(in srgb, var(--wh4u-accent) 14%, transparent);
-	border-radius: 4px;
-	vertical-align: middle;
-}
 
 /* ──────────────────────────────────────────────────────────────
    Pricing Display
@@ -870,63 +830,6 @@
 	100% { transform: scale(1); opacity: 1; }
 }
 
-/* ──────────────────────────────────────────────────────────────
-   Copy Domain Button
-   ────────────────────────────────────────────────────────────── */
-.wh4u-domains__copy-btn {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	width: 28px;
-	height: 28px;
-	padding: 0;
-	margin-left: 8px;
-	vertical-align: middle;
-	background: transparent;
-	border: 1px solid transparent;
-	border-radius: 6px;
-	cursor: pointer;
-	color: var(--wh4u-text-muted);
-	opacity: 0;
-	transition:
-		opacity var(--wh4u-duration) var(--wh4u-ease),
-		color var(--wh4u-duration) var(--wh4u-ease),
-		background var(--wh4u-duration) var(--wh4u-ease),
-		border-color var(--wh4u-duration) var(--wh4u-ease);
-	position: relative;
-}
-
-.wh4u-domains__result-card:hover .wh4u-domains__copy-btn {
-	opacity: 1;
-}
-
-.wh4u-domains__copy-btn:hover {
-	color: var(--wh4u-accent);
-	background: var(--wh4u-accent-light);
-	border-color: var(--wh4u-accent-light);
-}
-
-.wh4u-domains__copy-btn--copied::after {
-	content: 'Copied!';
-	position: absolute;
-	bottom: calc(100% + 6px);
-	left: 50%;
-	transform: translateX(-50%);
-	padding: 3px 8px;
-	font-size: 0.6875rem;
-	font-weight: 600;
-	color: #fff;
-	background: var(--wh4u-text);
-	border-radius: 4px;
-	white-space: nowrap;
-	pointer-events: none;
-	animation: wh4u-tooltipIn 0.2s var(--wh4u-ease) both;
-}
-
-@keyframes wh4u-tooltipIn {
-	from { opacity: 0; transform: translateX(-50%) translateY(4px); }
-	to { opacity: 1; transform: translateX(-50%) translateY(0); }
-}
 
 /* ──────────────────────────────────────────────────────────────
    Fallback for browsers without color-mix()
@@ -953,10 +856,6 @@
 		background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
 		background-size: 200% 100%;
 		animation: wh4u-shimmer 1.5s infinite linear;
-	}
-
-	.wh4u-domains__copy-btn--copied::after {
-		background: #1e293b;
 	}
 }
 
@@ -994,16 +893,6 @@
 			rgba(255, 255, 255, 0.06) 75%
 		);
 		background-size: 200% 100%;
-	}
-
-	.wh4u-domains__result-card--primary.wh4u-domains__result-card--available {
-		background: color-mix(in srgb, var(--wh4u-accent) 8%, var(--wh4u-surface));
-		border-color: color-mix(in srgb, var(--wh4u-accent) 30%, transparent);
-	}
-
-	.wh4u-domains__copy-btn--copied::after {
-		background: #e2e8f0;
-		color: #0f172a;
 	}
 
 	.wh4u-domains__tld-chip {

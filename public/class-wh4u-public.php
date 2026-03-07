@@ -570,7 +570,6 @@ class WH4U_Public {
 				'transferTitle'     => __( 'Transfer this domain', 'wh4u-domains' ),
 				'transferDesc'      => __( 'Fill in your details and the EPP/Auth code to transfer this domain.', 'wh4u-domains' ),
 				'transferSuccess'   => __( 'Your domain transfer request has been submitted. We will contact you shortly.', 'wh4u-domains' ),
-				'bestMatch'         => __( 'Best match', 'wh4u-domains' ),
 				'searchPlaceholder' => $search_placeholder,
 				'turnstileRequired' => __( 'Please complete the security check.', 'wh4u-domains' ),
 			),
