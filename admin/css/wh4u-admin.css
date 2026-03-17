@@ -1,0 +1,414 @@
+/**
+ * WH4U Domains - Admin Styles
+ */
+
+/* ── Branded Header (all plugin pages) ────── */
+
+.wh4u-branded-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #1d2327;
+    margin: 0 -20px;
+    padding: 10px 20px;
+}
+
+.wh4u-brand-link {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.wh4u-brand-link img {
+    height: 24px;
+    width: auto;
+    display: block;
+}
+
+.wh4u-brand-tagline {
+    font-size: 13px;
+    color: #a7aaad;
+    border-left: 1px solid #3c434a;
+    padding-left: 16px;
+}
+
+/* ── Dashboard: Status Bar ───────────────── */
+
+.wh4u-dash-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-left: 4px solid #72aee6;
+    padding: 10px 16px;
+    margin: 16px 0;
+}
+
+.wh4u-dash-status-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    flex-wrap: wrap;
+}
+
+.wh4u-dash-status-item .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+.wh4u-dash-check {
+    display: inline-flex;
+    align-items: center;
+    gap: 1px;
+    font-size: 12px;
+    color: #50575e;
+    margin-left: 4px;
+}
+
+.wh4u-dash-check .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+
+/* ── Dashboard: Two-Column Layout ────────── */
+
+.wh4u-dash-columns {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.wh4u-dash-col-main {
+    flex: 1 1 0%;
+    min-width: 0;
+}
+
+.wh4u-dash-col-side {
+    flex: 0 0 340px;
+    min-width: 0;
+}
+
+/* ── Dashboard: Cards ────────────────────── */
+
+.wh4u-dash-card.card {
+    max-width: none;
+    padding: 16px 20px;
+    margin: 0 0 16px;
+}
+
+.wh4u-dash-card h2 {
+    margin: 0 0 12px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* ── Dashboard: Domain Search ────────────── */
+
+.wh4u-dash-search-row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.wh4u-dash-search-row .regular-text {
+    flex: 1 1 180px;
+    min-width: 0;
+}
+
+/* ── Dashboard: Quick Links ──────────────── */
+
+.wh4u-dash-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    background: #fff;
+    border: 1px solid #c3c4c7;
+}
+
+.wh4u-dash-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 14px 8px;
+    text-align: center;
+    text-decoration: none;
+    color: #2271b1;
+    font-size: 12px;
+    font-weight: 500;
+    border-right: 1px solid #f0f0f1;
+    border-bottom: 1px solid #f0f0f1;
+    transition: background 0.15s;
+}
+
+.wh4u-dash-link:nth-child(3n) {
+    border-right: 0;
+}
+
+.wh4u-dash-link:nth-last-child(-n+3) {
+    border-bottom: 0;
+}
+
+.wh4u-dash-link:hover {
+    background: #f6f7f7;
+    color: #135e96;
+}
+
+.wh4u-dash-link .dashicons {
+    font-size: 22px;
+    width: 22px;
+    height: 22px;
+    color: #a7aaad;
+}
+
+.wh4u-dash-link:hover .dashicons {
+    color: #2271b1;
+}
+
+/* ── Dashboard: Frontend Integration ────── */
+
+.wh4u-dash-card--shortcodes h3 {
+    margin: 20px 0 6px;
+    padding-top: 16px;
+    border-top: 1px solid #f0f0f1;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1d2327;
+}
+
+.wh4u-dash-card--shortcodes h3:first-of-type {
+    margin-top: 12px;
+    padding-top: 0;
+    border-top: none;
+}
+
+.wh4u-shortcode-display {
+    display: block;
+    background: #f6f7f7;
+    border: 1px solid #dcdcde;
+    border-radius: 3px;
+    padding: 8px 12px;
+    font-size: 12px;
+    line-height: 1.6;
+    word-break: break-all;
+    user-select: all;
+    cursor: text;
+}
+
+.wh4u-shortcode-ref {
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+.wh4u-shortcode-ref th {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.wh4u-shortcode-ref td code {
+    background: #f6f7f7;
+    padding: 1px 5px;
+    font-size: 11px;
+}
+
+.wh4u-shortcode-ref td em {
+    color: #646970;
+    font-size: 11px;
+}
+
+/* ── Dashboard: Connection Info ──────────── */
+
+.wh4u-dash-col-side .widefat td {
+    padding: 6px 10px;
+    font-size: 13px;
+}
+
+/* ── Responsive ───────────────────────────── */
+
+@media screen and (max-width: 960px) {
+    .wh4u-dash-columns {
+        flex-direction: column;
+    }
+    .wh4u-dash-col-side {
+        flex: none;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 782px) {
+    .wh4u-branded-header {
+        flex-wrap: wrap;
+    }
+    .wh4u-dash-status {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .wh4u-dash-search-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .wh4u-dash-links {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .wh4u-dash-link:nth-child(3n) {
+        border-right: 1px solid #f0f0f1;
+    }
+    .wh4u-dash-link:nth-child(even) {
+        border-right: 0;
+    }
+}
+
+/* ── Settings Page ─────────────────────────── */
+
+.wh4u-settings-tabs {
+    margin-bottom: 0;
+}
+
+.wh4u-settings-form {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-top: 0;
+    padding: 0 20px 20px;
+}
+
+.wh4u-settings-form .form-table {
+    margin-top: 0;
+}
+
+.wh4u-section-title {
+    margin: 24px 0 0;
+    padding: 12px 0 8px;
+    border-bottom: 1px solid #f0f0f1;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.wh4u-settings-form .form-table + .wh4u-section-title {
+    margin-top: 8px;
+}
+
+/* ── Page Styles (non-dashboard pages) ───── */
+
+.wh4u-admin-wrap .wh4u-search-form {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.wh4u-admin-wrap .wh4u-results-container {
+    margin-top: 20px;
+}
+
+.wh4u-admin-wrap .wh4u-credits-card {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    padding: 30px;
+    text-align: center;
+    max-width: 400px;
+}
+
+.wh4u-admin-wrap .wh4u-credits-amount {
+    font-size: 48px;
+    font-weight: 700;
+    color: #0073aa;
+    margin: 10px 0;
+}
+
+.wh4u-status {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+.wh4u-status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.wh4u-status-pending_manual {
+    background: #cce5ff;
+    color: #004085;
+}
+
+.wh4u-status-processing {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.wh4u-status-completed {
+    background: #d4edda;
+    color: #155724;
+}
+
+.wh4u-status-failed {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.wh4u-status-cancelled {
+    background: #e2e3e5;
+    color: #383d41;
+}
+
+.wh4u-admin-wrap .wh4u-order-form {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    padding: 20px;
+}
+
+.wh4u-admin-wrap .wh4u-order-form h2 {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+    margin-top: 20px;
+}
+
+.wh4u-admin-wrap .wh4u-copy-contact {
+    font-weight: normal;
+    font-size: 13px;
+    margin-left: 10px;
+}
+
+.wh4u-admin-wrap .wh4u-copy-contact small {
+    vertical-align: middle;
+}
+
+#wh4u-search-loading {
+    padding: 20px;
+}
+
+#wh4u-search-loading .spinner {
+    float: none;
+    margin: 0 5px 0 0;
+}
+
+#wh4u-results-table .wh4u-available {
+    color: #155724;
+    font-weight: 600;
+}
+
+#wh4u-results-table .wh4u-unavailable {
+    color: #721c24;
+}
+
+.wh4u-admin-wrap .subsubsub {
+    margin-bottom: 15px;
+}
+
+.wh4u-admin-wrap .wp-list-table {
+    clear: both;
+}
+
+.wh4u-admin-wrap .tablenav-pages {
+    padding-top: 10px;
+}
