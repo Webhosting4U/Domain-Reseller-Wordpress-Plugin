@@ -222,10 +222,14 @@ class WH4U_Admin_History {
                                 );
                                 echo esc_html( isset( $otype_labels[ $otype ] ) ? $otype_labels[ $otype ] : __( 'Register', 'wh4u-domains' ) );
                             ?></td>
-                            <td><?php echo esc_html( get_post_meta( $pid, '_wh4u_first_name', true ) . ' ' . get_post_meta( $pid, '_wh4u_last_name', true ) ); ?></td>
-                            <td><?php echo esc_html( get_post_meta( $pid, '_wh4u_email', true ) ); ?></td>
-                            <td><?php echo esc_html( get_post_meta( $pid, '_wh4u_phone', true ) ); ?></td>
-                            <td><?php echo esc_html( get_post_meta( $pid, '_wh4u_reg_period', true ) . ' yr' ); ?></td>
+                            <td><?php echo esc_html( WH4U_Encryption::maybe_decrypt( get_post_meta( $pid, '_wh4u_first_name', true ) ) . ' ' . WH4U_Encryption::maybe_decrypt( get_post_meta( $pid, '_wh4u_last_name', true ) ) ); ?></td>
+                            <td><?php echo esc_html( WH4U_Encryption::maybe_decrypt( get_post_meta( $pid, '_wh4u_email', true ) ) ); ?></td>
+                            <td><?php echo esc_html( WH4U_Encryption::maybe_decrypt( get_post_meta( $pid, '_wh4u_phone', true ) ) ); ?></td>
+                            <td><?php
+                                $period = (int) get_post_meta( $pid, '_wh4u_reg_period', true );
+                                /* translators: %d: number of years */
+                                echo esc_html( sprintf( _n( '%d year', '%d years', $period, 'wh4u-domains' ), $period ) );
+                            ?></td>
                             <td>
                                 <span class="wh4u-status wh4u-status-<?php echo esc_attr( str_replace( 'wh4u-', '', $order_stat ) ); ?>">
                                     <?php echo esc_html( isset( $status_labels[ $order_stat ] ) ? $status_labels[ $order_stat ] : $order_stat ); ?>

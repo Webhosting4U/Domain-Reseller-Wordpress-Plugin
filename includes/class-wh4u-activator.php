@@ -161,34 +161,6 @@ class WH4U_Activator {
         ) {$charset_collate};";
 
         dbDelta( $sql_rate );
-
-        $table_public_orders = $wpdb->prefix . 'wh4u_public_orders';
-        $sql_public_orders = "CREATE TABLE {$table_public_orders} (
-            id bigint(20) NOT NULL AUTO_INCREMENT,
-            domain varchar(253) NOT NULL,
-            reg_period int(11) NOT NULL DEFAULT 1,
-            first_name varchar(100) NOT NULL DEFAULT '',
-            last_name varchar(100) NOT NULL DEFAULT '',
-            email varchar(255) NOT NULL DEFAULT '',
-            phone varchar(50) NOT NULL DEFAULT '',
-            company varchar(255) DEFAULT '',
-            address varchar(255) NOT NULL DEFAULT '',
-            city varchar(100) NOT NULL DEFAULT '',
-            state varchar(100) NOT NULL DEFAULT '',
-            country varchar(2) NOT NULL DEFAULT '',
-            zip varchar(20) NOT NULL DEFAULT '',
-            ip_hash varchar(64) NOT NULL DEFAULT '',
-            status varchar(30) NOT NULL DEFAULT 'pending',
-            notes text,
-            created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            PRIMARY KEY  (id),
-            KEY idx_status (status),
-            KEY idx_email (email),
-            KEY idx_domain (domain),
-            KEY idx_created_at (created_at)
-        ) {$charset_collate};";
-
-        dbDelta( $sql_public_orders );
     }
 
     /**
@@ -204,13 +176,22 @@ class WH4U_Activator {
     }
 
     /**
-     * Schedule the queue processing cron event.
+     * Schedule the queue processing and log pruning cron events.
+     *
+     * The pruning event uses WordPress's built-in 'daily' schedule and
+     * fires ~24h after activation; the wh4u_prune_logs action (registered
+     * in the main plugin file) deletes stale rows from wh4u_api_logs and
+     * wh4u_notifications.
      *
      * @return void
      */
     private static function schedule_cron() {
         if ( ! wp_next_scheduled( 'wh4u_process_queue' ) ) {
             wp_schedule_event( time(), 'wh4u_five_minutes', 'wh4u_process_queue' );
+        }
+
+        if ( ! wp_next_scheduled( 'wh4u_prune_logs' ) ) {
+            wp_schedule_event( time() + DAY_IN_SECONDS, 'daily', 'wh4u_prune_logs' );
         }
     }
 }

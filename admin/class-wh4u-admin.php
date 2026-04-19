@@ -90,15 +90,6 @@ class WH4U_Admin {
 
         $this->hook_suffixes[] = add_submenu_page(
             'wh4u-domains',
-            __( 'TLD Pricing', 'wh4u-domains' ),
-            __( 'Pricing', 'wh4u-domains' ),
-            $capability,
-            'wh4u-domains-pricing',
-            array( 'WH4U_Admin_Pricing', 'render_page' )
-        );
-
-        $this->hook_suffixes[] = add_submenu_page(
-            'wh4u-domains',
             __( 'Order History', 'wh4u-domains' ),
             __( 'History', 'wh4u-domains' ),
             $capability,
@@ -207,7 +198,6 @@ class WH4U_Admin {
                 'noResults'          => __( 'No results found.', 'wh4u-domains' ),
                 'retryNow'           => __( 'Retry Now', 'wh4u-domains' ),
                 'processNow'         => __( 'Process Now', 'wh4u-domains' ),
-                'noPricing'          => __( 'No pricing data available.', 'wh4u-domains' ),
                 'approve'            => __( 'Approve', 'wh4u-domains' ),
                 'reject'             => __( 'Reject', 'wh4u-domains' ),
                 /* translators: %s: action name (e.g. "approve" or "reject") */

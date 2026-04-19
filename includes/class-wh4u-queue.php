@@ -131,7 +131,7 @@ class WH4U_Queue {
 
         // phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter -- custom table, queue processing, $table_orders from $wpdb->prefix
         $order = $wpdb->get_row(
-            $wpdb->prepare( "SELECT * FROM {$table_orders} WHERE id = %d", $item->order_id )
+            $wpdb->prepare( "SELECT * FROM {$table_orders} WHERE id = %d", (int) $item->order_id )
         );
         // phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 

@@ -51,8 +51,12 @@ class WH4U_Notifications {
         $fields = array(
             __( 'Order ID', 'wh4u-domains' )  => '#' . $post_id,
             __( 'Domain', 'wh4u-domains' )     => $domain,
-            __( 'Period', 'wh4u-domains' )     => ( isset( $meta['_wh4u_reg_period'] ) ? $meta['_wh4u_reg_period'] : 1 ) . ' ' . __( 'year(s)', 'wh4u-domains' ),
-            __( 'Name', 'wh4u-domains' )       => ( isset( $meta['_wh4u_first_name'] ) ? $meta['_wh4u_first_name'] : '' ) . ' ' . ( isset( $meta['_wh4u_last_name'] ) ? $meta['_wh4u_last_name'] : '' ),
+            __( 'Period', 'wh4u-domains' )     => sprintf(
+                /* translators: %d: number of years */
+                _n( '%d year', '%d years', (int) ( isset( $meta['_wh4u_reg_period'] ) ? $meta['_wh4u_reg_period'] : 1 ), 'wh4u-domains' ),
+                (int) ( isset( $meta['_wh4u_reg_period'] ) ? $meta['_wh4u_reg_period'] : 1 )
+            ),
+            __( 'Name', 'wh4u-domains' )       => trim( ( isset( $meta['_wh4u_first_name'] ) ? $meta['_wh4u_first_name'] : '' ) . ' ' . ( isset( $meta['_wh4u_last_name'] ) ? $meta['_wh4u_last_name'] : '' ) ),
             __( 'Email', 'wh4u-domains' )      => isset( $meta['_wh4u_email'] ) ? $meta['_wh4u_email'] : '',
             __( 'Phone', 'wh4u-domains' )      => isset( $meta['_wh4u_phone'] ) ? $meta['_wh4u_phone'] : '',
             __( 'Company', 'wh4u-domains' )    => isset( $meta['_wh4u_company'] ) ? $meta['_wh4u_company'] : '',
@@ -215,7 +219,10 @@ class WH4U_Notifications {
                 </tr>
                 <tr>
                     <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;"><?php esc_html_e( 'Period', 'wh4u-domains' ); ?></td>
-                    <td style="padding: 8px; border: 1px solid #ddd;"><?php echo esc_html( $order->reg_period . ' ' . __( 'year(s)', 'wh4u-domains' ) ); ?></td>
+                    <td style="padding: 8px; border: 1px solid #ddd;"><?php
+                        /* translators: %d: number of years */
+                        echo esc_html( sprintf( _n( '%d year', '%d years', (int) $order->reg_period, 'wh4u-domains' ), (int) $order->reg_period ) );
+                    ?></td>
                 </tr>
                 <tr>
                     <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;"><?php esc_html_e( 'Order ID', 'wh4u-domains' ); ?></td>
@@ -280,11 +287,38 @@ class WH4U_Notifications {
             $headers['X-WH4U-Webhook-Signature'] = hash_hmac( 'sha256', $payload, $webhook_secret );
         }
 
+        $pinned = self::resolve_and_validate_webhook_host( $webhook_url );
+        if ( is_wp_error( $pinned ) ) {
+            return false;
+        }
+
+        // Pin the DNS answer at the cURL layer so the HTTP request connects to
+        // the exact IP we validated. This closes the DNS-rebinding window
+        // without breaking TLS SNI (the hostname stays in the URL).
+        $pin_curl = function ( $handle ) use ( $pinned ) {
+            if ( ! empty( $pinned['host'] ) && ! empty( $pinned['ip'] ) ) {
+                $resolve = array(
+                    $pinned['host'] . ':80:'  . $pinned['ip'],
+                    $pinned['host'] . ':443:' . $pinned['ip'],
+                    $pinned['host'] . ':8080:' . $pinned['ip'],
+                    $pinned['host'] . ':8443:' . $pinned['ip'],
+                );
+                curl_setopt( $handle, CURLOPT_RESOLVE, $resolve );
+            }
+        };
+        add_action( 'http_api_curl', $pin_curl, 10, 1 );
+
+        // redirection => 0 closes an SSRF bypass: without it, a public host could
+        // 302 to an internal IP, and CURLOPT_RESOLVE only pins the original host.
         $response = wp_remote_post( $webhook_url, array(
-            'headers' => $headers,
-            'body'    => $payload,
-            'timeout' => 15,
+            'headers'     => $headers,
+            'body'        => $payload,
+            'timeout'     => 15,
+            'sslverify'   => true,
+            'redirection' => 0,
         ) );
+
+        remove_action( 'http_api_curl', $pin_curl, 10 );
 
         $success = ! is_wp_error( $response ) && wp_remote_retrieve_response_code( $response ) >= 200 && wp_remote_retrieve_response_code( $response ) < 300;
 
@@ -313,7 +347,9 @@ class WH4U_Notifications {
     /**
      * Validate that a webhook URL is safe (SSRF prevention).
      *
-     * Blocks localhost, private/reserved IP ranges, link-local, and non-HTTP(S) schemes.
+     * Checks scheme, port, blocked hostnames. DNS-based IP validation is handled
+     * by resolve_and_validate_webhook_host() so the IP can be pinned for the
+     * actual request (closing the DNS-rebinding window).
      *
      * @param string $url URL to validate.
      * @return bool True if safe to request.
@@ -341,33 +377,109 @@ class WH4U_Notifications {
             return false;
         }
 
-        $ip = gethostbyname( $host );
-        if ( $ip === $host ) {
-            return true;
+        // Delegate IP resolution to the pinning helper so we use the exact same
+        // answer for validation and for the outgoing request (no rebinding).
+        $pinned = self::resolve_and_validate_webhook_host( $url );
+        return ! is_wp_error( $pinned );
+    }
+
+    /**
+     * Resolve the webhook host once and validate the resolved IP is public.
+     *
+     * Returns {host, ip} for the caller to pin via CURLOPT_RESOLVE. Fails
+     * closed when DNS resolution yields no usable answer — we never fall back
+     * to trusting an unresolved hostname.
+     *
+     * @param string $url Webhook URL.
+     * @return array{host:string,ip:string}|WP_Error
+     */
+    private static function resolve_and_validate_webhook_host( $url ) {
+        $parsed = wp_parse_url( $url );
+        if ( ! $parsed || empty( $parsed['host'] ) ) {
+            return new WP_Error( 'wh4u_webhook_invalid', 'Invalid webhook URL.' );
         }
 
-        $long = ip2long( $ip );
-        if ( $long === false ) {
-            return true;
+        $host = strtolower( $parsed['host'] );
+
+        // If the host is a literal IP, validate it and pin it to itself.
+        if ( filter_var( $host, FILTER_VALIDATE_IP ) ) {
+            if ( ! self::is_public_ip( $host ) ) {
+                return new WP_Error( 'wh4u_webhook_private_ip', 'Webhook host is a private IP.' );
+            }
+            return array( 'host' => $host, 'ip' => $host );
         }
 
-        $blocked_ranges = array(
-            array( '10.0.0.0', '10.255.255.255' ),
-            array( '172.16.0.0', '172.31.255.255' ),
-            array( '192.168.0.0', '192.168.255.255' ),
-            array( '169.254.0.0', '169.254.255.255' ),
-            array( '127.0.0.0', '127.255.255.255' ),
-            array( '0.0.0.0', '0.255.255.255' ),
-        );
-
-        foreach ( $blocked_ranges as $range ) {
-            $low  = ip2long( $range[0] );
-            $high = ip2long( $range[1] );
-            if ( $long >= $low && $long <= $high ) {
-                return false;
+        // Resolve IPv4. If dns_get_record is unavailable (some hardened hosts),
+        // fall back to gethostbyname but require a successful resolution.
+        $ip = '';
+        if ( function_exists( 'dns_get_record' ) ) {
+            $records = @dns_get_record( $host, DNS_A );
+            if ( is_array( $records ) ) {
+                foreach ( $records as $rec ) {
+                    if ( ! empty( $rec['ip'] ) && filter_var( $rec['ip'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 ) ) {
+                        $ip = $rec['ip'];
+                        break;
+                    }
+                }
             }
         }
 
-        return true;
+        if ( $ip === '' ) {
+            $resolved = @gethostbyname( $host );
+            if ( $resolved !== $host && filter_var( $resolved, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 ) ) {
+                $ip = $resolved;
+            }
+        }
+
+        if ( $ip === '' ) {
+            return new WP_Error( 'wh4u_webhook_dns_fail', 'Could not resolve webhook host.' );
+        }
+
+        if ( ! self::is_public_ip( $ip ) ) {
+            return new WP_Error( 'wh4u_webhook_private_ip', 'Webhook host resolves to a private IP.' );
+        }
+
+        return array( 'host' => $host, 'ip' => $ip );
+    }
+
+    /**
+     * Return true if the given IP is a public (routable) address.
+     *
+     * Uses PHP's built-in filter flags which exclude private, reserved, and
+     * link-local ranges for both IPv4 and IPv6.
+     *
+     * @param string $ip IP address.
+     * @return bool
+     */
+    private static function is_public_ip( $ip ) {
+        return (bool) filter_var(
+            $ip,
+            FILTER_VALIDATE_IP,
+            FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE
+        );
+    }
+
+    /**
+     * Delete notification rows older than the given number of days.
+     *
+     * Timestamps are stored in UTC (current_time( 'mysql', true )) so the
+     * comparison uses UTC_TIMESTAMP() to avoid server-timezone drift.
+     *
+     * @param int $days Retention period in whole days. Values below 1 are clamped to 1.
+     * @return int|false Number of rows deleted, or false on DB error.
+     */
+    public static function prune( $days ) {
+        global $wpdb;
+
+        $days  = max( 1, absint( $days ) );
+        $table = $wpdb->prefix . 'wh4u_notifications';
+
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter -- $table from $wpdb->prefix, $days is prepared
+        return $wpdb->query(
+            $wpdb->prepare(
+                "DELETE FROM {$table} WHERE created_at < (UTC_TIMESTAMP() - INTERVAL %d DAY)",
+                $days
+            )
+        );
     }
 }

@@ -1,1573 +1,1950 @@
-# Greek translation for WH4U Domains
-# Copyright (C) 2024 WebHosting4U
-# This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: WH4U Domains 1.0.0\n"
+"Project-Id-Version: WH4U Domains 1.5.3\n"
 "Report-Msgid-Bugs-To: https://webhosting4u.gr/\n"
-"POT-Creation-Date: 2026-03-03 00:00+0000\n"
-"PO-Revision-Date: 2026-03-03 00:00+0200\n"
 "Last-Translator: WebHosting4U <info@webhosting4u.gr>\n"
 "Language-Team: Greek <info@webhosting4u.gr>\n"
-"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-03-03 00:00+0000\n"
+"PO-Revision-Date: 2026-03-03 00:00+0200\n"
+"Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: WH4U\n"
 
-#. ── CRON ──
-
-#: wh4u-domains.php:123
+#: wh4u-domains.php:227
 msgid "Every Five Minutes"
 msgstr "Κάθε πέντε λεπτά"
 
-#. ── ADMIN MENU ──
-
-#: admin/class-wh4u-admin.php:38
+#. Plugin Name of the plugin
+#: wh4u-domains.php
+#: admin/class-wh4u-admin.php:42
 msgid "WH4U Domains"
 msgstr "WH4U Domains"
 
-#: admin/class-wh4u-admin.php:39
+#: admin/class-wh4u-admin.php:43
 msgid "Domains"
 msgstr "Domains"
 
-#: admin/class-wh4u-admin.php:53 admin/class-wh4u-admin.php:54
-#: admin/class-wh4u-admin-dashboard.php:49
+#: admin/class-wh4u-admin-dashboard.php:53
+#: admin/class-wh4u-admin.php:57
+#: admin/class-wh4u-admin.php:58
 msgid "Dashboard"
 msgstr "Πίνακας Ελέγχου"
 
-#: admin/class-wh4u-admin.php:62
+#: admin/class-wh4u-admin.php:66
 msgid "Search / Availability"
 msgstr "Αναζήτηση / Διαθεσιμότητα"
 
-#: admin/class-wh4u-admin.php:63
+#: admin/class-wh4u-admin-appearance.php:590
+#: admin/class-wh4u-admin-appearance.php:860
+#: admin/class-wh4u-admin-dashboard.php:205
+#: admin/class-wh4u-admin.php:67
+#: public/class-wh4u-public.php:85
+#: public/class-wh4u-public.php:527
+#: public/class-wh4u-public.php:623
 msgid "Search"
 msgstr "Αναζήτηση"
 
-#: admin/class-wh4u-admin.php:71 admin/class-wh4u-admin-domains.php:91
-#: admin/class-wh4u-admin-domains.php:150 admin/class-wh4u-admin-dashboard.php:155
+#: admin/class-wh4u-admin-dashboard.php:159
+#: admin/class-wh4u-admin-domains.php:93
+#: admin/class-wh4u-admin-domains.php:152
+#: admin/class-wh4u-admin.php:75
 msgid "Register Domain"
 msgstr "Καταχώρηση Domain"
 
-#: admin/class-wh4u-admin.php:72 admin/class-wh4u-admin-pricing.php:41
+#: admin/class-wh4u-admin-history.php:220
+#: admin/class-wh4u-admin-history.php:223
+#: admin/class-wh4u-admin-pricing.php:43
+#: admin/class-wh4u-admin.php:76
+#: admin/class-wh4u-admin.php:205
+#: public/class-wh4u-public.php:559
 msgid "Register"
 msgstr "Καταχώρηση"
 
-#: admin/class-wh4u-admin.php:80 admin/class-wh4u-admin-domains.php:173
-#: admin/class-wh4u-admin-domains.php:236 admin/class-wh4u-admin-dashboard.php:156
+#: admin/class-wh4u-admin-dashboard.php:160
+#: admin/class-wh4u-admin-domains.php:175
+#: admin/class-wh4u-admin-domains.php:238
+#: admin/class-wh4u-admin.php:84
 msgid "Transfer Domain"
 msgstr "Μεταφορά Domain"
 
-#: admin/class-wh4u-admin.php:81 admin/class-wh4u-admin-pricing.php:42
+#: admin/class-wh4u-admin-history.php:221
+#: admin/class-wh4u-admin-pricing.php:44
+#: admin/class-wh4u-admin.php:85
+#: public/class-wh4u-public.php:571
 msgid "Transfer"
 msgstr "Μεταφορά"
 
-#: admin/class-wh4u-admin.php:98 admin/class-wh4u-admin-pricing.php:25
-#: admin/class-wh4u-admin-dashboard.php:158
+#: admin/class-wh4u-admin-dashboard.php:161
+#: admin/class-wh4u-admin-pricing.php:27
+#: admin/class-wh4u-admin.php:93
 msgid "TLD Pricing"
 msgstr "Τιμοκατάλογος TLD"
 
-#: admin/class-wh4u-admin.php:99
+#: admin/class-wh4u-admin.php:94
 msgid "Pricing"
 msgstr "Τιμές"
 
-#: admin/class-wh4u-admin.php:107 admin/class-wh4u-admin-history.php:64
-#: admin/class-wh4u-admin-dashboard.php:159
+#: admin/class-wh4u-admin-dashboard.php:162
+#: admin/class-wh4u-admin-history.php:71
+#: admin/class-wh4u-admin.php:102
 msgid "Order History"
 msgstr "Ιστορικό Παραγγελιών"
 
-#: admin/class-wh4u-admin.php:108
+#: admin/class-wh4u-admin.php:103
 msgid "History"
 msgstr "Ιστορικό"
 
-#: admin/class-wh4u-admin.php:116 admin/class-wh4u-admin-history.php:175
+#: admin/class-wh4u-admin-history.php:316
+#: admin/class-wh4u-admin.php:111
 msgid "Queue Status"
 msgstr "Κατάσταση Ουράς"
 
-#: admin/class-wh4u-admin.php:117
+#: admin/class-wh4u-admin.php:112
 msgid "Queue"
 msgstr "Ουρά"
 
-#: admin/class-wh4u-admin.php:125 admin/class-wh4u-admin.php:126
-#: admin/class-wh4u-admin-settings.php:146 admin/class-wh4u-admin-dashboard.php:160
+#: admin/class-wh4u-admin-dashboard.php:163
+#: admin/class-wh4u-admin-settings.php:589
+#: admin/class-wh4u-admin.php:129
+#: admin/class-wh4u-admin.php:130
 msgid "Settings"
 msgstr "Ρυθμίσεις"
 
-#. ── ADMIN JS i18n ──
-
-#: admin/class-wh4u-admin.php:163 admin/class-wh4u-admin-dashboard.php:132
-#: admin/class-wh4u-admin-domains.php:66 public/class-wh4u-public.php:82
-#: public/class-wh4u-public.php:154
+#: admin/class-wh4u-admin-dashboard.php:136
+#: admin/class-wh4u-admin-domains.php:68
+#: admin/class-wh4u-admin.php:197
+#: public/class-wh4u-public.php:556
 msgid "Searching..."
 msgstr "Ψάχνουμε..."
 
-#: admin/class-wh4u-admin.php:164
+#: admin/class-wh4u-admin.php:198
 msgid "Processing..."
 msgstr "Επεξεργασία..."
 
-#: admin/class-wh4u-admin.php:165 public/class-wh4u-public.php:159
+#: admin/class-wh4u-admin.php:199
+#: public/class-wh4u-public.php:560
 msgid "An error occurred. Please try again."
 msgstr "Κάτι πήγε στραβά. Δοκίμασε ξανά."
 
-#: admin/class-wh4u-admin.php:166 public/class-wh4u-public.php:155
+#: admin/class-wh4u-admin.php:200
+#: public/class-wh4u-public.php:557
 msgid "Available"
 msgstr "Διαθέσιμο"
 
-#: admin/class-wh4u-admin.php:167 public/class-wh4u-public.php:156
+#: admin/class-wh4u-admin.php:201
 msgid "Unavailable"
 msgstr "Κατειλημμένο"
 
-#: admin/class-wh4u-admin.php:168
+#: admin/class-wh4u-admin.php:202
 msgid "Are you sure?"
 msgstr "Είσαι σίγουρος;"
 
-#: admin/class-wh4u-admin.php:169
+#: admin/class-wh4u-admin.php:203
 msgid "Retrying..."
 msgstr "Νέα προσπάθεια..."
 
-#: admin/class-wh4u-admin.php:170
+#: admin/class-wh4u-admin.php:204
 msgid "Success!"
 msgstr "Έτοιμο!"
 
-#: admin/class-wh4u-admin.php:215
+#: admin/class-wh4u-admin.php:261
 msgid "Domain Management"
 msgstr "Διαχείριση Domains"
 
-#. ── PERMISSIONS ──
-
-#: admin/class-wh4u-admin-dashboard.php:30
-#: admin/class-wh4u-admin-domains.php:21 admin/class-wh4u-admin-domains.php:83
-#: admin/class-wh4u-admin-domains.php:165 admin/class-wh4u-admin-domains.php:251
-#: admin/class-wh4u-admin-pricing.php:21 admin/class-wh4u-admin-credits.php:21
-#: admin/class-wh4u-admin-history.php:21 admin/class-wh4u-admin-history.php:144
+#: admin/class-wh4u-admin-credits.php:23
+#: admin/class-wh4u-admin-dashboard.php:32
+#: admin/class-wh4u-admin-domains.php:23
+#: admin/class-wh4u-admin-domains.php:85
+#: admin/class-wh4u-admin-domains.php:167
+#: admin/class-wh4u-admin-history.php:23
+#: admin/class-wh4u-admin-history.php:151
+#: admin/class-wh4u-admin-history.php:283
+#: admin/class-wh4u-admin-pricing.php:23
 msgid "You do not have sufficient permissions."
 msgstr "Δεν έχεις τα απαραίτητα δικαιώματα."
 
-#. ── DASHBOARD ──
-
-#: admin/class-wh4u-admin-dashboard.php:57
+#: admin/class-wh4u-admin-dashboard.php:61
 msgid "API Connected"
 msgstr "API Συνδεδεμένο"
 
-#: admin/class-wh4u-admin-dashboard.php:60 admin/class-wh4u-admin-dashboard.php:219
+#: admin/class-wh4u-admin-appearance.php:693
+#: admin/class-wh4u-admin-dashboard.php:65
+#: admin/class-wh4u-admin-dashboard.php:330
+#: admin/class-wh4u-admin-domains.php:264
+#: admin/class-wh4u-admin-history.php:196
+#: includes/class-wh4u-notifications.php:60
+#: public/class-wh4u-public.php:267
+#: public/class-wh4u-public.php:376
 msgid "Email"
 msgstr "Email"
 
-#: admin/class-wh4u-admin-dashboard.php:60
+#: admin/class-wh4u-admin-dashboard.php:64
 msgid "URL"
 msgstr "URL"
 
-#: admin/class-wh4u-admin-dashboard.php:62
+#: admin/class-wh4u-admin-dashboard.php:66
 msgid "Key"
 msgstr "Κλειδί"
 
-#: admin/class-wh4u-admin-dashboard.php:79
+#: admin/class-wh4u-admin-dashboard.php:83
 msgid "API Not Connected"
 msgstr "API Μη Συνδεδεμένο"
 
-#: admin/class-wh4u-admin-dashboard.php:81
+#: admin/class-wh4u-admin-dashboard.php:85
 msgid "Configure"
 msgstr "Ρύθμιση"
 
-#: admin/class-wh4u-admin-dashboard.php:88
+#: admin/class-wh4u-admin-dashboard.php:92
 msgid "Credits:"
 msgstr "Υπόλοιπο:"
 
-#: admin/class-wh4u-admin-dashboard.php:97
+#: admin/class-wh4u-admin-dashboard.php:101
 msgid "Add Credits"
 msgstr "Προσθήκη Υπολοίπου"
 
-#: admin/class-wh4u-admin-dashboard.php:110
+#: admin/class-wh4u-admin-dashboard.php:114
 msgid "Search Domain Availability"
 msgstr "Αναζήτηση Διαθεσιμότητας Domain"
 
-#: admin/class-wh4u-admin-dashboard.php:115
-#: admin/class-wh4u-admin-domains.php:31
+#: admin/class-wh4u-admin-dashboard.php:119
+#: admin/class-wh4u-admin-domains.php:33
 msgid "Domain Name"
 msgstr "Όνομα Domain"
 
-#: admin/class-wh4u-admin-dashboard.php:122
-#: public/class-wh4u-public.php:44 public/class-wh4u-public.php:58
-#: public/class-wh4u-public.php:194
+#: admin/class-wh4u-admin-dashboard.php:126
 msgid "Check Availability"
 msgstr "Τσέκαρε Διαθεσιμότητα"
 
-#: admin/class-wh4u-admin-dashboard.php:125
+#: admin/class-wh4u-admin-dashboard.php:129
 msgid "Suggestions"
 msgstr "Προτάσεις"
 
-#: admin/class-wh4u-admin-dashboard.php:141
-#: admin/class-wh4u-admin-domains.php:55 admin/class-wh4u-admin-domains.php:102
-#: admin/class-wh4u-admin-domains.php:184 admin/class-wh4u-admin-domains.php:265
-#: admin/class-wh4u-admin-history.php:77 public/class-wh4u-public.php:93
+#: admin/class-wh4u-admin-dashboard.php:145
+#: admin/class-wh4u-admin-domains.php:57
+#: admin/class-wh4u-admin-domains.php:104
+#: admin/class-wh4u-admin-domains.php:186
+#: admin/class-wh4u-admin-history.php:84
+#: admin/class-wh4u-admin-history.php:193
+#: includes/class-wh4u-notifications.php:53
+#: includes/class-wh4u-notifications.php:209
 msgid "Domain"
 msgstr "Domain"
 
-#: admin/class-wh4u-admin-dashboard.php:142
-#: admin/class-wh4u-admin-domains.php:56 admin/class-wh4u-admin-history.php:79
-#: admin/class-wh4u-admin-history.php:185 admin/class-wh4u-admin-dashboard.php:181
-#: public/class-wh4u-public.php:94
+#: admin/class-wh4u-admin-dashboard.php:146
+#: admin/class-wh4u-admin-dashboard.php:292
+#: admin/class-wh4u-admin-domains.php:58
+#: admin/class-wh4u-admin-history.php:86
+#: admin/class-wh4u-admin-history.php:199
+#: admin/class-wh4u-admin-history.php:326
+#: includes/class-wh4u-notifications.php:217
 msgid "Status"
 msgstr "Κατάσταση"
 
-#: admin/class-wh4u-admin-dashboard.php:143
-#: admin/class-wh4u-admin-domains.php:57 admin/class-wh4u-admin-history.php:182
-#: public/class-wh4u-public.php:95
+#: admin/class-wh4u-admin-dashboard.php:147
+#: admin/class-wh4u-admin-domains.php:59
+#: admin/class-wh4u-admin-history.php:323
 msgid "Action"
 msgstr "Ενέργεια"
 
-#: admin/class-wh4u-admin-dashboard.php:177
+#: admin/class-wh4u-admin-dashboard.php:288
 msgid "Connection Information"
 msgstr "Στοιχεία Σύνδεσης"
 
-#: admin/class-wh4u-admin-dashboard.php:186
+#: admin/class-wh4u-admin-dashboard.php:297
 msgid "Connected"
 msgstr "Συνδεδεμένο"
 
-#: admin/class-wh4u-admin-dashboard.php:191
+#: admin/class-wh4u-admin-dashboard.php:302
 msgid "Not Connected"
 msgstr "Μη Συνδεδεμένο"
 
-#: admin/class-wh4u-admin-dashboard.php:197
+#: admin/class-wh4u-admin-dashboard.php:308
 msgid "WordPress User"
 msgstr "Χρήστης WordPress"
 
-#: admin/class-wh4u-admin-dashboard.php:201
-#: admin/class-wh4u-admin-settings.php:244
+#: admin/class-wh4u-admin-dashboard.php:312
+#: admin/class-wh4u-admin-reseller.php:43
 msgid "Reseller Email"
 msgstr "Email Μεταπωλητή"
 
-#: admin/class-wh4u-admin-dashboard.php:202
+#: admin/class-wh4u-admin-dashboard.php:313
 msgid "Not configured"
 msgstr "Δεν έχει ρυθμιστεί"
 
-#: admin/class-wh4u-admin-dashboard.php:206
+#: admin/class-wh4u-admin-dashboard.php:317
 msgid "API Endpoint"
 msgstr "API Endpoint"
 
-#: admin/class-wh4u-admin-dashboard.php:212
+#: admin/class-wh4u-admin-dashboard.php:323
 msgid "API Version"
 msgstr "Έκδοση API"
 
-#: admin/class-wh4u-admin-dashboard.php:218
+#: admin/class-wh4u-admin-dashboard.php:329
 msgid "API URL"
 msgstr "API URL"
 
-#: admin/class-wh4u-admin-dashboard.php:220
+#: admin/class-wh4u-admin-dashboard.php:331
+#: admin/class-wh4u-admin-reseller.php:52
 msgid "API Key"
 msgstr "Κλειδί API"
 
-#: admin/class-wh4u-admin-dashboard.php:232
+#: admin/class-wh4u-admin-dashboard.php:343
 msgid "OK"
 msgstr "OK"
 
-#: admin/class-wh4u-admin-dashboard.php:234
+#: admin/class-wh4u-admin-dashboard.php:345
 msgid "Missing"
 msgstr "Λείπει"
 
-#: admin/class-wh4u-admin-dashboard.php:243
+#: admin/class-wh4u-admin-dashboard.php:354
 msgid "Edit Settings"
 msgstr "Επεξεργασία Ρυθμίσεων"
 
-#: admin/class-wh4u-admin-dashboard.php:246
+#: admin/class-wh4u-admin-dashboard.php:357
 msgid "Client Area"
 msgstr "Περιοχή Πελάτη"
 
-#. ── DASHBOARD: FRONTEND INTEGRATION ──
-
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:178
 msgid "Frontend Integration"
 msgstr "Ενσωμάτωση στο Site"
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:181
 msgid "Add a domain search form to any page or post using the shortcode or the Gutenberg block. Shortcode attributes override global Appearance settings."
 msgstr "Πρόσθεσε φόρμα αναζήτησης domain σε οποιαδήποτε σελίδα ή άρθρο μέσω shortcode ή Gutenberg block. Οι παράμετροι shortcode υπερισχύουν των ρυθμίσεων Εμφάνισης."
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:184
 msgid "Basic Usage"
 msgstr "Βασική Χρήση"
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:186
 msgid "Outputs the domain search form with all global Appearance settings applied."
 msgstr "Εμφανίζει τη φόρμα αναζήτησης domain με τις ρυθμίσεις Εμφάνισης."
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:188
 msgid "Available Shortcode Attributes"
 msgstr "Διαθέσιμες Παράμετροι Shortcode"
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:192
 msgid "Attribute"
 msgstr "Παράμετρος"
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-appearance.php:554
+#: admin/class-wh4u-admin-dashboard.php:193
 msgid "Default"
 msgstr "Προεπιλογή"
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:194
 msgid "Description"
 msgstr "Περιγραφή"
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:201
 msgid "Placeholder text inside the search input field."
 msgstr "Κείμενο placeholder στο πεδίο αναζήτησης."
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:206
 msgid "Label for the search submit button."
 msgstr "Ετικέτα του κουμπιού αναζήτησης."
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:210
 msgid "(theme default)"
 msgstr "(προεπιλογή θέματος)"
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:211
 msgid "Hex color for buttons and accents, e.g. #2271b1."
 msgstr "Χρώμα hex για κουμπιά και τόνους, π.χ. #2271b1."
 
-#: admin/class-wh4u-admin-dashboard.php
+#. translators: %s: list of allowed values
+#: admin/class-wh4u-admin-dashboard.php:219
+#, php-format
 msgid "Visual style of the form card. Values: %s."
 msgstr "Οπτικό στυλ της κάρτας φόρμας. Τιμές: %s."
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:227
 msgid "Show domain prices in search results. Values: true / false."
 msgstr "Εμφάνιση τιμών domain στα αποτελέσματα. Τιμές: true / false."
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:232
 msgid "Show alternative TLD suggestions when a domain is unavailable. Values: true / false."
 msgstr "Εμφάνιση εναλλακτικών TLD όταν ένα domain δεν είναι διαθέσιμο. Τιμές: true / false."
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:237
 msgid "Heading displayed above the registration form."
 msgstr "Επικεφαλίδα πάνω από τη φόρμα εγγραφής."
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:242
 msgid "Description text shown below the form title."
 msgstr "Κείμενο περιγραφής κάτω από τον τίτλο της φόρμας."
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:247
 msgid "Corner rounding in pixels (0 = sharp corners, max 32)."
 msgstr "Στρογγυλοποίηση γωνιών σε pixels (0 = αιχμηρές, μέγ. 32)."
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:252
 msgid "Examples"
 msgstr "Παραδείγματα"
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:254
 msgid "Custom text and colors"
 msgstr "Προσαρμοσμένο κείμενο και χρώματα"
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:255
 msgid "Find your domain"
 msgstr "Βρες το domain σου"
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:255
 msgid "Go"
 msgstr "Πάμε"
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:257
 msgid "Flat style with pricing"
 msgstr "Επίπεδο στυλ με τιμές"
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:260
 msgid "Minimal style, no suggestions"
 msgstr "Minimal στυλ, χωρίς προτάσεις"
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:263
 msgid "Custom form text"
 msgstr "Προσαρμοσμένο κείμενο φόρμας"
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:264
 msgid "Secure your domain"
 msgstr "Κατοχύρωσε το domain σου"
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:264
 msgid "Complete the form to register."
 msgstr "Συμπλήρωσε τη φόρμα για καταχώρηση."
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:266
 msgid "Gutenberg Block"
 msgstr "Gutenberg Block"
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:268
 msgid "In the block editor, click the + inserter and search for \"Domain Lookup\". The block provides the same options as the shortcode attributes above, configurable via the block sidebar panel."
 msgstr "Στο block editor, κάνε κλικ στο + inserter και αναζήτησε \"Domain Lookup\". Το block παρέχει τις ίδιες επιλογές με τις παραμέτρους shortcode, ρυθμιζόμενες μέσω του sidebar."
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:271
 msgid "Settings Priority"
 msgstr "Προτεραιότητα Ρυθμίσεων"
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:273
 msgid "Shortcode/block attributes take highest priority. If an attribute is not specified, the value from Domains > Settings > Appearance is used. If no Appearance setting is saved, the built-in default applies."
 msgstr "Οι παράμετροι shortcode/block έχουν την υψηλότερη προτεραιότητα. Αν δεν οριστεί μια παράμετρος, χρησιμοποιείται η τιμή από Domains > Ρυθμίσεις > Εμφάνιση. Αν δεν υπάρχει αποθηκευμένη ρύθμιση, ισχύει η προεπιλογή."
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:276
 msgid "Shortcode / Block attribute (highest)"
 msgstr "Παράμετρος Shortcode / Block (υψηλότερη)"
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:277
 msgid "Global Appearance settings"
 msgstr "Ρυθμίσεις Εμφάνισης"
 
-#: admin/class-wh4u-admin-dashboard.php
+#: admin/class-wh4u-admin-dashboard.php:278
 msgid "Built-in defaults (lowest)"
 msgstr "Ενσωματωμένες προεπιλογές (χαμηλότερη)"
 
-#. ── DASHBOARD STATUS MESSAGES ──
-
-#: admin/class-wh4u-admin-dashboard.php:294
+#: admin/class-wh4u-admin-dashboard.php:394
+#: includes/class-wh4u-api-client.php:55
 msgid "API base URL is not configured."
 msgstr "Δεν έχει οριστεί το API base URL."
 
-#: admin/class-wh4u-admin-dashboard.php:310
+#: admin/class-wh4u-admin-dashboard.php:411
+#: includes/class-wh4u-api-client.php:77
 msgid "Reseller email is not configured."
 msgstr "Δεν έχει οριστεί το email μεταπωλητή."
 
-#: admin/class-wh4u-admin-dashboard.php:319
+#: admin/class-wh4u-admin-dashboard.php:420
 msgid "API key is not configured."
 msgstr "Δεν έχει οριστεί το κλειδί API."
 
-#: admin/class-wh4u-admin-dashboard.php:334
-msgid "API call failed: "
-msgstr "Αποτυχία κλήσης API: "
-
-#: admin/class-wh4u-admin-dashboard.php:339
+#: admin/class-wh4u-admin-dashboard.php:441
 msgid "Connected successfully."
 msgstr "Επιτυχής σύνδεση."
 
-#. ── SETTINGS ──
-
-#: admin/class-wh4u-admin-settings.php:31
+#: admin/class-wh4u-admin-settings.php:37
 msgid "API Configuration"
 msgstr "Ρύθμιση API"
 
-#: admin/class-wh4u-admin-settings.php:38
+#: admin/class-wh4u-admin-settings.php:44
 msgid "API Base URL"
 msgstr "Βασικό URL API"
 
-#: admin/class-wh4u-admin-settings.php:46
+#: admin/class-wh4u-admin-settings.php:52
 msgid "Registration Mode"
 msgstr "Τρόπος Καταχώρησης"
 
-#: admin/class-wh4u-admin-settings.php:76
+#: admin/class-wh4u-admin-settings.php:254
 msgid "Configure the DomainsReseller API connection and registration behavior."
 msgstr "Ρύθμισε τη σύνδεση με το DomainsReseller API και τη συμπεριφορά καταχώρησης."
 
-#: admin/class-wh4u-admin-settings.php:88
+#: admin/class-wh4u-admin-settings.php:266
 msgid "The base URL for the DomainsReseller API."
 msgstr "Το βασικό URL του DomainsReseller API."
 
-#: admin/class-wh4u-admin-settings.php:102
+#: admin/class-wh4u-admin-settings.php:280
 msgid "Real-time Registration"
 msgstr "Άμεση Καταχώρηση"
 
-#: admin/class-wh4u-admin-settings.php:103
+#: admin/class-wh4u-admin-settings.php:281
 msgid "(API call happens immediately on order submission)"
 msgstr "(Η κλήση στο API γίνεται αμέσως μόλις υποβληθεί η παραγγελία)"
 
-#: admin/class-wh4u-admin-settings.php:108
+#: admin/class-wh4u-admin-settings.php:286
 msgid "Notification-only"
 msgstr "Μόνο Ειδοποίηση"
 
-#: admin/class-wh4u-admin-settings.php:109
+#: admin/class-wh4u-admin-settings.php:287
 msgid "(Store order and notify reseller; process manually via \"Process Now\")"
 msgstr "(Αποθήκευση παραγγελίας και ειδοποίηση μεταπωλητή· χειροκίνητη εκτέλεση μέσω \"Εκτέλεση Τώρα\")"
 
-#: admin/class-wh4u-admin-settings.php:124
+#: admin/class-wh4u-admin-settings.php:567
 msgid "You do not have sufficient permissions to access this page."
 msgstr "Δεν έχεις τα απαραίτητα δικαιώματα για αυτήν τη σελίδα."
 
-#: admin/class-wh4u-admin-settings.php:135
+#: admin/class-wh4u-admin-reseller.php:170
+#: admin/class-wh4u-admin-settings.php:578
 msgid "Security check failed."
 msgstr "Ο έλεγχος ασφαλείας απέτυχε."
 
-#: admin/class-wh4u-admin-settings.php:152
+#: admin/class-wh4u-admin-settings.php:595
 msgid "General"
 msgstr "Γενικά"
 
-#: admin/class-wh4u-admin-settings.php:157
+#: admin/class-wh4u-admin-settings.php:600
 msgid "Credentials"
 msgstr "Στοιχεία Πρόσβασης"
 
-#: admin/class-wh4u-admin-settings.php:230
+#: admin/class-wh4u-admin-reseller.php:29
 msgid "Credentials saved."
 msgstr "Τα στοιχεία αποθηκεύτηκαν."
 
-#: admin/class-wh4u-admin-settings.php:241
+#: admin/class-wh4u-admin-reseller.php:40
 msgid "API Credentials"
 msgstr "Στοιχεία API"
 
-#: admin/class-wh4u-admin-settings.php:249
+#: admin/class-wh4u-admin-reseller.php:48
 msgid "Your email registered with the domain registrar."
 msgstr "Το email που έχεις δηλώσει στον καταχωρητή domains."
 
-#: admin/class-wh4u-admin-settings.php:253
-msgid "API Key"
-msgstr "Κλειδί API"
-
-#: admin/class-wh4u-admin-settings.php:257 admin/class-wh4u-admin-settings.php:306
+#: admin/class-wh4u-admin-reseller.php:56
+#: admin/class-wh4u-admin-reseller.php:105
 msgid "(stored, enter new to change)"
 msgstr "(αποθηκευμένο, βάλε νέο για αλλαγή)"
 
-#: admin/class-wh4u-admin-settings.php:259
+#: admin/class-wh4u-admin-reseller.php:58
 msgid "Stored encrypted. Leave blank to keep existing key."
 msgstr "Αποθηκεύεται κρυπτογραφημένα. Άφησέ το κενό για να κρατήσεις το υπάρχον."
 
-#: admin/class-wh4u-admin-settings.php:264
+#: admin/class-wh4u-admin-reseller.php:63
 msgid "Domain Defaults"
 msgstr "Προεπιλογές Domain"
 
-#: admin/class-wh4u-admin-settings.php:267
+#: admin/class-wh4u-admin-reseller.php:66
 msgid "Default Nameservers"
 msgstr "Προεπιλεγμένοι Nameservers"
 
-#: admin/class-wh4u-admin-settings.php:278
+#: admin/class-wh4u-admin-reseller.php:77
 msgid "Default nameservers for new registrations. NS1 and NS2 are required by most registrars."
 msgstr "Προεπιλεγμένοι nameservers για νέες καταχωρήσεις. NS1 και NS2 απαιτούνται από τους περισσότερους καταχωρητές."
 
-#: admin/class-wh4u-admin-settings.php:282
+#: admin/class-wh4u-admin-reseller.php:81
 msgid "Allowed TLDs"
 msgstr "Επιτρεπόμενα TLDs"
 
-#: admin/class-wh4u-admin-settings.php:285
+#: admin/class-wh4u-admin-reseller.php:84
 msgid "Comma-separated list of allowed TLDs (e.g. .com,.net,.org). Leave empty for all TLDs."
 msgstr "Λίστα TLDs χωρισμένα με κόμμα (π.χ. .com,.net,.org). Κενό = όλα τα TLDs."
 
-#: admin/class-wh4u-admin-settings.php:290
+#: admin/class-wh4u-admin-reseller.php:89
 msgid "Webhooks"
 msgstr "Webhooks"
 
-#: admin/class-wh4u-admin-settings.php:293
+#: admin/class-wh4u-admin-reseller.php:92
 msgid "Webhook URL"
 msgstr "Webhook URL"
 
-#: admin/class-wh4u-admin-settings.php:298
+#: admin/class-wh4u-admin-reseller.php:97
 msgid "Optional endpoint for order notifications."
 msgstr "Προαιρετικό endpoint για ειδοποιήσεις παραγγελιών."
 
-#: admin/class-wh4u-admin-settings.php:302
+#: admin/class-wh4u-admin-reseller.php:101
 msgid "Webhook Secret"
 msgstr "Webhook Secret"
 
-#: admin/class-wh4u-admin-settings.php:308
+#: admin/class-wh4u-admin-reseller.php:107
 msgid "Shared secret for HMAC-signing webhook payloads."
 msgstr "Κοινό μυστικό κλειδί για υπογραφή HMAC στα webhook payloads."
 
-#: admin/class-wh4u-admin-settings.php:313
+#: admin/class-wh4u-admin-reseller.php:112
 msgid "Save Credentials"
 msgstr "Αποθήκευση Στοιχείων"
 
-#: admin/class-wh4u-admin-settings.php:371
+#: admin/class-wh4u-admin-reseller.php:177
+#: public/class-wh4u-public.php:567
 msgid "Please enter a valid email address."
 msgstr "Βάλε ένα σωστό email."
 
-#. ── DOMAINS - SEARCH ──
-
-#: admin/class-wh4u-admin-domains.php:25
+#: admin/class-wh4u-admin-domains.php:27
 msgid "Domain Search / Availability"
 msgstr "Αναζήτηση / Διαθεσιμότητα Domain"
 
-#: admin/class-wh4u-admin-domains.php:35
+#: admin/class-wh4u-admin-domains.php:37
 msgid "Enter a domain name with TLD (e.g. example.com) to check a specific extension, or without (e.g. example) to check all available extensions."
 msgstr "Γράψε ένα domain με κατάληξη (π.χ. example.com) για συγκεκριμένη κατάληξη, ή χωρίς (π.χ. example) για να τσεκάρεις όλες τις καταλήξεις."
 
-#: admin/class-wh4u-admin-domains.php:41
+#: admin/class-wh4u-admin-domains.php:43
+#: admin/class-wh4u-admin.php:206
 msgid "Search Availability"
 msgstr "Αναζήτηση Διαθεσιμότητας"
 
-#: admin/class-wh4u-admin-domains.php:44
+#: admin/class-wh4u-admin-domains.php:46
 msgid "Get Suggestions"
 msgstr "Πάρε Προτάσεις"
 
-#: admin/class-wh4u-admin-domains.php:51
+#: admin/class-wh4u-admin-domains.php:53
 msgid "Search Results"
 msgstr "Αποτελέσματα Αναζήτησης"
 
-#. ── DOMAINS - REGISTER/TRANSFER ──
-
-#: admin/class-wh4u-admin-domains.php:99 admin/class-wh4u-admin-domains.php:181
+#: admin/class-wh4u-admin-domains.php:101
+#: admin/class-wh4u-admin-domains.php:183
 msgid "Domain Details"
 msgstr "Στοιχεία Domain"
 
-#: admin/class-wh4u-admin-domains.php:106
+#: admin/class-wh4u-admin-domains.php:108
+#: public/class-wh4u-public.php:316
 msgid "Registration Period"
 msgstr "Διάρκεια Καταχώρησης"
 
-#: admin/class-wh4u-admin-domains.php:117 admin/class-wh4u-admin-domains.php:203
+#: admin/class-wh4u-admin-domains.php:119
+#: admin/class-wh4u-admin-domains.php:205
 msgid "Nameservers"
 msgstr "Nameservers"
 
-#: admin/class-wh4u-admin-domains.php:132 admin/class-wh4u-admin-domains.php:218
-#: admin/class-wh4u-admin-domains.php:280
+#: admin/class-wh4u-admin-domains.php:134
+#: admin/class-wh4u-admin-domains.php:220
 msgid "Addons"
 msgstr "Πρόσθετα"
 
-#: admin/class-wh4u-admin-domains.php:135 admin/class-wh4u-admin-domains.php:221
-#: admin/class-wh4u-admin-domains.php:283
+#: admin/class-wh4u-admin-domains.php:137
+#: admin/class-wh4u-admin-domains.php:223
 msgid "DNS Management"
 msgstr "Διαχείριση DNS"
 
-#: admin/class-wh4u-admin-domains.php:139 admin/class-wh4u-admin-domains.php:225
-#: admin/class-wh4u-admin-domains.php:287
+#: admin/class-wh4u-admin-domains.php:141
+#: admin/class-wh4u-admin-domains.php:227
 msgid "Email Forwarding"
 msgstr "Προώθηση Email"
 
-#: admin/class-wh4u-admin-domains.php:143 admin/class-wh4u-admin-domains.php:229
-#: admin/class-wh4u-admin-domains.php:291
+#: admin/class-wh4u-admin-domains.php:145
+#: admin/class-wh4u-admin-domains.php:231
 msgid "ID Protection"
 msgstr "Προστασία Στοιχείων"
 
-#: admin/class-wh4u-admin-domains.php:188
+#: admin/class-wh4u-admin-domains.php:190
+#: public/class-wh4u-public.php:357
 msgid "EPP / Auth Code"
 msgstr "Κωδικός EPP / Auth"
 
-#: admin/class-wh4u-admin-domains.php:192
+#: admin/class-wh4u-admin-domains.php:194
+#: public/class-wh4u-public.php:425
 msgid "Transfer Period"
 msgstr "Διάρκεια Μεταφοράς"
 
-#. ── CONTACT FIELDS ──
-
-#: admin/class-wh4u-admin-domains.php:314
+#: admin/class-wh4u-admin-domains.php:254
 msgid "Registrant"
 msgstr "Κάτοχος"
 
-#: admin/class-wh4u-admin-domains.php:315
+#: admin/class-wh4u-admin-domains.php:255
 msgid "Admin"
 msgstr "Διαχειριστής"
 
-#: admin/class-wh4u-admin-domains.php:316
+#: admin/class-wh4u-admin-domains.php:256
 msgid "Technical"
 msgstr "Τεχνικός"
 
-#: admin/class-wh4u-admin-domains.php:317
+#: admin/class-wh4u-admin-domains.php:257
 msgid "Billing"
 msgstr "Χρέωση"
 
-#: admin/class-wh4u-admin-domains.php:321
+#: admin/class-wh4u-admin-appearance.php:691
+#: admin/class-wh4u-admin-domains.php:261
+#: public/class-wh4u-public.php:255
+#: public/class-wh4u-public.php:364
 msgid "First Name"
 msgstr "Όνομα"
 
-#: admin/class-wh4u-admin-domains.php:322
+#: admin/class-wh4u-admin-appearance.php:692
+#: admin/class-wh4u-admin-domains.php:262
+#: public/class-wh4u-public.php:261
+#: public/class-wh4u-public.php:370
 msgid "Last Name"
 msgstr "Επώνυμο"
 
-#: admin/class-wh4u-admin-domains.php:323
+#: admin/class-wh4u-admin-appearance.php:695
+#: admin/class-wh4u-admin-domains.php:263
+#: includes/class-wh4u-notifications.php:62
+#: public/class-wh4u-public.php:279
+#: public/class-wh4u-public.php:388
 msgid "Company"
 msgstr "Εταιρεία"
 
-#: admin/class-wh4u-admin-domains.php:325
+#: admin/class-wh4u-admin-appearance.php:696
+#: admin/class-wh4u-admin-domains.php:265
+#: includes/class-wh4u-notifications.php:63
+#: public/class-wh4u-public.php:285
+#: public/class-wh4u-public.php:394
 msgid "Address"
 msgstr "Διεύθυνση"
 
-#: admin/class-wh4u-admin-domains.php:326
+#: admin/class-wh4u-admin-appearance.php:697
+#: admin/class-wh4u-admin-domains.php:266
+#: includes/class-wh4u-notifications.php:64
+#: public/class-wh4u-public.php:291
+#: public/class-wh4u-public.php:400
 msgid "City"
 msgstr "Πόλη"
 
-#: admin/class-wh4u-admin-domains.php:327
+#: admin/class-wh4u-admin-appearance.php:698
+#: admin/class-wh4u-admin-domains.php:267
+#: public/class-wh4u-public.php:297
+#: public/class-wh4u-public.php:406
 msgid "State / Province"
 msgstr "Νομός / Περιφέρεια"
 
-#: admin/class-wh4u-admin-domains.php:328
+#: admin/class-wh4u-admin-domains.php:268
 msgid "Post Code"
 msgstr "Τ.Κ."
 
-#: admin/class-wh4u-admin-domains.php:329
+#: admin/class-wh4u-admin-appearance.php:699
+#: admin/class-wh4u-admin-domains.php:269
+#: public/class-wh4u-public.php:303
+#: public/class-wh4u-public.php:412
 msgid "Country Code"
 msgstr "Κωδικός Χώρας"
 
-#: admin/class-wh4u-admin-domains.php:330
+#: admin/class-wh4u-admin-domains.php:270
 msgid "Phone Number"
 msgstr "Τηλέφωνο"
 
-#: admin/class-wh4u-admin-domains.php:336
-msgid "Contact"
-msgstr "Επαφή"
-
-#: admin/class-wh4u-admin-domains.php:340
+#: admin/class-wh4u-admin-domains.php:283
 msgid "Copy from Registrant"
 msgstr "Αντιγραφή από Κάτοχο"
 
-#. ── PLURALS (year/years) ──
-
-#: admin/class-wh4u-admin-domains.php:110 admin/class-wh4u-admin-domains.php:196
-#: admin/class-wh4u-admin-domains.php:273
+#: admin/class-wh4u-admin-domains.php:112
+#: admin/class-wh4u-admin-domains.php:198
 msgid "year"
 msgid_plural "years"
 msgstr[0] "χρόνος"
 msgstr[1] "χρόνια"
 
-#. ── PRICING ──
-
-#: admin/class-wh4u-admin-pricing.php:29
+#: admin/class-wh4u-admin-pricing.php:31
 msgid "Loading pricing data from the API..."
 msgstr "Φόρτωση τιμών από το API..."
 
-#: admin/class-wh4u-admin-pricing.php:40
+#: admin/class-wh4u-admin-pricing.php:42
 msgid "TLD"
 msgstr "TLD"
 
-#. ── CREDITS ──
-
-#: admin/class-wh4u-admin-credits.php:25
+#: admin/class-wh4u-admin-credits.php:27
 msgid "Credits Balance"
 msgstr "Υπόλοιπο"
 
-#: admin/class-wh4u-admin-credits.php:37
+#: admin/class-wh4u-admin-credits.php:39
 msgid "Available Credits"
 msgstr "Διαθέσιμο Υπόλοιπο"
 
-#. ── HISTORY ──
-
-#: admin/class-wh4u-admin-history.php:55 admin/class-wh4u-admin-history.php:167
+#: admin/class-wh4u-admin-history.php:62
+#: admin/class-wh4u-admin-history.php:174
+#: admin/class-wh4u-admin-history.php:308
+#: includes/class-wh4u-notifications.php:193
 msgid "Pending"
 msgstr "Σε αναμονή"
 
-#: admin/class-wh4u-admin-history.php:56
+#: admin/class-wh4u-admin-history.php:63
 msgid "Pending Manual"
 msgstr "Αναμονή χειροκίνητης εκτέλεσης"
 
-#: admin/class-wh4u-admin-history.php:57 admin/class-wh4u-admin-history.php:168
+#: admin/class-wh4u-admin-history.php:64
+#: admin/class-wh4u-admin-history.php:309
+#: includes/class-wh4u-notifications.php:195
 msgid "Processing"
 msgstr "Σε εξέλιξη"
 
-#: admin/class-wh4u-admin-history.php:58 admin/class-wh4u-admin-history.php:169
+#: admin/class-wh4u-admin-history.php:65
+#: admin/class-wh4u-admin-history.php:310
+#: includes/class-wh4u-notifications.php:191
 msgid "Completed"
 msgstr "Ολοκληρώθηκε"
 
-#: admin/class-wh4u-admin-history.php:59 admin/class-wh4u-admin-history.php:170
+#: admin/class-wh4u-admin-history.php:66
+#: admin/class-wh4u-admin-history.php:311
+#: includes/class-wh4u-notifications.php:192
 msgid "Failed"
 msgstr "Απέτυχε"
 
-#: admin/class-wh4u-admin-history.php:60 admin/class-wh4u-admin-history.php:171
+#: admin/class-wh4u-admin-history.php:67
+#: admin/class-wh4u-admin-history.php:312
 msgid "Cancelled"
 msgstr "Ακυρώθηκε"
 
-#: admin/class-wh4u-admin-history.php:67
+#: admin/class-wh4u-admin-history.php:74
+#: admin/class-wh4u-admin-history.php:183
 msgid "All"
 msgstr "Όλα"
 
-#: admin/class-wh4u-admin-history.php:76 admin/class-wh4u-admin-history.php:180
+#: admin/class-wh4u-admin-history.php:83
+#: admin/class-wh4u-admin-history.php:192
+#: admin/class-wh4u-admin-history.php:321
 msgid "ID"
 msgstr "ID"
 
-#: admin/class-wh4u-admin-history.php:78
+#: admin/class-wh4u-admin-history.php:85
+#: admin/class-wh4u-admin-history.php:194
+#: includes/class-wh4u-notifications.php:213
 msgid "Type"
 msgstr "Τύπος"
 
-#: admin/class-wh4u-admin-history.php:80
+#: admin/class-wh4u-admin-history.php:87
+#: admin/class-wh4u-admin-history.php:198
+#: includes/class-wh4u-notifications.php:54
+#: includes/class-wh4u-notifications.php:221
 msgid "Period"
 msgstr "Διάρκεια"
 
-#: admin/class-wh4u-admin-history.php:81
+#: admin/class-wh4u-admin-history.php:88
 msgid "Retries"
 msgstr "Επαναλήψεις"
 
-#: admin/class-wh4u-admin-history.php:82 admin/class-wh4u-admin-history.php:186
+#: admin/class-wh4u-admin-history.php:89
+#: admin/class-wh4u-admin-history.php:327
+#: includes/class-wh4u-notifications.php:233
 msgid "Error"
 msgstr "Σφάλμα"
 
-#: admin/class-wh4u-admin-history.php:83
+#: admin/class-wh4u-admin-history.php:90
+#: admin/class-wh4u-admin-history.php:200
+#: includes/class-wh4u-notifications.php:238
 msgid "Date"
 msgstr "Ημερομηνία"
 
-#: admin/class-wh4u-admin-history.php:84 admin/class-wh4u-admin-history.php:188
+#: admin/class-wh4u-admin-history.php:91
+#: admin/class-wh4u-admin-history.php:201
+#: admin/class-wh4u-admin-history.php:329
 msgid "Actions"
 msgstr "Ενέργειες"
 
-#: admin/class-wh4u-admin-history.php:89
+#: admin/class-wh4u-admin-history.php:96
+#: wh4u-domains.php:165
 msgid "No orders found."
 msgstr "Δεν βρέθηκαν παραγγελίες."
 
-#: admin/class-wh4u-admin-history.php:108
+#: admin/class-wh4u-admin-history.php:115
+#: admin/class-wh4u-admin.php:209
 msgid "Process Now"
 msgstr "Εκτέλεση Τώρα"
 
-#: admin/class-wh4u-admin-history.php:181
+#: admin/class-wh4u-admin-history.php:322
+#: includes/class-wh4u-notifications.php:52
+#: includes/class-wh4u-notifications.php:228
 msgid "Order ID"
 msgstr "ID Παραγγελίας"
 
-#: admin/class-wh4u-admin-history.php:183
+#: admin/class-wh4u-admin-history.php:324
 msgid "Attempts"
 msgstr "Προσπάθειες"
 
-#: admin/class-wh4u-admin-history.php:184
+#: admin/class-wh4u-admin-history.php:325
 msgid "Max"
 msgstr "Μέγιστο"
 
-#: admin/class-wh4u-admin-history.php:187
+#: admin/class-wh4u-admin-history.php:328
 msgid "Scheduled"
 msgstr "Προγραμματισμένο"
 
-#: admin/class-wh4u-admin-history.php:193
+#: admin/class-wh4u-admin-history.php:334
 msgid "No queue items found."
 msgstr "Δεν βρέθηκαν στοιχεία στην ουρά."
 
-#: admin/class-wh4u-admin-history.php:212
+#: admin/class-wh4u-admin-history.php:353
+#: admin/class-wh4u-admin.php:208
 msgid "Retry Now"
 msgstr "Νέα Προσπάθεια"
 
-#. ── PUBLIC / FRONTEND (plain daily Greek) ──
-
-#: public/class-wh4u-public.php:43 public/class-wh4u-public.php:57
-#: public/class-wh4u-public.php:193
-msgid "e.g. example.com"
-msgstr "π.χ. example.com"
-
-#: public/class-wh4u-public.php:157
+#: admin/class-wh4u-admin-appearance.php:715
+#: admin/class-wh4u-admin-appearance.php:865
+#: admin/class-wh4u-admin-dashboard.php:236
+#: public/class-wh4u-public.php:90
+#: public/class-wh4u-public.php:628
 msgid "Register this domain"
 msgstr "Κατοχύρωσε το"
 
-#: public/class-wh4u-public.php:158
-msgid "Log in to register"
-msgstr "Κάνε σύνδεση για να το κλείσεις"
-
-#: public/class-wh4u-public.php:160
+#: admin/class-wh4u-admin.php:207
 msgid "No results found."
 msgstr "Δεν βρήκαμε κάτι."
 
-#. ── REST API ──
-
-#: rest-api/class-wh4u-rest-controller.php:34
+#: rest-api/class-wh4u-rest-controller.php:36
 msgid "You must be logged in."
 msgstr "Πρέπει να είσαι συνδεδεμένος."
 
-#: rest-api/class-wh4u-rest-controller.php:41
+#: rest-api/class-wh4u-rest-controller.php:43
 msgid "You do not have permission to access this resource."
 msgstr "Δεν έχεις πρόσβαση σε αυτό."
 
-#: rest-api/class-wh4u-rest-controller.php:60 rest-api/class-wh4u-rest-controller.php:80
-#: rest-api/class-wh4u-rest-domains.php:90
+#: rest-api/class-wh4u-rest-controller.php:62
+#: rest-api/class-wh4u-rest-controller.php:82
+#: rest-api/class-wh4u-rest-domains.php:117
 msgid "Rate limit exceeded. Please try again shortly."
 msgstr "Πολλά αιτήματα. Περίμενε λίγο και δοκίμασε ξανά."
 
-#: rest-api/class-wh4u-rest-domains.php:246
+#: rest-api/class-wh4u-rest-domains.php:295
 msgid "Could not retrieve TLD list from API."
 msgstr "Δεν ήταν δυνατή η λήψη της λίστας TLD από το API."
 
-#: rest-api/class-wh4u-rest-domains.php:317
-msgid "No API credentials configured. Please ask the site administrator to set up the plugin."
-msgstr "Δεν υπάρχουν στοιχεία API. Ζήτα από τον διαχειριστή να ρυθμίσει το plugin."
-
-#: rest-api/class-wh4u-rest-orders.php:146 rest-api/class-wh4u-rest-orders.php:305
-#: rest-api/class-wh4u-rest-queue.php:46
+#: rest-api/class-wh4u-rest-orders.php:147
+#: rest-api/class-wh4u-rest-orders.php:312
+#: rest-api/class-wh4u-rest-queue.php:48
 msgid "Rate limit exceeded."
 msgstr "Πολλά αιτήματα."
 
-#: rest-api/class-wh4u-rest-orders.php:192
+#: rest-api/class-wh4u-rest-orders.php:194
 msgid "Order created. The reseller has been notified for manual processing."
 msgstr "Η παραγγελία δημιουργήθηκε. Ο μεταπωλητής ειδοποιήθηκε για χειροκίνητη εκτέλεση."
 
-#: rest-api/class-wh4u-rest-orders.php:252
+#: rest-api/class-wh4u-rest-orders.php:257
 msgid "Order queued for retry due to a temporary API issue."
 msgstr "Η παραγγελία μπήκε στην ουρά λόγω προσωρινού προβλήματος API."
 
-#: rest-api/class-wh4u-rest-orders.php:291
+#: rest-api/class-wh4u-rest-orders.php:298
 msgid "Domain order completed successfully."
 msgstr "Η παραγγελία domain ολοκληρώθηκε."
 
-#: rest-api/class-wh4u-rest-queue.php:61
+#: rest-api/class-wh4u-rest-queue.php:64
 msgid "Queue item not found."
 msgstr "Δεν βρέθηκε στην ουρά."
 
-#: rest-api/class-wh4u-rest-queue.php:68
+#: rest-api/class-wh4u-rest-queue.php:71
 msgid "You cannot retry this item."
 msgstr "Δεν μπορείς να ξαναδοκιμάσεις αυτό."
 
-#: rest-api/class-wh4u-rest-queue.php:77
+#: rest-api/class-wh4u-rest-queue.php:80
 msgid "Failed to re-queue item."
 msgstr "Αποτυχία επαναφοράς στην ουρά."
 
-#: rest-api/class-wh4u-rest-queue.php:83
+#: rest-api/class-wh4u-rest-queue.php:86
 msgid "Item re-queued for retry."
 msgstr "Μπήκε ξανά στην ουρά."
 
-#: rest-api/class-wh4u-rest-pricing.php:272
-msgid "No API credentials configured."
-msgstr "Δεν υπάρχουν στοιχεία API."
-
-#. ── API CLIENT ──
-
-#: includes/class-wh4u-api-client.php:53
-msgid "API base URL is not configured."
-msgstr "Δεν έχει οριστεί το API base URL."
-
-#: includes/class-wh4u-api-client.php:61
+#: includes/class-wh4u-api-client.php:64
 msgid "Reseller settings not found. Please configure your API credentials."
 msgstr "Δεν βρέθηκαν ρυθμίσεις μεταπωλητή. Ρύθμισε τα στοιχεία API."
 
-#: includes/class-wh4u-api-client.php:68
+#: includes/class-wh4u-api-client.php:71
 msgid "Failed to decrypt API key. The encryption key may have changed. Please re-save your API key under Domains > My Settings."
 msgstr "Αποτυχία αποκρυπτογράφησης κλειδιού API. Το κλειδί κρυπτογράφησης μπορεί να άλλαξε. Αποθήκευσε ξανά το κλειδί API στις Ρυθμίσεις."
 
-#: includes/class-wh4u-api-client.php:74
-msgid "Reseller email is not configured."
-msgstr "Δεν έχει οριστεί το email μεταπωλητή."
-
-#: includes/class-wh4u-api-client.php:200
+#: includes/class-wh4u-api-client.php:203
 msgid "API request failed."
 msgstr "Αποτυχία αιτήματος API."
 
-#. ── NOTIFICATIONS ──
-
-#: includes/class-wh4u-notifications.php:76
+#. translators: 1: event type, 2: domain name
+#: includes/class-wh4u-notifications.php:153
+#, php-format
 msgid "[WH4U Domains] Order %1$s: %2$s"
 msgstr "[WH4U Domains] Παραγγελία %1$s: %2$s"
 
-#: includes/class-wh4u-notifications.php:116
+#: includes/class-wh4u-notifications.php:194
 msgid "Pending Manual Processing"
 msgstr "Αναμονή Χειροκίνητης Εκτέλεσης"
 
-#: includes/class-wh4u-notifications.php:125
+#. translators: %s: order status label (e.g. "Completed", "Failed")
+#: includes/class-wh4u-notifications.php:205
+#, php-format
 msgid "Domain Order %s"
 msgstr "Παραγγελία Domain %s"
 
-#: includes/class-wh4u-notifications.php:141
-msgid "year(s)"
-msgstr "χρόνος(-ια)"
-
-#. ── PLACEHOLDER CONTEXT ──
-
-#: admin/class-wh4u-admin-dashboard.php:119
+#: admin/class-wh4u-admin-dashboard.php:123
 msgid "example.com or keyword"
 msgstr "example.com ή λέξη-κλειδί"
 
-#: admin/class-wh4u-admin.php:176
+#: admin/class-wh4u-admin.php:210
 msgid "No pricing data available."
 msgstr "Δεν βρέθηκαν τιμές."
 
-#. ── BLOCK EDITOR ──
-
-#: blocks/domain-lookup/index.js:27
+#: admin/class-wh4u-admin-appearance.php:574
+#: blocks/domain-lookup/index.js:39
 msgid "Placeholder Text"
 msgstr "Κείμενο Placeholder"
 
-#: blocks/domain-lookup/index.js:36
+#: admin/class-wh4u-admin-appearance.php:584
+#: blocks/domain-lookup/index.js:48
 msgid "Button Text"
 msgstr "Κείμενο Κουμπιού"
 
-#. ── PUBLIC FRONTEND - FORM LABELS ──
-
-#: public/class-wh4u-public.php:46
+#: admin/class-wh4u-admin-appearance.php:580
+#: admin/class-wh4u-admin-appearance.php:859
+#: admin/class-wh4u-admin-dashboard.php:200
+#: public/class-wh4u-public.php:84
+#: public/class-wh4u-public.php:532
+#: public/class-wh4u-public.php:622
 msgid "Search for your perfect domain..."
 msgstr "Ψάξε το τέλειο domain..."
 
-#: public/class-wh4u-public.php:52
-msgid "Register this domain"
-msgstr "Κατοχύρωσε το"
-
-#: public/class-wh4u-public.php:53
+#: admin/class-wh4u-admin-appearance.php:725
+#: admin/class-wh4u-admin-appearance.php:866
+#: admin/class-wh4u-admin-dashboard.php:241
+#: public/class-wh4u-public.php:91
+#: public/class-wh4u-public.php:629
 msgid "Fill in your details below to secure this domain."
 msgstr "Συμπλήρωσε τα στοιχεία σου για να κατοχυρώσεις αυτό το domain."
 
-#: public/class-wh4u-public.php:104
+#: public/class-wh4u-public.php:190
 msgid "Domain search"
 msgstr "Αναζήτηση domain"
 
-#: public/class-wh4u-public.php:118
+#: public/class-wh4u-public.php:206
 msgid "Domain name"
 msgstr "Όνομα domain"
 
-#: public/class-wh4u-public.php:150
-msgid "First Name"
-msgstr "Όνομα"
-
-#: public/class-wh4u-public.php:150
+#: admin/class-wh4u-admin-appearance.php:745
+#: public/class-wh4u-public.php:255
+#: public/class-wh4u-public.php:261
+#: public/class-wh4u-public.php:267
+#: public/class-wh4u-public.php:273
+#: public/class-wh4u-public.php:285
+#: public/class-wh4u-public.php:291
+#: public/class-wh4u-public.php:297
+#: public/class-wh4u-public.php:303
+#: public/class-wh4u-public.php:309
+#: public/class-wh4u-public.php:364
+#: public/class-wh4u-public.php:370
+#: public/class-wh4u-public.php:376
+#: public/class-wh4u-public.php:382
+#: public/class-wh4u-public.php:394
+#: public/class-wh4u-public.php:400
+#: public/class-wh4u-public.php:406
+#: public/class-wh4u-public.php:412
+#: public/class-wh4u-public.php:418
 msgid "required"
 msgstr "υποχρεωτικό"
 
-#: public/class-wh4u-public.php:154
-msgid "Last Name"
-msgstr "Επώνυμο"
-
-#: public/class-wh4u-public.php:158
-msgid "Email"
-msgstr "Email"
-
-#: public/class-wh4u-public.php:162
+#: admin/class-wh4u-admin-appearance.php:694
+#: admin/class-wh4u-admin-history.php:197
+#: includes/class-wh4u-notifications.php:61
+#: public/class-wh4u-public.php:273
+#: public/class-wh4u-public.php:382
 msgid "Phone"
 msgstr "Τηλέφωνο"
 
-#: public/class-wh4u-public.php:166
-msgid "Company"
-msgstr "Εταιρεία"
-
-#: public/class-wh4u-public.php:170
-msgid "Address"
-msgstr "Διεύθυνση"
-
-#: public/class-wh4u-public.php:174
-msgid "City"
-msgstr "Πόλη"
-
-#: public/class-wh4u-public.php:178
-msgid "State / Province"
-msgstr "Νομός / Περιφέρεια"
-
-#: public/class-wh4u-public.php:182
-msgid "Country Code"
-msgstr "Κωδικός Χώρας"
-
-#: public/class-wh4u-public.php:183
+#: public/class-wh4u-public.php:304
+#: public/class-wh4u-public.php:413
 msgid "e.g. US"
 msgstr "π.χ. GR"
 
-#: public/class-wh4u-public.php:186
+#: admin/class-wh4u-admin-appearance.php:700
+#: public/class-wh4u-public.php:309
+#: public/class-wh4u-public.php:418
 msgid "Zip / Postal Code"
 msgstr "Τ.Κ."
 
-#: public/class-wh4u-public.php:192
-msgid "Registration Period"
-msgstr "Διάρκεια Καταχώρησης"
-
-#: public/class-wh4u-public.php:194
-msgid "Year"
-msgstr "Χρόνος"
-
-#: public/class-wh4u-public.php:195
-msgid "Years"
-msgstr "Χρόνια"
-
-#: public/class-wh4u-public.php:204
+#: public/class-wh4u-public.php:336
+#: public/class-wh4u-public.php:445
 msgid "Back to results"
 msgstr "Πίσω στα αποτελέσματα"
 
-#: public/class-wh4u-public.php:207
+#: public/class-wh4u-public.php:339
 msgid "Submit Registration Request"
 msgstr "Υποβολή Αιτήματος"
 
-#. ── PUBLIC FRONTEND - JS i18n ──
-
-#: public/class-wh4u-public.php:274
+#: public/class-wh4u-public.php:558
 msgid "Taken"
 msgstr "Κατειλημμένο"
 
-#: public/class-wh4u-public.php:279
+#: public/class-wh4u-public.php:563
 msgid "Submitting..."
 msgstr "Υποβολή..."
 
-#: public/class-wh4u-public.php:280
+#: admin/class-wh4u-admin-appearance.php:803
+#: public/class-wh4u-public.php:524
 msgid "Request Submitted!"
 msgstr "Το αίτημά σου υποβλήθηκε!"
 
-#: public/class-wh4u-public.php:281
+#: admin/class-wh4u-admin-appearance.php:812
+#: public/class-wh4u-public.php:525
 msgid "Your domain registration request has been submitted. We will contact you shortly."
 msgstr "Το αίτημα καταχώρησης domain υποβλήθηκε. Θα επικοινωνήσουμε μαζί σου σύντομα."
 
-#: public/class-wh4u-public.php:282
+#: admin/class-wh4u-admin-appearance.php:822
+#: public/class-wh4u-public.php:526
 msgid "Search another domain"
 msgstr "Ψάξε άλλο domain"
 
-#: public/class-wh4u-public.php:283
-msgid "Please enter a valid email address."
-msgstr "Βάλε ένα σωστό email."
-
-#: public/class-wh4u-public.php:284
+#: public/class-wh4u-public.php:568
 msgid "Please enter a valid phone number."
 msgstr "Βάλε ένα σωστό τηλέφωνο."
 
-#: public/class-wh4u-public.php:285
+#: public/class-wh4u-public.php:569
 msgid "Please enter a 2-letter country code (e.g. US, GR, DE)."
 msgstr "Βάλε κωδικό χώρας 2 γραμμάτων (π.χ. GR, US, DE)."
 
-#: public/class-wh4u-public.php:286
+#: public/class-wh4u-public.php:570
 msgid "Please fill in all required fields."
 msgstr "Συμπλήρωσε όλα τα υποχρεωτικά πεδία."
 
-#: public/class-wh4u-public.php:277
+#: public/class-wh4u-public.php:561
 msgid "No results found for this search."
 msgstr "Δεν βρήκαμε αποτελέσματα για αυτήν την αναζήτηση."
 
-#. ── PUBLIC ORDERS REST API ──
-
-#: rest-api/class-wh4u-rest-public-orders.php:48
+#: rest-api/class-wh4u-rest-public-orders.php:128
 msgid "Too many submissions. Please try again later."
 msgstr "Πολλές υποβολές. Δοκίμασε ξανά αργότερα."
 
-#: rest-api/class-wh4u-rest-public-orders.php:178
+#: rest-api/class-wh4u-rest-public-orders.php:266
+#: rest-api/class-wh4u-rest-public-orders.php:366
 msgid "Your request has been submitted."
 msgstr "Το αίτημά σου υποβλήθηκε."
 
-#: rest-api/class-wh4u-rest-public-orders.php:235
+#: rest-api/class-wh4u-rest-public-orders.php:312
+#: rest-api/class-wh4u-rest-public-orders.php:413
 msgid "Failed to save your request. Please try again."
 msgstr "Αποτυχία αποθήκευσης. Δοκίμασε ξανά."
 
-#: rest-api/class-wh4u-rest-public-orders.php:253
+#: rest-api/class-wh4u-rest-public-orders.php:332
 msgid "Your domain registration request has been submitted successfully. We will contact you shortly."
 msgstr "Το αίτημα καταχώρησης domain υποβλήθηκε. Θα επικοινωνήσουμε μαζί σου σύντομα."
 
-#: rest-api/class-wh4u-rest-public-orders.php:274
+#: rest-api/class-wh4u-rest-public-orders.php:445
 msgid "Public order not found."
 msgstr "Δεν βρέθηκε δημόσια παραγγελία."
 
-#: rest-api/class-wh4u-rest-public-orders.php:289
+#: rest-api/class-wh4u-rest-public-orders.php:460
 msgid "Failed to update order status."
 msgstr "Αποτυχία ενημέρωσης κατάστασης παραγγελίας."
 
-#: rest-api/class-wh4u-rest-public-orders.php:304
+#: admin/class-wh4u-admin-history.php:175
+#: rest-api/class-wh4u-rest-public-orders.php:475
 msgid "Approved"
 msgstr "Εγκρίθηκε"
 
-#: rest-api/class-wh4u-rest-public-orders.php:305
+#: admin/class-wh4u-admin-history.php:176
+#: rest-api/class-wh4u-rest-public-orders.php:476
 msgid "Rejected"
 msgstr "Απορρίφθηκε"
 
-#: rest-api/class-wh4u-rest-public-orders.php:312
+#. translators: %s: new status label
+#: rest-api/class-wh4u-rest-public-orders.php:485
+#, php-format
 msgid "Order status updated to %s."
 msgstr "Η κατάσταση παραγγελίας ενημερώθηκε σε %s."
 
-#. ── PUBLIC ORDERS ADMIN ──
-
-#: admin/class-wh4u-admin.php:124
+#: admin/class-wh4u-admin.php:120
+#: admin/class-wh4u-admin.php:121
 msgid "Public Orders"
 msgstr "Δημόσιες Παραγγελίες"
 
-#: admin/class-wh4u-admin-history.php:171
+#: admin/class-wh4u-admin-history.php:180
 msgid "Public Registration Orders"
 msgstr "Παραγγελίες Δημόσιας Καταχώρησης"
 
-#: admin/class-wh4u-admin-history.php:196
+#: admin/class-wh4u-admin-history.php:206
 msgid "No public orders found."
 msgstr "Δεν βρέθηκαν δημόσιες παραγγελίες."
 
-#: admin/class-wh4u-admin-history.php:183
+#: admin/class-wh4u-admin-history.php:195
+#: includes/class-wh4u-notifications.php:59
 msgid "Name"
 msgstr "Όνομα"
 
-#: admin/class-wh4u-admin-history.php:219
+#: admin/class-wh4u-admin-history.php:242
+#: admin/class-wh4u-admin.php:211
 msgid "Approve"
 msgstr "Έγκριση"
 
-#: admin/class-wh4u-admin-history.php:222
+#: admin/class-wh4u-admin-history.php:245
+#: admin/class-wh4u-admin.php:212
 msgid "Reject"
 msgstr "Απόρριψη"
 
-#: admin/class-wh4u-admin.php:187
+#. translators: %s: action name (e.g. "approve" or "reject")
+#: admin/class-wh4u-admin.php:214
+#, php-format
 msgid "Are you sure you want to %s this order?"
 msgstr "Σίγουρα θέλεις να κάνεις %s αυτήν την παραγγελία;"
 
-#. ── CPT / STATUS LABELS ──
-
-#: wh4u-domains.php
-msgid "Public Order"
-msgstr "Δημόσια Παραγγελία"
-
-#: wh4u-domains.php
+#: wh4u-domains.php:162
 msgid "All Public Orders"
 msgstr "Όλες οι Δημόσιες Παραγγελίες"
 
-#: wh4u-domains.php
+#: wh4u-domains.php:163
 msgid "View Order"
 msgstr "Προβολή Παραγγελίας"
 
-#: wh4u-domains.php
+#: wh4u-domains.php:164
 msgid "Search Orders"
 msgstr "Αναζήτηση Παραγγελιών"
 
-#: wh4u-domains.php
-msgid "No orders found."
-msgstr "Δεν βρέθηκαν παραγγελίες."
-
-#: wh4u-domains.php
+#: wh4u-domains.php:166
 msgid "No orders found in Trash."
 msgstr "Δεν βρέθηκαν παραγγελίες στα απορρίμματα."
 
-#: wh4u-domains.php
-msgid "Pending Review"
-msgstr "Σε αναμονή ελέγχου"
-
-#. ── NOTIFICATIONS (public order email) ──
-
-#: includes/class-wh4u-notifications.php:46
+#. translators: 1: domain name
+#: includes/class-wh4u-notifications.php:47
+#, php-format
 msgid "[WH4U Domains] New Public Registration Request: %s"
 msgstr "[WH4U Domains] Νέο Αίτημα Δημόσιας Καταχώρησης: %s"
 
-#: includes/class-wh4u-notifications.php:50
-msgid "Order ID"
-msgstr "ID Παραγγελίας"
-
-#: includes/class-wh4u-notifications.php:53
-msgid "Name"
-msgstr "Όνομα"
-
-#: includes/class-wh4u-notifications.php:59
+#: includes/class-wh4u-notifications.php:65
 msgid "State"
 msgstr "Νομός"
 
-#: includes/class-wh4u-notifications.php:60
+#: includes/class-wh4u-notifications.php:66
 msgid "Country"
 msgstr "Χώρα"
 
-#: includes/class-wh4u-notifications.php:61
+#: includes/class-wh4u-notifications.php:67
 msgid "Zip"
 msgstr "Τ.Κ."
 
-#: includes/class-wh4u-notifications.php:65
+#: includes/class-wh4u-notifications.php:71
 msgid "New Public Domain Registration Request"
 msgstr "Νέο Αίτημα Δημόσιας Καταχώρησης Domain"
 
-#: includes/class-wh4u-notifications.php:77
+#: includes/class-wh4u-notifications.php:83
 msgid "Review this order in the WordPress admin under Domains > Public Orders."
 msgstr "Δες αυτήν την παραγγελία στο WordPress admin στην ενότητα Domains > Δημόσιες Παραγγελίες."
 
-#: includes/class-wh4u-public-order-processor.php
+#: includes/class-wh4u-public-order-processor.php:53
 msgid "No authenticated user found to process the API call."
 msgstr "Δεν βρέθηκε συνδεδεμένος χρήστης για την εκτέλεση της κλήσης API."
 
-#: includes/class-wh4u-public-order-processor.php
+#: includes/class-wh4u-public-order-processor.php:67
 msgid "Missing domain or registration period."
 msgstr "Λείπει το domain ή η περίοδος εγγραφής."
 
-#: includes/class-wh4u-public-order-processor.php
+#: includes/class-wh4u-public-order-processor.php:183
 msgid "No default nameservers configured. Please set them under Domains > Settings > Credentials."
 msgstr "Δεν έχουν οριστεί προεπιλεγμένοι nameservers. Ρυθμίστε τους στην ενότητα Domains > Ρυθμίσεις > Διαπιστευτήρια."
 
-#: includes/class-wh4u-public-order-processor.php
+#: includes/class-wh4u-public-order-processor.php:191
 msgid "At least NS1 and NS2 must be configured in your reseller settings."
 msgstr "Πρέπει να έχουν οριστεί τουλάχιστον NS1 και NS2 στις ρυθμίσεις μεταπωλητή."
 
-#: rest-api/class-wh4u-rest-public-orders.php
+#: rest-api/class-wh4u-rest-public-orders.php:502
 msgid "Order approved and domain registration completed successfully."
 msgstr "Η παραγγελία εγκρίθηκε και η εγγραφή domain ολοκληρώθηκε επιτυχώς."
 
-#: rest-api/class-wh4u-rest-public-orders.php
+#: rest-api/class-wh4u-rest-public-orders.php:506
 msgid "Order approved. Registration queued for retry due to a temporary API issue."
 msgstr "Η παραγγελία εγκρίθηκε. Η εγγραφή τοποθετήθηκε σε ουρά λόγω προσωρινού σφάλματος API."
 
-#: rest-api/class-wh4u-rest-public-orders.php
+#. translators: %s: error message
+#: rest-api/class-wh4u-rest-public-orders.php:516
+#, php-format
 msgid "Order approved but registration failed: %s"
 msgstr "Η παραγγελία εγκρίθηκε αλλά η εγγραφή απέτυχε: %s"
 
-#. ── APPEARANCE SETTINGS ──
-
-#: admin/class-wh4u-admin-settings.php
+#: admin/class-wh4u-admin-settings.php:605
+#: blocks/domain-lookup/index.js:88
 msgid "Appearance"
 msgstr "Εμφάνιση"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:245
+#: admin/class-wh4u-admin-appearance.php:258
 msgid "Save Appearance"
 msgstr "Αποθήκευση Εμφάνισης"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:264
 msgid "Live Preview"
 msgstr "Ζωντανή Προεπισκόπηση"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:270
 msgid "Frontend Preview"
 msgstr "Προεπισκόπηση Frontend"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:366
 msgid "Style Mode"
 msgstr "Λειτουργία Στυλ"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:369
 msgid "CSS Mode"
 msgstr "Λειτουργία CSS"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:372
 msgid "Full (plugin styles)"
 msgstr "Πλήρης (στυλ plugin)"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:373
 msgid "Minimal (layout only)"
 msgstr "Ελάχιστη (μόνο διάταξη)"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:374
 msgid "None (theme controls all)"
 msgstr "Καμία (το θέμα ελέγχει τα πάντα)"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:376
 msgid "Controls how much CSS the plugin outputs. \"Minimal\" keeps only layout/spacing. \"None\" outputs only the HTML structure."
 msgstr "Ελέγχει πόσο CSS παράγει το plugin. \"Ελάχιστη\" κρατά μόνο διάταξη/αποστάσεις. \"Καμία\" παράγει μόνο τη δομή HTML."
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:380
+#: blocks/domain-lookup/index.js:93
 msgid "Style Variant"
 msgstr "Παραλλαγή Στυλ"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:383
+#: blocks/domain-lookup/index.js:96
 msgid "Elevated (Shadow)"
 msgstr "Ανυψωμένο (Σκιά)"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:384
+#: blocks/domain-lookup/index.js:97
 msgid "Flat"
 msgstr "Επίπεδο"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:385
+#: blocks/domain-lookup/index.js:98
 msgid "Bordered"
 msgstr "Με Περίγραμμα"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:386
+#: blocks/domain-lookup/index.js:99
 msgid "Minimal"
 msgstr "Ελάχιστο"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:412
 msgid "Colors"
 msgstr "Χρώματα"
 
-#: admin/class-wh4u-admin-appearance.php
-msgid "Leave empty to use your theme defaults."
-msgstr "Αφήστε κενό για χρήση προεπιλογών θέματος."
-
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:401
 msgid "Accent / Primary"
 msgstr "Κύριο / Accent"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:402
 msgid "Text"
 msgstr "Κείμενο"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:403
 msgid "Background"
 msgstr "Φόντο"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:404
 msgid "Border"
 msgstr "Περίγραμμα"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:405
 msgid "Available Status"
 msgstr "Κατάσταση Διαθέσιμο"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:406
 msgid "Unavailable Status"
 msgstr "Κατάσταση Μη Διαθέσιμο"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:468
 msgid "Typography"
 msgstr "Τυπογραφία"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:471
 msgid "Font Family"
 msgstr "Γραμματοσειρά"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:456
 msgid "Inherit from theme"
 msgstr "Κληρονομιά από θέμα"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:475
 msgid "System UI"
 msgstr "System UI"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:476
 msgid "Custom (Google Fonts)"
 msgstr "Προσαρμοσμένη (Google Fonts)"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:481
 msgid "Google Font Name"
 msgstr "Όνομα Google Font"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:488
 msgid "e.g. Inter, Roboto, Open Sans"
 msgstr "π.χ. Inter, Roboto, Open Sans"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:489
 msgid "Enter the exact Google Font family name. You must enqueue the font via your theme or a fonts plugin."
 msgstr "Εισάγετε το ακριβές όνομα γραμματοσειράς Google Font. Πρέπει να φορτώσετε τη γραμματοσειρά μέσω του θέματός σας ή ενός plugin γραμματοσειρών."
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:493
 msgid "Base Font Size"
 msgstr "Βασικό Μέγεθος Γραμματοσειράς"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:504
 msgid "Button Font Weight"
 msgstr "Βάρος Γραμματοσειράς Κουμπιού"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:507
 msgid "Normal (400)"
 msgstr "Κανονικό (400)"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:508
 msgid "Semi-Bold (600)"
 msgstr "Ημι-Έντονο (600)"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:509
 msgid "Bold (700)"
 msgstr "Έντονο (700)"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:525
 msgid "Layout"
 msgstr "Διάταξη"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:528
 msgid "Max Width"
 msgstr "Μέγιστο Πλάτος"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:539
 msgid "Border Radius"
 msgstr "Ακτίνα Περιγράμματος"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:550
 msgid "Spacing"
 msgstr "Αποστάσεις"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:553
 msgid "Compact"
 msgstr "Συμπαγής"
 
-#: admin/class-wh4u-admin-appearance.php
-msgid "Default"
-msgstr "Προεπιλογή"
-
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:555
 msgid "Relaxed"
 msgstr "Χαλαρή"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:571
 msgid "Search Bar"
 msgstr "Μπάρα Αναζήτησης"
 
-#: admin/class-wh4u-admin-appearance.php
-msgid "Placeholder Text"
-msgstr "Κείμενο Placeholder"
-
-#: admin/class-wh4u-admin-appearance.php
-msgid "Button Text"
-msgstr "Κείμενο Κουμπιού"
-
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:594
 msgid "Show Search Icon"
 msgstr "Εμφάνιση Εικονιδίου Αναζήτησης"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:602
 msgid "Display the magnifying glass icon inside the search input"
 msgstr "Εμφάνιση εικονιδίου μεγεθυντικού φακού μέσα στο πεδίο αναζήτησης"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:628
 msgid "Domain Results"
 msgstr "Αποτελέσματα Domain"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:631
 msgid "Show Pricing"
 msgstr "Εμφάνιση Τιμών"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:639
 msgid "Display domain pricing in search results"
 msgstr "Εμφάνιση τιμών domain στα αποτελέσματα αναζήτησης"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:644
+#: blocks/domain-lookup/index.js:57
 msgid "Show Suggestions"
 msgstr "Εμφάνιση Προτάσεων"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:652
 msgid "Show alternative domain suggestions"
 msgstr "Εμφάνιση εναλλακτικών προτάσεων domain"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:670
 msgid "Suggestion Count"
 msgstr "Αριθμός Προτάσεων"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:706
+#: blocks/domain-lookup/index.js:66
 msgid "Registration Form"
 msgstr "Φόρμα Εγγραφής"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:709
+#: blocks/domain-lookup/index.js:68
 msgid "Form Title"
 msgstr "Τίτλος Φόρμας"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:719
+#: blocks/domain-lookup/index.js:77
 msgid "Form Description"
 msgstr "Περιγραφή Φόρμας"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:729
 msgid "Visible Fields"
 msgstr "Ορατά Πεδία"
 
-#: admin/class-wh4u-admin-appearance.php
-msgid "required"
-msgstr "υποχρεωτικό"
-
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:755
 msgid "Required fields cannot be hidden. Only \"Company\" can be toggled."
 msgstr "Τα υποχρεωτικά πεδία δεν μπορούν να κρυφτούν. Μόνο η \"Εταιρεία\" μπορεί να εναλλαχθεί."
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:759
 msgid "Registration Periods"
 msgstr "Περίοδοι Εγγραφής"
 
-#: admin/class-wh4u-admin-appearance.php
+#. translators: %d: number of years
+#: admin/class-wh4u-admin-appearance.php:766
+#: public/class-wh4u-public.php:321
+#: public/class-wh4u-public.php:430
+#, php-format
 msgid "%d Year"
 msgstr "%d Έτος"
 
-#: admin/class-wh4u-admin-appearance.php
+#. translators: %d: number of years
+#: admin/class-wh4u-admin-appearance.php:768
+#: public/class-wh4u-public.php:323
+#: public/class-wh4u-public.php:432
+#, php-format
 msgid "%d Years"
 msgstr "%d Έτη"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:794
 msgid "Messages"
 msgstr "Μηνύματα"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:797
 msgid "Success Title"
 msgstr "Τίτλος Επιτυχίας"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:807
 msgid "Success Message"
 msgstr "Μήνυμα Επιτυχίας"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:816
 msgid "\"Search Another\" Button"
 msgstr "Κουμπί \"Αναζήτηση Άλλου\""
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:932
 msgid "Preview"
 msgstr "Προεπισκόπηση"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:851
 msgid "Access denied."
 msgstr "Δεν επιτρέπεται η πρόσβαση."
 
-#. ── TRANSFER FRONTEND ──
-
-#: public/class-wh4u-public.php
+#: public/class-wh4u-public.php:350
+#: public/class-wh4u-public.php:572
 msgid "Transfer this domain"
 msgstr "Μεταφορά αυτού του domain"
 
-#: public/class-wh4u-public.php
+#: public/class-wh4u-public.php:351
+#: public/class-wh4u-public.php:573
 msgid "Fill in your details and the EPP/Auth code to transfer this domain."
 msgstr "Συμπλήρωσε τα στοιχεία σου και τον κωδικό EPP/Auth για μεταφορά αυτού του domain."
 
-#: public/class-wh4u-public.php
-msgid "EPP / Auth Code"
-msgstr "Κωδικός EPP / Auth"
-
-#: public/class-wh4u-public.php
+#: public/class-wh4u-public.php:358
 msgid "Optional -- can be provided later"
 msgstr "Προαιρετικό -- μπορεί να δοθεί αργότερα"
 
-#: public/class-wh4u-public.php
-msgid "Transfer Period"
-msgstr "Διάρκεια Μεταφοράς"
-
-#: public/class-wh4u-public.php
+#: public/class-wh4u-public.php:448
 msgid "Submit Transfer Request"
 msgstr "Υποβολή Αιτήματος Μεταφοράς"
 
-#: public/class-wh4u-public.php (JS i18n)
-msgid "Transfer"
-msgstr "Μεταφορά"
-
-#: public/class-wh4u-public.php (JS i18n)
+#: public/class-wh4u-public.php:574
 msgid "Your domain transfer request has been submitted. We will contact you shortly."
 msgstr "Το αίτημα μεταφοράς domain υποβλήθηκε επιτυχώς. Θα επικοινωνήσουμε μαζί σας σύντομα."
 
-#: rest-api/class-wh4u-rest-public-orders.php
+#: rest-api/class-wh4u-rest-public-orders.php:424
 msgid "Your domain transfer request has been submitted successfully. We will contact you shortly."
 msgstr "Το αίτημα μεταφοράς domain υποβλήθηκε επιτυχώς. Θα επικοινωνήσουμε μαζί σας σύντομα."
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:657
 msgid "Show Transfer"
 msgstr "Εμφάνιση Μεταφοράς"
 
-#: admin/class-wh4u-admin-appearance.php
+#: admin/class-wh4u-admin-appearance.php:665
 msgid "Show \"Transfer\" button on taken domains"
 msgstr "Εμφάνιση κουμπιού \"Μεταφορά\" σε κατειλημμένα domains"
 
-#: rest-api/class-wh4u-rest-public-orders.php
+#: rest-api/class-wh4u-rest-public-orders.php:501
 msgid "Order approved and domain transfer completed successfully."
 msgstr "Η παραγγελία εγκρίθηκε και η μεταφορά domain ολοκληρώθηκε επιτυχώς."
 
-#: rest-api/class-wh4u-rest-public-orders.php
+#: rest-api/class-wh4u-rest-public-orders.php:505
 msgid "Order approved. Transfer queued for retry due to a temporary API issue."
 msgstr "Η παραγγελία εγκρίθηκε. Η μεταφορά τέθηκε σε ουρά λόγω προσωρινού σφάλματος API."
 
-#: rest-api/class-wh4u-rest-public-orders.php
+#. translators: %s: error message
+#: rest-api/class-wh4u-rest-public-orders.php:511
+#, php-format
 msgid "Order approved but transfer failed: %s"
 msgstr "Η παραγγελία εγκρίθηκε αλλά η μεταφορά απέτυχε: %s"
+
+#. Description of the plugin
+#: wh4u-domains.php
+msgid "Domain reseller plugin for searching, registering, and transferring domains via the DomainsReseller API."
+msgstr "Πρόσθετο μεταπωλητή domain για αναζήτηση, καταχώρηση και μεταφορά domains μέσω του DomainsReseller API."
+
+#. Author of the plugin
+#: wh4u-domains.php
+msgid "WebHosting4U"
+msgstr "WebHosting4U"
+
+#. Author URI of the plugin
+#: wh4u-domains.php
+msgid "https://webhosting4u.gr/"
+msgstr "https://webhosting4u.gr/"
+
+#: admin/class-wh4u-admin-appearance.php:244
+msgid "Frontend Appearance"
+msgstr "Εμφάνιση Frontend"
+
+#. translators: %s: active theme name
+#: admin/class-wh4u-admin-appearance.php:302
+#, php-format
+msgid "Theme \"%s\" does not provide design tokens (theme.json). The plugin will use its own defaults. You can customize everything below."
+msgstr "Το theme \"%s\" δεν παρέχει design tokens (theme.json). Το πρόσθετο θα χρησιμοποιήσει τις δικές του προεπιλογές. Μπορείς να τα παραμετροποιήσεις όλα παρακάτω."
+
+#: admin/class-wh4u-admin-appearance.php:315
+msgid "accent color"
+msgstr "βασικό χρώμα"
+
+#: admin/class-wh4u-admin-appearance.php:318
+msgid "text color"
+msgstr "χρώμα κειμένου"
+
+#: admin/class-wh4u-admin-appearance.php:321
+msgid "background"
+msgstr "φόντο"
+
+#: admin/class-wh4u-admin-appearance.php:324
+msgid "font family"
+msgstr "γραμματοσειρά"
+
+#: admin/class-wh4u-admin-appearance.php:327
+msgid "border radius"
+msgstr "στρογγυλεμένες γωνίες"
+
+#. translators: %s: active theme name
+#: admin/class-wh4u-admin-appearance.php:338
+#, php-format
+msgid "Auto-adapting to \"%s\""
+msgstr "Αυτόματη προσαρμογή στο \"%s\""
+
+#. translators: %s: comma-separated list of detected tokens
+#: admin/class-wh4u-admin-appearance.php:349
+#, php-format
+msgid "Detected: %s. Set a value below to override any of these."
+msgstr "Εντοπίστηκαν: %s. Όρισε τιμή παρακάτω για να παρακάμψεις οποιοδήποτε από αυτά."
+
+#: admin/class-wh4u-admin-appearance.php:413
+msgid "Leave empty to auto-detect from your theme. Detected theme colors are shown as swatches."
+msgstr "Άφησέ το κενό για αυτόματο εντοπισμό από το theme σου. Τα χρώματα που εντοπίζονται εμφανίζονται ως δείγματα."
+
+#. translators: %s: hex color value
+#: admin/class-wh4u-admin-appearance.php:434
+#, php-format
+msgid "Using theme color: %s"
+msgstr "Χρήση χρώματος theme: %s"
+
+#. translators: %s: detected font family name
+#: admin/class-wh4u-admin-appearance.php:462
+#, php-format
+msgid "Inherit from theme (%s)"
+msgstr "Κληρονόμηση από το theme (%s)"
+
+#: admin/class-wh4u-admin-appearance.php:607
+msgid "Popular TLDs"
+msgstr "Δημοφιλή TLDs"
+
+#: admin/class-wh4u-admin-appearance.php:613
+msgid "Comma-separated list of TLD chips shown below the search bar. Leave empty to hide."
+msgstr "Λίστα TLD διαχωρισμένων με κόμμα, που εμφανίζονται κάτω από τη μπάρα αναζήτησης. Άφησέ το κενό για απόκρυψη."
+
+#. translators: %s: error message returned by the API
+#: admin/class-wh4u-admin-dashboard.php:436
+#, php-format
+msgid "API call failed: %s"
+msgstr "Η κλήση API απέτυχε: %s"
+
+#. translators: %s: contact type (e.g. Registrant, Admin, Technical, Billing)
+#: admin/class-wh4u-admin-domains.php:278
+#, php-format
+msgid "%s Contact"
+msgstr "Επαφή %s"
+
+#. translators: %d: number of years
+#: admin/class-wh4u-admin-history.php:231
+#: includes/class-wh4u-notifications.php:224
+#, php-format
+msgid "%d year"
+msgid_plural "%d years"
+msgstr[0] "%d χρόνος"
+msgstr[1] "%d χρόνια"
+
+#: admin/class-wh4u-admin-settings.php:60
+msgid "Shopping Cart Redirect"
+msgstr "Ανακατεύθυνση Καλαθιού Αγορών"
+
+#: admin/class-wh4u-admin-settings.php:67
+msgid "Cart Type"
+msgstr "Τύπος Καλαθιού"
+
+#: admin/class-wh4u-admin-settings.php:75
+msgid "Cart Base URL"
+msgstr "Βασικό URL Καλαθιού"
+
+#: admin/class-wh4u-admin-settings.php:83
+msgid "Register URL Template (Custom)"
+msgstr "Πρότυπο URL Καταχώρησης (Custom)"
+
+#: admin/class-wh4u-admin-settings.php:91
+msgid "Transfer URL Template (Custom)"
+msgstr "Πρότυπο URL Μεταφοράς (Custom)"
+
+#: admin/class-wh4u-admin-settings.php:99
+msgid "Reverse Proxy / IP Detection"
+msgstr "Reverse Proxy / Εντοπισμός IP"
+
+#: admin/class-wh4u-admin-settings.php:106
+msgid "Trusted Proxy IP Header"
+msgstr "Header Έμπιστου Proxy IP"
+
+#: admin/class-wh4u-admin-settings.php:114
+msgid "Trusted Proxy IPs"
+msgstr "Έμπιστες IPs Proxy"
+
+#: admin/class-wh4u-admin-settings.php:122
+msgid "Public Domain Lookup"
+msgstr "Δημόσια Αναζήτηση Domain"
+
+#: admin/class-wh4u-admin-settings.php:129
+msgid "Designated Reseller for Public Lookups"
+msgstr "Ορισμένος Μεταπωλητής για Δημόσιες Αναζητήσεις"
+
+#: admin/class-wh4u-admin-settings.php:137
+msgid "Cloudflare Turnstile"
+msgstr "Cloudflare Turnstile"
+
+#: admin/class-wh4u-admin-settings.php:144
+msgid "Site Key"
+msgstr "Site Key"
+
+#: admin/class-wh4u-admin-settings.php:152
+msgid "Secret Key"
+msgstr "Secret Key"
+
+#: admin/class-wh4u-admin-settings.php:295
+msgid "Optional: Send customers to your billing cart (WHMCS, Blesta, ClientExec, Upmind, or custom URL) when they click Register or Transfer. Leave Cart Type empty to use the built-in registration form."
+msgstr "Προαιρετικά: Στείλε τους πελάτες στο καλάθι τιμολόγησής σου (WHMCS, Blesta, ClientExec, Upmind ή custom URL) όταν πατάνε Καταχώρηση ή Μεταφορά. Άφησε τον Τύπο Καλαθιού κενό για να χρησιμοποιηθεί η ενσωματωμένη φόρμα καταχώρησης."
+
+#: admin/class-wh4u-admin-settings.php:303
+msgid "None (use built-in form)"
+msgstr "Καμία (χρήση ενσωματωμένης φόρμας)"
+
+#: admin/class-wh4u-admin-settings.php:308
+msgid "Custom URL template"
+msgstr "Custom πρότυπο URL"
+
+#: admin/class-wh4u-admin-settings.php:316
+msgid "When set, clicking Register or Transfer will redirect the customer to your cart with the domain pre-filled."
+msgstr "Όταν οριστεί, το πάτημα Καταχώρηση ή Μεταφορά ανακατευθύνει τον πελάτη στο καλάθι σου με το domain προσυμπληρωμένο."
+
+#: admin/class-wh4u-admin-settings.php:328
+msgid "Base URL of your cart (no trailing slash). Used for WHMCS, Blesta, ClientExec, and Upmind."
+msgstr "Βασικό URL του καλαθιού σου (χωρίς / στο τέλος). Χρησιμοποιείται για WHMCS, Blesta, ClientExec και Upmind."
+
+#: admin/class-wh4u-admin-settings.php:340
+#: admin/class-wh4u-admin-settings.php:352
+msgid "Only for Custom cart type. Use {domain}, {sld}, or {tld} as placeholders."
+msgstr "Μόνο για Custom τύπο καλαθιού. Χρησιμοποίησε {domain}, {sld} ή {tld} ως placeholders."
+
+#: admin/class-wh4u-admin-settings.php:360
+msgid "If your site is behind a reverse proxy (Cloudflare, a load balancer, or nginx), configure which header carries the real client IP for rate-limit purposes. Only enable this when the proxy strips client-supplied values for this header — otherwise rate limits can be bypassed via spoofing."
+msgstr "Αν ο ιστότοπός σου βρίσκεται πίσω από reverse proxy (Cloudflare, load balancer ή nginx), ρύθμισε ποιο header μεταφέρει την πραγματική IP του πελάτη για τα rate limits. Ενεργοποίησέ το μόνο όταν ο proxy αφαιρεί τυχόν τιμές που στέλνει ο πελάτης σε αυτό το header — διαφορετικά τα rate limits μπορούν να παρακαμφθούν με spoofing."
+
+#: admin/class-wh4u-admin-settings.php:368
+msgid "Disabled (use REMOTE_ADDR only)"
+msgstr "Απενεργοποιημένο (χρήση μόνο REMOTE_ADDR)"
+
+#: admin/class-wh4u-admin-settings.php:389
+msgid "One IP per line (no CIDR). The header above is only consulted when the immediate connection comes from one of these IPs."
+msgstr "Μία IP ανά γραμμή (χωρίς CIDR). Το παραπάνω header λαμβάνεται υπόψη μόνο όταν η άμεση σύνδεση προέρχεται από μία από αυτές τις IPs."
+
+#: admin/class-wh4u-admin-settings.php:397
+msgid "Choose which reseller's API credentials are used when anonymous visitors perform a domain lookup from the frontend. If no reseller is designated, anonymous domain searches are disabled."
+msgstr "Επίλεξε ποιου μεταπωλητή τα API credentials θα χρησιμοποιούνται όταν ανώνυμοι επισκέπτες κάνουν αναζήτηση domain από το frontend. Αν δεν οριστεί μεταπωλητής, οι ανώνυμες αναζητήσεις domain είναι απενεργοποιημένες."
+
+#: admin/class-wh4u-admin-settings.php:411
+msgid "Disabled (anonymous lookups will be rejected)"
+msgstr "Απενεργοποιημένο (οι ανώνυμες αναζητήσεις θα απορρίπτονται)"
+
+#: admin/class-wh4u-admin-settings.php:421
+msgid "API calls made for anonymous visitors will be billed against this reseller's account."
+msgstr "Οι κλήσεις API που γίνονται για ανώνυμους επισκέπτες θα χρεώνονται στον λογαριασμό αυτού του μεταπωλητή."
+
+#: admin/class-wh4u-admin-settings.php:441
+msgid "Cloudflare dashboard"
+msgstr "Cloudflare dashboard"
+
+#. translators: %s: link to Cloudflare Turnstile dashboard
+#: admin/class-wh4u-admin-settings.php:446
+#, php-format
+msgid "Optional: protect public registration and transfer forms with Cloudflare Turnstile (free). Get your keys from the %s."
+msgstr "Προαιρετικά: προστάτεψε τις δημόσιες φόρμες καταχώρησης και μεταφοράς με Cloudflare Turnstile (δωρεάν). Πάρε τα κλειδιά σου από το %s."
+
+#: admin/class-wh4u-admin-settings.php:469
+msgid "●●●●●●●● (stored, encrypted)"
+msgstr "●●●●●●●● (αποθηκευμένο, κρυπτογραφημένο)"
+
+#: admin/class-wh4u-admin-settings.php:476
+msgid "A secret key is stored. Leave blank to keep it, or enter a new value to replace it."
+msgstr "Ένα secret key είναι αποθηκευμένο. Άφησέ το κενό για να παραμείνει, ή εισήγαγε νέα τιμή για να αντικατασταθεί."
+
+#: admin/class-wh4u-admin-settings.php:478
+msgid "Leave both fields empty to disable Turnstile protection."
+msgstr "Άφησε και τα δύο πεδία κενά για να απενεργοποιηθεί η προστασία Turnstile."
+
+#: includes/class-wh4u-encryption.php:242
+msgid "WH4U Domains: No strong encryption key source is available. Define WH4U_ENCRYPTION_KEY in wp-config.php or ensure AUTH_KEY and SECURE_AUTH_KEY are configured. Encryption is currently disabled."
+msgstr "WH4U Domains: Δεν υπάρχει διαθέσιμη ισχυρή πηγή κλειδιού κρυπτογράφησης. Όρισε το WH4U_ENCRYPTION_KEY στο wp-config.php ή βεβαιώσου ότι τα AUTH_KEY και SECURE_AUTH_KEY είναι ρυθμισμένα. Η κρυπτογράφηση είναι προς το παρόν απενεργοποιημένη."
+
+#: includes/class-wh4u-encryption.php:247
+msgid "WH4U Domains: A legacy database-stored encryption key was detected and is being migrated to a stronger key source. This happens automatically on admin page loads and should complete shortly."
+msgstr "WH4U Domains: Εντοπίστηκε παλαιού τύπου κλειδί κρυπτογράφησης αποθηκευμένο στη βάση δεδομένων και μεταφέρεται σε ισχυρότερη πηγή κλειδιού. Αυτό γίνεται αυτόματα κατά τη φόρτωση των admin σελίδων και θα ολοκληρωθεί σύντομα."
+
+#. translators: %s: theme name
+#: includes/class-wh4u-theme-compat.php:238
+#, php-format
+msgid "Auto-detected from %s"
+msgstr "Αυτόματος εντοπισμός από %s"
+
+#: public/class-wh4u-public.php:215
+msgid "Popular extensions"
+msgstr "Δημοφιλείς καταλήξεις"
+
+#: public/class-wh4u-public.php:576
+msgid "Please complete the security check."
+msgstr "Παρακαλώ ολοκλήρωσε τον έλεγχο ασφαλείας."
+
+#: rest-api/class-wh4u-rest-domains.php:138
+msgid "Shopping cart redirect is not configured or the URL could not be built."
+msgstr "Η ανακατεύθυνση καλαθιού δεν είναι ρυθμισμένη ή το URL δεν μπόρεσε να κατασκευαστεί."
+
+#: rest-api/class-wh4u-rest-domains.php:366
+msgid "Anonymous domain lookups are not enabled on this site. Please sign in or ask the site administrator to configure a designated reseller under Domains > Settings."
+msgstr "Οι ανώνυμες αναζητήσεις domain δεν είναι ενεργοποιημένες σε αυτόν τον ιστότοπο. Παρακαλώ συνδέσου ή ζήτησε από τον διαχειριστή να ορίσει μεταπωλητή από το Domains > Settings."
+
+#: rest-api/class-wh4u-rest-pricing.php:273
+msgid "Public pricing/TLD queries are not enabled on this site."
+msgstr "Τα δημόσια ερωτήματα τιμών/TLD δεν είναι ενεργοποιημένα σε αυτόν τον ιστότοπο."
+
+#: rest-api/class-wh4u-rest-public-orders.php:275
+#: rest-api/class-wh4u-rest-public-orders.php:375
+msgid "Security verification failed. Please try again."
+msgstr "Η επαλήθευση ασφαλείας απέτυχε. Παρακαλώ δοκίμασε ξανά."
+
+#: wh4u-domains.php:159
+msgctxt "post type general name"
+msgid "Public Orders"
+msgstr "Δημόσιες Παραγγελίες"
+
+#: wh4u-domains.php:160
+msgctxt "post type singular name"
+msgid "Public Order"
+msgstr "Δημόσια Παραγγελία"
+
+#: wh4u-domains.php:161
+msgctxt "admin menu"
+msgid "Public Orders"
+msgstr "Δημόσιες Παραγγελίες"
+
+#: wh4u-domains.php:183
+msgctxt "order status"
+msgid "Pending Review"
+msgstr "Εκκρεμεί Έλεγχος"
+
+#. translators: %s: number of orders
+#: wh4u-domains.php:189
+#, php-format
+msgid "Pending <span class=\"count\">(%s)</span>"
+msgid_plural "Pending <span class=\"count\">(%s)</span>"
+msgstr[0] "Εκκρεμής <span class=\"count\">(%s)</span>"
+msgstr[1] "Εκκρεμείς <span class=\"count\">(%s)</span>"
+
+#: wh4u-domains.php:193
+msgctxt "order status"
+msgid "Approved"
+msgstr "Εγκρίθηκε"
+
+#. translators: %s: number of orders
+#: wh4u-domains.php:199
+#, php-format
+msgid "Approved <span class=\"count\">(%s)</span>"
+msgid_plural "Approved <span class=\"count\">(%s)</span>"
+msgstr[0] "Εγκεκριμένη <span class=\"count\">(%s)</span>"
+msgstr[1] "Εγκεκριμένες <span class=\"count\">(%s)</span>"
+
+#: wh4u-domains.php:203
+msgctxt "order status"
+msgid "Rejected"
+msgstr "Απορρίφθηκε"
+
+#. translators: %s: number of orders
+#: wh4u-domains.php:209
+#, php-format
+msgid "Rejected <span class=\"count\">(%s)</span>"
+msgid_plural "Rejected <span class=\"count\">(%s)</span>"
+msgstr[0] "Απορριφθείσα <span class=\"count\">(%s)</span>"
+msgstr[1] "Απορριφθείσες <span class=\"count\">(%s)</span>"
+
+#: blocks/domain-lookup/index.js:37
+msgid "Search Settings"
+msgstr "Ρυθμίσεις Αναζήτησης"
+
+#: blocks/domain-lookup/index.js:42
+#: blocks/domain-lookup/index.js:51
+#: blocks/domain-lookup/index.js:71
+#: blocks/domain-lookup/index.js:80
+msgid "Leave empty to use the global Appearance setting."
+msgstr "Άφησέ το κενό για να χρησιμοποιηθεί η καθολική ρύθμιση Εμφάνισης."
+
+#: blocks/domain-lookup/index.js:91
+msgid "These settings override the global Appearance tab. Leave at defaults to inherit."
+msgstr "Αυτές οι ρυθμίσεις υπερισχύουν της καθολικής καρτέλας Εμφάνισης. Άφησέ τες στις προεπιλογές για κληρονόμηση."
+
+#: blocks/domain-lookup/index.js:106
+msgid "Border Radius (px)"
+msgstr "Στρογγυλεμένες Γωνίες (px)"
+
+#: blocks/domain-lookup/index.js:124
+msgid "Accent Color"
+msgstr "Βασικό Χρώμα"
+
+#: blocks/domain-lookup/block.json
+msgctxt "block title"
+msgid "Domain Lookup"
+msgstr "Αναζήτηση Domain"
+
+#: blocks/domain-lookup/block.json
+msgctxt "block description"
+msgid "A domain availability search form powered by WH4U Domains."
+msgstr "Φόρμα αναζήτησης διαθεσιμότητας domain, με τεχνολογία WH4U Domains."
+
+#: blocks/domain-lookup/block.json
+msgctxt "block keyword"
+msgid "domain"
+msgstr "domain"
+
+#: blocks/domain-lookup/block.json
+msgctxt "block keyword"
+msgid "search"
+msgstr "αναζήτηση"
+
+#: blocks/domain-lookup/block.json
+msgctxt "block keyword"
+msgid "lookup"
+msgstr "αναζήτηση"
+
+#: blocks/domain-lookup/block.json
+msgctxt "block keyword"
+msgid "availability"
+msgstr "διαθεσιμότητα"
+
+#: blocks/domain-lookup/block.json
+msgctxt "block keyword"
+msgid "whois"
+msgstr "whois"
+
+#: blocks/domain-lookup/block.json
+msgctxt "block keyword"
+msgid "register"
+msgstr "καταχώρηση"

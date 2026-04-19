@@ -46,7 +46,7 @@ class WH4U_Public {
 
 		$known_keys = array(
 			'placeholder', 'button_text', 'accent_color', 'style_variant',
-			'show_pricing', 'show_suggestions', 'form_title', 'form_description',
+			'show_suggestions', 'form_title', 'form_description',
 			'border_radius',
 		);
 
@@ -85,7 +85,6 @@ class WH4U_Public {
 			'button_text'      => ! empty( $appearance['button_text'] ) ? $appearance['button_text'] : __( 'Search', 'wh4u-domains' ),
 			'accent_color'     => ! empty( $appearance['accent_color'] ) ? $appearance['accent_color'] : ( ! empty( $theme_tokens['accent_color'] ) ? $theme_tokens['accent_color'] : '' ),
 			'style_variant'    => ! empty( $appearance['style_variant'] ) ? $appearance['style_variant'] : 'elevated',
-			'show_pricing'     => ! empty( $appearance['show_pricing'] ) ? 'true' : 'false',
 			'show_suggestions' => isset( $appearance['show_suggestions'] ) ? ( $appearance['show_suggestions'] ? 'true' : 'false' ) : 'true',
 			'form_title'       => ! empty( $appearance['form_title'] ) ? $appearance['form_title'] : __( 'Register this domain', 'wh4u-domains' ),
 			'form_description' => ! empty( $appearance['form_description'] ) ? $appearance['form_description'] : __( 'Fill in your details below to secure this domain.', 'wh4u-domains' ),
@@ -185,7 +184,7 @@ class WH4U_Public {
 
 		ob_start();
 		?>
-		<div class="wh4u-domains wh4u-domains--<?php echo esc_attr( $variant_class ); ?>"<?php echo $style_attr ? ' style="' . esc_attr( $style_attr ) . '"' : ''; ?> data-show-pricing="<?php echo esc_attr( $atts['show_pricing'] ); ?>" data-show-suggestions="<?php echo esc_attr( $atts['show_suggestions'] ); ?>" data-show-transfer="<?php echo esc_attr( $show_transfer ? 'true' : 'false' ); ?>" data-form-title="<?php echo esc_attr( $atts['form_title'] ); ?>" data-form-description="<?php echo esc_attr( $atts['form_description'] ); ?>">
+		<div class="wh4u-domains wh4u-domains--<?php echo esc_attr( $variant_class ); ?>"<?php echo $style_attr ? ' style="' . esc_attr( $style_attr ) . '"' : ''; ?> data-show-suggestions="<?php echo esc_attr( $atts['show_suggestions'] ); ?>" data-show-transfer="<?php echo esc_attr( $show_transfer ? 'true' : 'false' ); ?>" data-form-title="<?php echo esc_attr( $atts['form_title'] ); ?>" data-form-description="<?php echo esc_attr( $atts['form_description'] ); ?>">
 			<div class="wh4u-domains__search-section">
 				<form class="wh4u-domains__form" id="wh4u-public-lookup-form" role="search" aria-label="<?php esc_attr_e( 'Domain search', 'wh4u-domains' ); ?>">
 					<div class="wh4u-domains__input-wrap">
@@ -596,6 +595,13 @@ class WH4U_Public {
 
 		if ( $block_type && $block_type->editor_script_handles ) {
 			$handle = $block_type->editor_script_handles[0];
+
+			// Load translations for wp.i18n.__() calls inside the editor script.
+			// Per the Block Editor Handbook, WordPress will look for
+			// <textdomain>-<locale>-<handle>.json (or a .json referenced by the
+			// language pack) under the languages directory.
+			wp_set_script_translations( $handle, 'wh4u-domains', WH4U_DOMAINS_PLUGIN_DIR . 'languages' );
+
 			add_action( 'enqueue_block_editor_assets', function () use ( $handle ) {
 				if ( ! wp_script_is( $handle, 'registered' ) ) {
 					return;
@@ -616,7 +622,6 @@ class WH4U_Public {
 					'buttonText'      => ! empty( $appearance['button_text'] ) ? $appearance['button_text'] : __( 'Search', 'wh4u-domains' ),
 					'accentColor'     => $accent,
 					'styleVariant'    => ! empty( $appearance['style_variant'] ) ? $appearance['style_variant'] : 'elevated',
-					'showPricing'     => ! empty( $appearance['show_pricing'] ),
 					'showSuggestions' => isset( $appearance['show_suggestions'] ) ? (bool) $appearance['show_suggestions'] : true,
 					'formTitle'       => ! empty( $appearance['form_title'] ) ? $appearance['form_title'] : __( 'Register this domain', 'wh4u-domains' ),
 					'formDescription' => ! empty( $appearance['form_description'] ) ? $appearance['form_description'] : __( 'Fill in your details below to secure this domain.', 'wh4u-domains' ),
@@ -642,7 +647,6 @@ class WH4U_Public {
 			'buttonText'       => 'button_text',
 			'accentColor'      => 'accent_color',
 			'styleVariant'     => 'style_variant',
-			'showPricing'      => 'show_pricing',
 			'showSuggestions'  => 'show_suggestions',
 			'formTitle'        => 'form_title',
 			'formDescription'  => 'form_description',

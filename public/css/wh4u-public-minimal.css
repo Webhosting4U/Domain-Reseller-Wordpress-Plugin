@@ -285,12 +285,6 @@
 	line-height: 1.5;
 }
 
-/* Price display */
-.wh4u-domains__result-price {
-	white-space: nowrap;
-	flex-shrink: 0;
-}
-
 /* Status icon */
 .wh4u-domains__status-icon {
 	display: inline-block;

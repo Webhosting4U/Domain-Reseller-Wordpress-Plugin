@@ -95,6 +95,44 @@ class WH4U_Admin_Settings {
         );
 
         add_settings_section(
+            'wh4u_proxy_section',
+            __( 'Reverse Proxy / IP Detection', 'wh4u-domains' ),
+            array( __CLASS__, 'render_proxy_section' ),
+            'wh4u-domains-settings'
+        );
+
+        add_settings_field(
+            'wh4u_trusted_proxy_header',
+            __( 'Trusted Proxy IP Header', 'wh4u-domains' ),
+            array( __CLASS__, 'render_trusted_proxy_header_field' ),
+            'wh4u-domains-settings',
+            'wh4u_proxy_section'
+        );
+
+        add_settings_field(
+            'wh4u_trusted_proxies',
+            __( 'Trusted Proxy IPs', 'wh4u-domains' ),
+            array( __CLASS__, 'render_trusted_proxies_field' ),
+            'wh4u-domains-settings',
+            'wh4u_proxy_section'
+        );
+
+        add_settings_section(
+            'wh4u_public_lookup_section',
+            __( 'Public Domain Lookup', 'wh4u-domains' ),
+            array( __CLASS__, 'render_public_lookup_section' ),
+            'wh4u-domains-settings'
+        );
+
+        add_settings_field(
+            'wh4u_public_lookup_reseller_id',
+            __( 'Designated Reseller for Public Lookups', 'wh4u-domains' ),
+            array( __CLASS__, 'render_public_lookup_reseller_field' ),
+            'wh4u-domains-settings',
+            'wh4u_public_lookup_section'
+        );
+
+        add_settings_section(
             'wh4u_turnstile_section',
             __( 'Cloudflare Turnstile', 'wh4u-domains' ),
             array( __CLASS__, 'render_turnstile_section' ),
@@ -150,8 +188,41 @@ class WH4U_Admin_Settings {
         $sanitized['cart_register_url'] = isset( $input['cart_register_url'] ) ? self::sanitize_cart_template( $input['cart_register_url'] ) : '';
         $sanitized['cart_transfer_url'] = isset( $input['cart_transfer_url'] ) ? self::sanitize_cart_template( $input['cart_transfer_url'] ) : '';
 
-        $sanitized['turnstile_site_key']   = isset( $input['turnstile_site_key'] ) ? sanitize_text_field( $input['turnstile_site_key'] ) : '';
-        $sanitized['turnstile_secret_key'] = isset( $input['turnstile_secret_key'] ) ? sanitize_text_field( $input['turnstile_secret_key'] ) : '';
+        $allowed_headers = array( '', 'cf-connecting-ip', 'x-real-ip', 'x-forwarded-for', 'true-client-ip' );
+        $submitted_header = isset( $input['trusted_proxy_header'] ) ? strtolower( trim( (string) $input['trusted_proxy_header'] ) ) : '';
+        $sanitized['trusted_proxy_header'] = in_array( $submitted_header, $allowed_headers, true ) ? $submitted_header : '';
+
+        $sanitized['trusted_proxies'] = array();
+        if ( isset( $input['trusted_proxies'] ) && is_string( $input['trusted_proxies'] ) ) {
+            foreach ( preg_split( '/[\s,]+/', $input['trusted_proxies'] ) as $candidate ) {
+                $candidate = trim( $candidate );
+                if ( $candidate !== '' && filter_var( $candidate, FILTER_VALIDATE_IP ) ) {
+                    $sanitized['trusted_proxies'][] = $candidate;
+                }
+            }
+        }
+
+        $sanitized['public_lookup_reseller_id'] = isset( $input['public_lookup_reseller_id'] )
+            ? absint( $input['public_lookup_reseller_id'] )
+            : 0;
+
+        $sanitized['turnstile_site_key'] = isset( $input['turnstile_site_key'] ) ? sanitize_text_field( $input['turnstile_site_key'] ) : '';
+
+        $existing = get_option( 'wh4u_settings', array() );
+        $existing_encrypted = isset( $existing['turnstile_secret_key_encrypted'] ) ? $existing['turnstile_secret_key_encrypted'] : '';
+
+        if ( isset( $input['turnstile_secret_key'] ) ) {
+            $submitted_secret = sanitize_text_field( $input['turnstile_secret_key'] );
+            if ( $submitted_secret === '' ) {
+                $sanitized['turnstile_secret_key_encrypted'] = $existing_encrypted;
+            } elseif ( $submitted_secret === '__wh4u_keep__' ) {
+                $sanitized['turnstile_secret_key_encrypted'] = $existing_encrypted;
+            } else {
+                $sanitized['turnstile_secret_key_encrypted'] = WH4U_Encryption::encrypt( $submitted_secret );
+            }
+        } else {
+            $sanitized['turnstile_secret_key_encrypted'] = $existing_encrypted;
+        }
 
         return $sanitized;
     }
@@ -282,6 +353,87 @@ class WH4U_Admin_Settings {
         <?php
     }
 
+    /* ─── Reverse Proxy ────────────────────────────────────────────── */
+
+    /** @return void */
+    public static function render_proxy_section() {
+        echo '<p>' . esc_html__( 'If your site is behind a reverse proxy (Cloudflare, a load balancer, or nginx), configure which header carries the real client IP for rate-limit purposes. Only enable this when the proxy strips client-supplied values for this header — otherwise rate limits can be bypassed via spoofing.', 'wh4u-domains' ) . '</p>';
+    }
+
+    /** @return void */
+    public static function render_trusted_proxy_header_field() {
+        $settings = get_option( 'wh4u_settings', array() );
+        $selected = isset( $settings['trusted_proxy_header'] ) ? $settings['trusted_proxy_header'] : '';
+        $options  = array(
+            ''                  => __( 'Disabled (use REMOTE_ADDR only)', 'wh4u-domains' ),
+            'cf-connecting-ip'  => 'CF-Connecting-IP (Cloudflare)',
+            'x-real-ip'         => 'X-Real-IP (nginx)',
+            'x-forwarded-for'   => 'X-Forwarded-For (leftmost)',
+            'true-client-ip'    => 'True-Client-IP (Akamai/Cloudflare)',
+        );
+        ?>
+        <select name="wh4u_settings[trusted_proxy_header]">
+            <?php foreach ( $options as $value => $label ) : ?>
+                <option value="<?php echo esc_attr( $value ); ?>" <?php selected( $selected, $value ); ?>><?php echo esc_html( $label ); ?></option>
+            <?php endforeach; ?>
+        </select>
+        <?php
+    }
+
+    /** @return void */
+    public static function render_trusted_proxies_field() {
+        $settings = get_option( 'wh4u_settings', array() );
+        $proxies  = isset( $settings['trusted_proxies'] ) ? (array) $settings['trusted_proxies'] : array();
+        ?>
+        <textarea name="wh4u_settings[trusted_proxies]" rows="3" class="regular-text" placeholder="173.245.48.1&#10;103.21.244.0"><?php echo esc_textarea( implode( "\n", $proxies ) ); ?></textarea>
+        <p class="description"><?php esc_html_e( 'One IP per line (no CIDR). The header above is only consulted when the immediate connection comes from one of these IPs.', 'wh4u-domains' ); ?></p>
+        <?php
+    }
+
+    /* ─── Public Lookup ────────────────────────────────────────────── */
+
+    /** @return void */
+    public static function render_public_lookup_section() {
+        echo '<p>' . esc_html__( 'Choose which reseller\'s API credentials are used when anonymous visitors perform a domain lookup from the frontend. If no reseller is designated, anonymous domain searches are disabled.', 'wh4u-domains' ) . '</p>';
+    }
+
+    /** @return void */
+    public static function render_public_lookup_reseller_field() {
+        $settings = get_option( 'wh4u_settings', array() );
+        $selected = isset( $settings['public_lookup_reseller_id'] ) ? (int) $settings['public_lookup_reseller_id'] : 0;
+
+        global $wpdb;
+        $table = $wpdb->prefix . 'wh4u_reseller_settings';
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter -- $table from $wpdb->prefix, no user input
+        $rows = $wpdb->get_results( "SELECT user_id FROM {$table} WHERE api_key_encrypted != ''" );
+        ?>
+        <select name="wh4u_settings[public_lookup_reseller_id]">
+            <option value="0"><?php esc_html_e( 'Disabled (anonymous lookups will be rejected)', 'wh4u-domains' ); ?></option>
+            <?php foreach ( (array) $rows as $row ) :
+                $user = get_userdata( (int) $row->user_id );
+                if ( ! $user ) { continue; }
+                ?>
+                <option value="<?php echo esc_attr( (int) $row->user_id ); ?>" <?php selected( $selected, (int) $row->user_id ); ?>>
+                    <?php echo esc_html( $user->display_name . ' (' . $user->user_login . ')' ); ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+        <p class="description"><?php esc_html_e( 'API calls made for anonymous visitors will be billed against this reseller\'s account.', 'wh4u-domains' ); ?></p>
+        <?php
+    }
+
+    /**
+     * Get the user ID designated to handle anonymous public lookups.
+     *
+     * Returns 0 if not configured — callers must treat this as "anonymous lookups disabled".
+     *
+     * @return int
+     */
+    public static function get_public_lookup_reseller_id() {
+        $settings = get_option( 'wh4u_settings', array() );
+        return isset( $settings['public_lookup_reseller_id'] ) ? (int) $settings['public_lookup_reseller_id'] : 0;
+    }
+
     /* ─── Turnstile ──────────────────────────────────────────────── */
 
     /** @return void */
@@ -313,12 +465,19 @@ class WH4U_Admin_Settings {
     /** @return void */
     public static function render_turnstile_secret_key_field() {
         $settings = get_option( 'wh4u_settings', array() );
-        $value    = isset( $settings['turnstile_secret_key'] ) ? $settings['turnstile_secret_key'] : '';
+        $has_secret = ! empty( $settings['turnstile_secret_key_encrypted'] ) || ! empty( $settings['turnstile_secret_key'] );
+        $placeholder = $has_secret ? __( '●●●●●●●● (stored, encrypted)', 'wh4u-domains' ) : '0x...';
         ?>
         <input type="password" name="wh4u_settings[turnstile_secret_key]"
-               value="<?php echo esc_attr( $value ); ?>"
-               class="regular-text" placeholder="0x..." autocomplete="off" />
-        <p class="description"><?php esc_html_e( 'Leave both fields empty to disable Turnstile protection.', 'wh4u-domains' ); ?></p>
+               value=""
+               class="regular-text" placeholder="<?php echo esc_attr( $placeholder ); ?>" autocomplete="off" />
+        <p class="description">
+            <?php if ( $has_secret ) : ?>
+                <?php esc_html_e( 'A secret key is stored. Leave blank to keep it, or enter a new value to replace it.', 'wh4u-domains' ); ?>
+            <?php else : ?>
+                <?php esc_html_e( 'Leave both fields empty to disable Turnstile protection.', 'wh4u-domains' ); ?>
+            <?php endif; ?>
+        </p>
         <?php
     }
 
@@ -329,7 +488,8 @@ class WH4U_Admin_Settings {
      */
     public static function is_turnstile_enabled() {
         $settings = get_option( 'wh4u_settings', array() );
-        return ! empty( $settings['turnstile_site_key'] ) && ! empty( $settings['turnstile_secret_key'] );
+        $has_secret = ! empty( $settings['turnstile_secret_key_encrypted'] ) || ! empty( $settings['turnstile_secret_key'] );
+        return ! empty( $settings['turnstile_site_key'] ) && $has_secret;
     }
 
     /**
@@ -343,12 +503,22 @@ class WH4U_Admin_Settings {
     }
 
     /**
-     * Get the Turnstile secret key.
+     * Get the Turnstile secret key (decrypted from encrypted storage).
+     *
+     * Falls back to legacy plaintext field for installs predating encryption.
      *
      * @return string
      */
     public static function get_turnstile_secret_key() {
         $settings = get_option( 'wh4u_settings', array() );
+
+        if ( ! empty( $settings['turnstile_secret_key_encrypted'] ) ) {
+            $decrypted = WH4U_Encryption::decrypt( $settings['turnstile_secret_key_encrypted'] );
+            if ( $decrypted !== '' ) {
+                return $decrypted;
+            }
+        }
+
         return isset( $settings['turnstile_secret_key'] ) ? $settings['turnstile_secret_key'] : '';
     }
 

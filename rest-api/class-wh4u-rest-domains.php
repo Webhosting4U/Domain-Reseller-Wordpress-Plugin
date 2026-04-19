@@ -341,8 +341,11 @@ class WH4U_REST_Domains extends WH4U_REST_Controller {
     /**
      * Get an API client for lookup.
      *
-     * For logged-in users, use their credentials.
-     * For anonymous, use the first available reseller or global admin.
+     * Logged-in users use their own reseller credentials.
+     * Anonymous visitors use the explicitly designated public-lookup reseller
+     * (configured under Domains > Settings > General). When unset, anonymous
+     * lookups are refused — callers must not fall back to arbitrary resellers,
+     * because that would bill API calls to whichever reseller was inserted first.
      *
      * @return WH4U_Api_Client|WP_Error
      */
@@ -353,18 +356,14 @@ class WH4U_REST_Domains extends WH4U_REST_Controller {
             return WH4U_Api_Client::from_user( $user_id );
         }
 
-        global $wpdb;
-        $table   = $wpdb->prefix . 'wh4u_reseller_settings';
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter -- $table from $wpdb->prefix, no user input
-        $first   = $wpdb->get_row( "SELECT user_id FROM {$table} WHERE api_key_encrypted != '' LIMIT 1" );
-
-        if ( $first ) {
-            return WH4U_Api_Client::from_user( $first->user_id );
+        $public_reseller_id = WH4U_Admin_Settings::get_public_lookup_reseller_id();
+        if ( $public_reseller_id > 0 ) {
+            return WH4U_Api_Client::from_user( $public_reseller_id );
         }
 
         return new WP_Error(
-            'wh4u_no_credentials',
-            __( 'No API credentials configured. Please ask the site administrator to set up the plugin.', 'wh4u-domains' ),
+            'wh4u_public_lookup_disabled',
+            __( 'Anonymous domain lookups are not enabled on this site. Please sign in or ask the site administrator to configure a designated reseller under Domains > Settings.', 'wh4u-domains' ),
             array( 'status' => 503 )
         );
     }

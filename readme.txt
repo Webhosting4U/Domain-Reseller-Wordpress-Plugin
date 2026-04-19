@@ -4,7 +4,7 @@ Tags: domains, domain search, domain registration, reseller, tld
 Requires at least: 6.2
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.4.1
+Stable tag: 1.5.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,14 +41,14 @@ This plugin connects to the **DomainsReseller API** provided by WebHosting4U to 
 * **Domain lookups**: The domain name being searched is sent to check availability
 * **Domain registration**: Registrant contact information (name, email, phone, address, company, country), the domain name, registration period, nameservers, and addon preferences are sent to process the registration
 * **Domain transfer**: Domain name, registration period, and EPP code are sent
-* **TLD and pricing queries**: Requests for available TLDs and their pricing are sent
+* **TLD queries**: Requests for available TLDs are sent
 
 = When data is sent =
 
 * When a visitor performs a domain search on the frontend
 * When an admin approves a public domain registration order
 * When an admin submits a registration or transfer order from the admin panel
-* When TLD lists or pricing are loaded (cached locally for 12 hours)
+* When TLD lists are loaded (cached locally for 12 hours)
 
 = Service details =
 
@@ -65,6 +65,19 @@ When Turnstile bot protection is enabled in Settings, this plugin loads the Clou
 * **Service URL**: [https://www.cloudflare.com/products/turnstile/](https://www.cloudflare.com/products/turnstile/)
 * **Terms of Service**: [https://www.cloudflare.com/terms/](https://www.cloudflare.com/terms/)
 * **Privacy Policy**: [https://www.cloudflare.com/privacypolicy/](https://www.cloudflare.com/privacypolicy/)
+
+= Data stored locally =
+
+This plugin stores the following data on your WordPress installation:
+
+* **Order records**: domain name, registration period, status, and encrypted registrant contact details (encrypted with AES-256-CBC + HMAC at rest)
+* **Public order submissions**: stored as a custom post type with encrypted contact data until an administrator approves or rejects them
+* **API logs** and **notification records**: request/response entries and email/webhook dispatch history with secrets redacted. A daily WP-Cron task prunes rows older than 30 days; the retention period is filterable via the `wh4u_log_retention_days` filter.
+* **Retry queue**: failed API calls scheduled for exponential-backoff retry via WP-Cron
+* **Rate-limit counters**: short-lived transients keyed by user ID or a salted SHA-256 hash of the visitor IP; used only for abuse protection and expire within minutes
+* **Reseller settings**: per-user API credentials, with the API key and optional webhook secret encrypted at rest
+
+No data is sent to any third party other than the services listed above.
 
 == Installation ==
 
@@ -98,7 +111,57 @@ Yes. Under Domains > Settings > General, use the Shopping Cart Redirect section.
 
 Yes. The plugin is fully internationalized. A Greek translation is included. Additional translations can be added via .po/.mo files in the `languages/` directory.
 
+== Screenshots ==
+
+1. Admin dashboard with quick domain search and shortcuts to register, transfer, and renew actions.
+2. Settings screen: API credentials, registration mode, and shopping cart redirect configuration.
+3. Admin Register Domain form with domain details, nameservers, and registrant contact fields.
+
 == Changelog ==
+
+= 1.5.5 =
+* Removed: TLD Pricing admin page and all pricing-related code paths. The upstream DomainsReseller API `/tlds/pricing` endpoint returns `registrationPrice: null` for TLDs whose registry enforces multi-year registration minimums (notably `.gr`, which requires a 2-year minimum), so a pricing table rendered from this endpoint cannot reliably display prices for every reseller-enabled TLD. Rather than half-showing data, the "View Pricing" tile on the dashboard now links out to the authoritative WHMCS pricing page at `https://webhosting4u.gr/customers/index.php?m=DomainsReseller&mg-page=Prices`
+* Removed: `admin/class-wh4u-admin-pricing.php`, `rest-api/class-wh4u-rest-pricing.php`, the `/wh4u/v1/tlds`, `/wh4u/v1/tlds/pricing`, `/wh4u/v1/tlds/pricing/cache`, and `/wh4u/v1/pricing/(register|transfer)` REST endpoints, the `wh4u_tld_pricing_v2` transient, the `loadPricing()` admin JS routine, the frontend `prefetchPricing()` / `getPriceForTld()` code path, the `show_pricing` appearance setting, the `showPricing` block attribute, the `data-show-pricing` shortcode data attribute, and the `.wh4u-domains__result-price` CSS rules
+* Changed: dashboard "View Pricing" quick link is now an external link (opens the WHMCS pricing page in a new tab with `rel="noopener noreferrer"`)
+
+= 1.5.4 =
+* Fix: TLD pricing page left the register column blank for ccTLDs whose upstream response emits an empty `registrationPrice` field because they have no 1-year tier (notably `.gr`, whose registry enforces a 2-year minimum). `extract_price()` in the REST pricing controller now skips empty scalars/arrays instead of accepting the first matching key, recurses into nested period-keyed arrays picking the lowest numeric period (so `{"2":"24.00","4":"48.00"}` surfaces the 2-year price), and as a last resort scans period-suffixed variants like `register2` or `registrationPrice_2y`
+* Added: "Refresh Cache" button on the TLD Pricing admin page, backed by a new `DELETE /wh4u/v1/tlds/pricing/cache` endpoint (gated by the `wh4u_manage_domains` capability) that clears both the `wh4u_tld_pricing_v2` and `wh4u_tlds_cache` transients; needed because the previous normalization was cached for 12 hours and existing sites would otherwise keep serving stale empty prices after upgrade
+
+= 1.5.3 =
+* i18n: reinstated `load_plugin_textdomain()` on the `init` hook so self-hosted installs load translations correctly under WordPress 6.7+ (where gettext calls before `init` no longer resolve the user locale)
+* i18n: replaced string concatenation patterns (`__( 'API call failed: ' ) . $msg`, `$label . ' ' . __( 'Contact' )`, `$period . ' ' . __( 'year(s)' )`) with `sprintf`/`_n` against `%s`/`%d` placeholders in admin-dashboard, admin-domains, admin-history, and notifications; word order can now be reordered per locale without code changes
+* i18n: replaced the hardcoded English `' yr'` unit in the order history period column with a proper `_n( '%d year', '%d years' )` plural form
+* i18n: added translator comments (`/* translators: ... */`) on every new `sprintf`/`_n` call per the WordPress handbook
+* i18n: regenerated `wh4u-domains.pot` (412 strings) from the updated source, merged into `wh4u-domains-el.po`, and translated the remaining 77 previously-untranslated Greek strings (Frontend Appearance panel, Shopping Cart Redirect, Turnstile, Reverse Proxy / Trusted IPs, Public Orders post type + status plurals, block editor title/description/keywords, encryption key notices)
+* i18n: rebuilt `wh4u-domains-el.mo` and the JSON translation file consumed by `wp_set_script_translations()`; removed two orphan JSON files whose `source` field held malformed artifacts (`(JS`, `i18n)`) from a prior tooling run
+
+= 1.5.2 =
+* Security: encryption key management rewrite -- removed the auto-generate-to-wp_options fallback so decryption keys are never created in the database; added a one-shot idempotent migration (guarded by a 5-minute transient lock) that re-encrypts reseller settings, order contacts, site settings, and public-order PII postmeta under the preferred WH4U_ENCRYPTION_KEY / AUTH_KEY-derived key and only deletes the legacy wp_options key after every row migrates successfully
+* Security: webhook delivery now passes `redirection => 0` to `wp_remote_post()`, closing a redirect-based SSRF bypass where a crafted 3xx response could divert a webhook away from the validated/pinned host
+* Security: `save_reseller_settings()` in the admin reseller screen now re-verifies the `wh4u_reseller_settings_nonce` inside the save handler (defense-in-depth alongside the existing `check_admin_referer()` wrapper)
+* Security: defense-in-depth `(int)` cast on `$item->order_id` in the retry queue before it reaches `$wpdb->prepare()` with a `%d` placeholder, eliminating any theoretical type-confusion path regardless of upstream callers
+* Security: removed the unused `WH4U_Logger::get_logs()` method so the admin-only log reader no longer exists as latent attack surface (no callers in the plugin)
+
+= 1.5.1 =
+* i18n: compiled Greek .mo binary from the existing .po catalogue so WordPress gettext loads translations at runtime without relying on a language pack
+* i18n: all public-facing form labels (First Name, Last Name, Email, Phone, Address, City, State/Province, Country Code, Zip/Postal Code, Registration Period, Transfer Period, EPP/Auth Code, etc.) now render in Greek on el locale sites
+
+= 1.5.0 =
+* Security: registrant PII in pending public orders (name, email, phone, address, company, EPP code) is now encrypted at rest in post meta using the existing AES-256-CBC + HMAC-SHA256 envelope; legacy plaintext rows keep reading via a transparent fallback
+* Security: validated the domain regex on public order submission to accept punycode (ACE-encoded) TLDs such as xn--fiqs8s while continuing to reject malformed inputs
+* Housekeeping: added a daily WP-Cron task that prunes `wh4u_api_logs` and `wh4u_notifications` rows older than 30 days; retention is filterable via the `wh4u_log_retention_days` filter
+* Housekeeping: removed the orphan `wh4u_public_orders` database table from activation (public orders have always been stored as a custom post type with post meta); the DROP statement in uninstall.php remains for legacy installs
+* i18n: regenerated the POT template against the current source and generated JSON translation files (`wp_set_script_translations`) so Greek (and any future locale) covers the block editor InspectorControls panel labels
+* i18n: bumped Project-Id-Version in the POT and Greek .po header from 1.0.0 to the current release
+
+= 1.4.2 =
+* Security: Turnstile secret key is now encrypted at rest (AES-256-CBC + HMAC-SHA256), matching the treatment of reseller API keys
+* Security: encryption key derivation prefers the WH4U_ENCRYPTION_KEY constant, then AUTH_KEY/SECURE_AUTH_KEY salts; auto-generated DB-stored keys are now only kept for legacy installs
+* Security: anonymous domain lookup and public pricing queries now require an administrator to explicitly designate a public-lookup reseller (Domains > Settings > General); the previous "first reseller in DB" fallback is removed
+* Security: webhook delivery validates the resolved host IP once and pins it via CURLOPT_RESOLVE for the outgoing request, closing the DNS-rebinding window; DNS failures now fail-closed instead of allowing the request
+* Security: rate limiter now supports opt-in trusted-proxy configuration (Cloudflare, nginx, X-Forwarded-For leftmost, True-Client-IP) with a declared list of trusted proxy IPs; client-supplied headers are ignored unless both settings are configured
+* Privacy: added an explicit "Data stored locally" section to the readme describing order records, public order submissions, API logs, retry queue, rate-limit counters, and encrypted reseller settings
 
 = 1.4.1 =
 * Fixed plugin directory name to match text domain and slug (wh4u-domains)

@@ -111,62 +111,26 @@ class WH4U_Logger {
     }
 
     /**
-     * Retrieve log entries with pagination.
+     * Delete log rows older than the given number of days.
      *
-     * @param array $args Query arguments (user_id, per_page, page, orderby, order).
-     * @return array{items: array, total: int}
+     * Timestamps are stored in UTC (current_time( 'mysql', true )) so the
+     * comparison uses UTC_TIMESTAMP() to avoid server-timezone drift.
+     *
+     * @param int $days Retention period in whole days. Values below 1 are clamped to 1.
+     * @return int|false Number of rows deleted, or false on DB error.
      */
-    public static function get_logs( $args = array() ) {
+    public static function prune( $days ) {
         global $wpdb;
 
-        $defaults = array(
-            'user_id'  => 0,
-            'per_page' => 20,
-            'page'     => 1,
-            'orderby'  => 'created_at',
-            'order'    => 'DESC',
-        );
-
-        $args  = wp_parse_args( $args, $defaults );
+        $days  = max( 1, absint( $days ) );
         $table = $wpdb->prefix . 'wh4u_api_logs';
 
-        $allowed_orderby = array( 'id', 'created_at', 'endpoint', 'response_code' );
-        $orderby = in_array( $args['orderby'], $allowed_orderby, true ) ? $args['orderby'] : 'created_at';
-        $order   = strtoupper( $args['order'] ) === 'ASC' ? 'ASC' : 'DESC';
-
-        $where  = '1=1';
-        $params = array();
-
-        if ( $args['user_id'] > 0 ) {
-            $where   .= ' AND user_id = %d';
-            $params[] = absint( $args['user_id'] );
-        }
-
-        $offset   = max( 0, ( absint( $args['page'] ) - 1 ) * absint( $args['per_page'] ) );
-        $per_page = absint( $args['per_page'] );
-
-        if ( ! empty( $params ) ) {
-            // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare, PluginCheck.Security.DirectDB.UnescapedDBParameter -- $table from $wpdb->prefix, $where built from validated columns, dynamic param count
-            $count_query = $wpdb->prepare( "SELECT COUNT(*) FROM {$table} WHERE {$where}", $params );
-        } else {
-            // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter -- $table from $wpdb->prefix, $where is literal '1=1'
-            $count_query = "SELECT COUNT(*) FROM {$table} WHERE {$where}";
-        }
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter -- count query already prepared above when needed
-        $total = (int) $wpdb->get_var( $count_query );
-
-        $params[] = $per_page;
-        $params[] = $offset;
-
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter -- custom table, paginated list query
-        $items = $wpdb->get_results(
-            // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber, PluginCheck.Security.DirectDB.UnescapedDBParameter -- $table, $orderby, $order are validated; query is prepared; dynamic param count
-            $wpdb->prepare( "SELECT * FROM {$table} WHERE {$where} ORDER BY {$orderby} {$order} LIMIT %d OFFSET %d", $params )
-        );
-
-        return array(
-            'items' => $items ? $items : array(),
-            'total' => $total,
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter -- $table from $wpdb->prefix, $days is prepared
+        return $wpdb->query(
+            $wpdb->prepare(
+                "DELETE FROM {$table} WHERE created_at < (UTC_TIMESTAMP() - INTERVAL %d DAY)",
+                $days
+            )
         );
     }
 }

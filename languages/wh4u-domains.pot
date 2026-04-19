@@ -1,846 +1,1951 @@
-# Copyright (C) 2024 WebHosting4U
+# Copyright (C) 2026 WebHosting4U
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: WH4U Domains 1.0.0\n"
-"Report-Msgid-Bugs-To: https://webhosting4u.gr/\n"
-"POT-Creation-Date: 2026-03-03 00:00+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Project-Id-Version: WH4U Domains 1.5.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wh4u-domains\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-04-18T09:32:29+02:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: wh4u-domains\n"
 
-#: wh4u-domains.php:123
-msgid "Every Five Minutes"
-msgstr ""
-
-#: admin/class-wh4u-admin.php:38
+#. Plugin Name of the plugin
+#: wh4u-domains.php
+#: admin/class-wh4u-admin.php:42
 msgid "WH4U Domains"
 msgstr ""
 
-#: admin/class-wh4u-admin.php:39
-msgid "Domains"
+#. Description of the plugin
+#: wh4u-domains.php
+msgid "Domain reseller plugin for searching, registering, and transferring domains via the DomainsReseller API."
 msgstr ""
 
-#: admin/class-wh4u-admin.php:53 admin/class-wh4u-admin.php:54
-#: admin/class-wh4u-admin-dashboard.php:49
-msgid "Dashboard"
+#. Author of the plugin
+#: wh4u-domains.php
+msgid "WebHosting4U"
 msgstr ""
 
-#: admin/class-wh4u-admin.php:62
-msgid "Search / Availability"
+#. Author URI of the plugin
+#: wh4u-domains.php
+msgid "https://webhosting4u.gr/"
 msgstr ""
 
-#: admin/class-wh4u-admin.php:63
+#: admin/class-wh4u-admin-appearance.php:244
+msgid "Frontend Appearance"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:245
+#: admin/class-wh4u-admin-appearance.php:258
+msgid "Save Appearance"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:264
+msgid "Live Preview"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:270
+msgid "Frontend Preview"
+msgstr ""
+
+#. translators: %s: active theme name
+#: admin/class-wh4u-admin-appearance.php:302
+#, php-format
+msgid "Theme \"%s\" does not provide design tokens (theme.json). The plugin will use its own defaults. You can customize everything below."
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:315
+msgid "accent color"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:318
+msgid "text color"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:321
+msgid "background"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:324
+msgid "font family"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:327
+msgid "border radius"
+msgstr ""
+
+#. translators: %s: active theme name
+#: admin/class-wh4u-admin-appearance.php:338
+#, php-format
+msgid "Auto-adapting to \"%s\""
+msgstr ""
+
+#. translators: %s: comma-separated list of detected tokens
+#: admin/class-wh4u-admin-appearance.php:349
+#, php-format
+msgid "Detected: %s. Set a value below to override any of these."
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:366
+msgid "Style Mode"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:369
+msgid "CSS Mode"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:372
+msgid "Full (plugin styles)"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:373
+msgid "Minimal (layout only)"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:374
+msgid "None (theme controls all)"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:376
+msgid "Controls how much CSS the plugin outputs. \"Minimal\" keeps only layout/spacing. \"None\" outputs only the HTML structure."
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:380
+#: blocks/domain-lookup/index.js:93
+msgid "Style Variant"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:383
+#: blocks/domain-lookup/index.js:96
+msgid "Elevated (Shadow)"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:384
+#: blocks/domain-lookup/index.js:97
+msgid "Flat"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:385
+#: blocks/domain-lookup/index.js:98
+msgid "Bordered"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:386
+#: blocks/domain-lookup/index.js:99
+msgid "Minimal"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:401
+msgid "Accent / Primary"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:402
+msgid "Text"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:403
+msgid "Background"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:404
+msgid "Border"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:405
+msgid "Available Status"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:406
+msgid "Unavailable Status"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:412
+msgid "Colors"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:413
+msgid "Leave empty to auto-detect from your theme. Detected theme colors are shown as swatches."
+msgstr ""
+
+#. translators: %s: hex color value
+#: admin/class-wh4u-admin-appearance.php:434
+#, php-format
+msgid "Using theme color: %s"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:456
+msgid "Inherit from theme"
+msgstr ""
+
+#. translators: %s: detected font family name
+#: admin/class-wh4u-admin-appearance.php:462
+#, php-format
+msgid "Inherit from theme (%s)"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:468
+msgid "Typography"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:471
+msgid "Font Family"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:475
+msgid "System UI"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:476
+msgid "Custom (Google Fonts)"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:481
+msgid "Google Font Name"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:488
+msgid "e.g. Inter, Roboto, Open Sans"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:489
+msgid "Enter the exact Google Font family name. You must enqueue the font via your theme or a fonts plugin."
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:493
+msgid "Base Font Size"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:504
+msgid "Button Font Weight"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:507
+msgid "Normal (400)"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:508
+msgid "Semi-Bold (600)"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:509
+msgid "Bold (700)"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:525
+msgid "Layout"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:528
+msgid "Max Width"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:539
+msgid "Border Radius"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:550
+msgid "Spacing"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:553
+msgid "Compact"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:554
+#: admin/class-wh4u-admin-dashboard.php:193
+msgid "Default"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:555
+msgid "Relaxed"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:571
+msgid "Search Bar"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:574
+#: blocks/domain-lookup/index.js:39
+msgid "Placeholder Text"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:580
+#: admin/class-wh4u-admin-appearance.php:859
+#: admin/class-wh4u-admin-dashboard.php:200
+#: public/class-wh4u-public.php:84
+#: public/class-wh4u-public.php:532
+#: public/class-wh4u-public.php:622
+msgid "Search for your perfect domain..."
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:584
+#: blocks/domain-lookup/index.js:48
+msgid "Button Text"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:590
+#: admin/class-wh4u-admin-appearance.php:860
+#: admin/class-wh4u-admin-dashboard.php:205
+#: admin/class-wh4u-admin.php:67
+#: public/class-wh4u-public.php:85
+#: public/class-wh4u-public.php:527
+#: public/class-wh4u-public.php:623
 msgid "Search"
 msgstr ""
 
-#: admin/class-wh4u-admin.php:71 admin/class-wh4u-admin-domains.php:91
-#: admin/class-wh4u-admin-domains.php:150 admin/class-wh4u-admin-dashboard.php:155
-msgid "Register Domain"
+#: admin/class-wh4u-admin-appearance.php:594
+msgid "Show Search Icon"
 msgstr ""
 
-#: admin/class-wh4u-admin.php:72 admin/class-wh4u-admin-pricing.php:41
-msgid "Register"
+#: admin/class-wh4u-admin-appearance.php:602
+msgid "Display the magnifying glass icon inside the search input"
 msgstr ""
 
-#: admin/class-wh4u-admin.php:80 admin/class-wh4u-admin-domains.php:173
-#: admin/class-wh4u-admin-domains.php:236 admin/class-wh4u-admin-dashboard.php:156
-msgid "Transfer Domain"
+#: admin/class-wh4u-admin-appearance.php:607
+msgid "Popular TLDs"
 msgstr ""
 
-#: admin/class-wh4u-admin.php:81 admin/class-wh4u-admin-pricing.php:42
-msgid "Transfer"
+#: admin/class-wh4u-admin-appearance.php:613
+msgid "Comma-separated list of TLD chips shown below the search bar. Leave empty to hide."
 msgstr ""
 
-#: admin/class-wh4u-admin.php:98 admin/class-wh4u-admin-pricing.php:25
-#: admin/class-wh4u-admin-dashboard.php:158
-msgid "TLD Pricing"
+#: admin/class-wh4u-admin-appearance.php:628
+msgid "Domain Results"
 msgstr ""
 
-#: admin/class-wh4u-admin.php:99
-msgid "Pricing"
+#: admin/class-wh4u-admin-appearance.php:631
+msgid "Show Pricing"
 msgstr ""
 
-#: admin/class-wh4u-admin.php:107 admin/class-wh4u-admin-history.php:64
-#: admin/class-wh4u-admin-dashboard.php:159
-msgid "Order History"
+#: admin/class-wh4u-admin-appearance.php:639
+msgid "Display domain pricing in search results"
 msgstr ""
 
-#: admin/class-wh4u-admin.php:108
-msgid "History"
+#: admin/class-wh4u-admin-appearance.php:644
+#: blocks/domain-lookup/index.js:57
+msgid "Show Suggestions"
 msgstr ""
 
-#: admin/class-wh4u-admin.php:116 admin/class-wh4u-admin-history.php:175
-msgid "Queue Status"
+#: admin/class-wh4u-admin-appearance.php:652
+msgid "Show alternative domain suggestions"
 msgstr ""
 
-#: admin/class-wh4u-admin.php:117
-msgid "Queue"
+#: admin/class-wh4u-admin-appearance.php:657
+msgid "Show Transfer"
 msgstr ""
 
-#: admin/class-wh4u-admin.php:125 admin/class-wh4u-admin.php:126
-#: admin/class-wh4u-admin-settings.php:146 admin/class-wh4u-admin-dashboard.php:160
-msgid "Settings"
+#: admin/class-wh4u-admin-appearance.php:665
+msgid "Show \"Transfer\" button on taken domains"
 msgstr ""
 
-#: admin/class-wh4u-admin.php:163 admin/class-wh4u-admin-dashboard.php:132
-#: admin/class-wh4u-admin-domains.php:66 public/class-wh4u-public.php:82
-#: public/class-wh4u-public.php:154
-msgid "Searching..."
+#: admin/class-wh4u-admin-appearance.php:670
+msgid "Suggestion Count"
 msgstr ""
 
-#: admin/class-wh4u-admin.php:164
-msgid "Processing..."
-msgstr ""
-
-#: admin/class-wh4u-admin.php:165 public/class-wh4u-public.php:159
-msgid "An error occurred. Please try again."
-msgstr ""
-
-#: admin/class-wh4u-admin.php:166 public/class-wh4u-public.php:155
-msgid "Available"
-msgstr ""
-
-#: admin/class-wh4u-admin.php:167 public/class-wh4u-public.php:156
-msgid "Unavailable"
-msgstr ""
-
-#: admin/class-wh4u-admin.php:168
-msgid "Are you sure?"
-msgstr ""
-
-#: admin/class-wh4u-admin.php:169
-msgid "Retrying..."
-msgstr ""
-
-#: admin/class-wh4u-admin.php:170
-msgid "Success!"
-msgstr ""
-
-#: admin/class-wh4u-admin.php:215
-msgid "Domain Management"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:30
-#: admin/class-wh4u-admin-domains.php:21 admin/class-wh4u-admin-domains.php:83
-#: admin/class-wh4u-admin-domains.php:165 admin/class-wh4u-admin-domains.php:251
-#: admin/class-wh4u-admin-pricing.php:21 admin/class-wh4u-admin-credits.php:21
-#: admin/class-wh4u-admin-history.php:21 admin/class-wh4u-admin-history.php:144
-msgid "You do not have sufficient permissions."
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:57
-msgid "API Connected"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:60 admin/class-wh4u-admin-dashboard.php:219
-msgid "Email"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:60
-msgid "URL"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:62
-msgid "Key"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:79
-msgid "API Not Connected"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:81
-msgid "Configure"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:88
-msgid "Credits:"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:97
-msgid "Add Credits"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:110
-msgid "Search Domain Availability"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:115
-#: admin/class-wh4u-admin-domains.php:31
-msgid "Domain Name"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:122
-#: public/class-wh4u-public.php:44 public/class-wh4u-public.php:58
-#: public/class-wh4u-public.php:194
-msgid "Check Availability"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:125
-msgid "Suggestions"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:141
-#: admin/class-wh4u-admin-domains.php:55 admin/class-wh4u-admin-domains.php:102
-#: admin/class-wh4u-admin-domains.php:184 admin/class-wh4u-admin-domains.php:265
-#: admin/class-wh4u-admin-history.php:77 public/class-wh4u-public.php:93
-msgid "Domain"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:142
-#: admin/class-wh4u-admin-domains.php:56 admin/class-wh4u-admin-history.php:79
-#: admin/class-wh4u-admin-history.php:185 admin/class-wh4u-admin-dashboard.php:181
-#: public/class-wh4u-public.php:94
-msgid "Status"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:143
-#: admin/class-wh4u-admin-domains.php:57 admin/class-wh4u-admin-history.php:182
-#: public/class-wh4u-public.php:95
-msgid "Action"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:177
-msgid "Connection Information"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:186
-msgid "Connected"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:191
-msgid "Not Connected"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:197
-msgid "WordPress User"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:201
-#: admin/class-wh4u-admin-settings.php:244
-msgid "Reseller Email"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:202
-msgid "Not configured"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:206
-msgid "API Endpoint"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:212
-msgid "API Version"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:218
-msgid "API URL"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:220
-msgid "API Key"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:232
-msgid "OK"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:234
-msgid "Missing"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:243
-msgid "Edit Settings"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:246
-msgid "Client Area"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:253
-msgid "Frontend Integration"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:255
-msgid "Add a domain search form to any page or post using the shortcode or Gutenberg block."
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:258
-msgid "Shortcode"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:261
-msgid "With options"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:264
-msgid "Gutenberg Block"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:266
-msgid "Search for \"Domain Lookup\" in the block inserter."
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:294
-msgid "API base URL is not configured."
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:310
-msgid "Reseller email is not configured."
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:319
-msgid "API key is not configured."
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:334
-msgid "API call failed: "
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:339
-msgid "Connected successfully."
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:31
-msgid "API Configuration"
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:38
-msgid "API Base URL"
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:46
-msgid "Registration Mode"
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:76
-msgid "Configure the DomainsReseller API connection and registration behavior."
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:88
-msgid "The base URL for the DomainsReseller API."
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:102
-msgid "Real-time Registration"
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:103
-msgid "(API call happens immediately on order submission)"
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:108
-msgid "Notification-only"
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:109
-msgid "(Store order and notify reseller; process manually via \"Process Now\")"
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:124
-msgid "You do not have sufficient permissions to access this page."
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:135
-msgid "Security check failed."
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:152
-msgid "General"
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:157
-msgid "Credentials"
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:230
-msgid "Credentials saved."
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:241
-msgid "API Credentials"
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:249
-msgid "Your email registered with the domain registrar."
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:253
-msgid "API Key"
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:257 admin/class-wh4u-admin-settings.php:306
-msgid "(stored, enter new to change)"
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:259
-msgid "Stored encrypted. Leave blank to keep existing key."
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:264
-msgid "Domain Defaults"
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:267
-msgid "Default Nameservers"
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:278
-msgid "Default nameservers for new registrations. NS1 and NS2 are required by most registrars."
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:282
-msgid "Allowed TLDs"
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:285
-msgid "Comma-separated list of allowed TLDs (e.g. .com,.net,.org). Leave empty for all TLDs."
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:290
-msgid "Webhooks"
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:293
-msgid "Webhook URL"
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:298
-msgid "Optional endpoint for order notifications."
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:302
-msgid "Webhook Secret"
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:308
-msgid "Shared secret for HMAC-signing webhook payloads."
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:313
-msgid "Save Credentials"
-msgstr ""
-
-#: admin/class-wh4u-admin-settings.php:371
-msgid "Please enter a valid email address."
-msgstr ""
-
-#: admin/class-wh4u-admin-domains.php:25
-msgid "Domain Search / Availability"
-msgstr ""
-
-#: admin/class-wh4u-admin-domains.php:35
-msgid "Enter a domain name with TLD (e.g. example.com) to check a specific extension, or without (e.g. example) to check all available extensions."
-msgstr ""
-
-#: admin/class-wh4u-admin-domains.php:41
-msgid "Search Availability"
-msgstr ""
-
-#: admin/class-wh4u-admin-domains.php:44
-msgid "Get Suggestions"
-msgstr ""
-
-#: admin/class-wh4u-admin-domains.php:51
-msgid "Search Results"
-msgstr ""
-
-#: admin/class-wh4u-admin-domains.php:99 admin/class-wh4u-admin-domains.php:181
-msgid "Domain Details"
-msgstr ""
-
-#: admin/class-wh4u-admin-domains.php:106
-msgid "Registration Period"
-msgstr ""
-
-#: admin/class-wh4u-admin-domains.php:117 admin/class-wh4u-admin-domains.php:203
-msgid "Nameservers"
-msgstr ""
-
-#: admin/class-wh4u-admin-domains.php:132 admin/class-wh4u-admin-domains.php:218
-#: admin/class-wh4u-admin-domains.php:280
-msgid "Addons"
-msgstr ""
-
-#: admin/class-wh4u-admin-domains.php:135 admin/class-wh4u-admin-domains.php:221
-#: admin/class-wh4u-admin-domains.php:283
-msgid "DNS Management"
-msgstr ""
-
-#: admin/class-wh4u-admin-domains.php:139 admin/class-wh4u-admin-domains.php:225
-#: admin/class-wh4u-admin-domains.php:287
-msgid "Email Forwarding"
-msgstr ""
-
-#: admin/class-wh4u-admin-domains.php:143 admin/class-wh4u-admin-domains.php:229
-#: admin/class-wh4u-admin-domains.php:291
-msgid "ID Protection"
-msgstr ""
-
-#: admin/class-wh4u-admin-domains.php:188
-msgid "EPP / Auth Code"
-msgstr ""
-
-#: admin/class-wh4u-admin-domains.php:192
-msgid "Transfer Period"
-msgstr ""
-
-#: admin/class-wh4u-admin-domains.php:314
-msgid "Registrant"
-msgstr ""
-
-#: admin/class-wh4u-admin-domains.php:315
-msgid "Admin"
-msgstr ""
-
-#: admin/class-wh4u-admin-domains.php:316
-msgid "Technical"
-msgstr ""
-
-#: admin/class-wh4u-admin-domains.php:317
-msgid "Billing"
-msgstr ""
-
-#: admin/class-wh4u-admin-domains.php:321
+#: admin/class-wh4u-admin-appearance.php:691
+#: admin/class-wh4u-admin-domains.php:261
+#: public/class-wh4u-public.php:255
+#: public/class-wh4u-public.php:364
 msgid "First Name"
 msgstr ""
 
-#: admin/class-wh4u-admin-domains.php:322
+#: admin/class-wh4u-admin-appearance.php:692
+#: admin/class-wh4u-admin-domains.php:262
+#: public/class-wh4u-public.php:261
+#: public/class-wh4u-public.php:370
 msgid "Last Name"
 msgstr ""
 
-#: admin/class-wh4u-admin-domains.php:323
+#: admin/class-wh4u-admin-appearance.php:693
+#: admin/class-wh4u-admin-dashboard.php:65
+#: admin/class-wh4u-admin-dashboard.php:330
+#: admin/class-wh4u-admin-domains.php:264
+#: admin/class-wh4u-admin-history.php:196
+#: includes/class-wh4u-notifications.php:60
+#: public/class-wh4u-public.php:267
+#: public/class-wh4u-public.php:376
+msgid "Email"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:694
+#: admin/class-wh4u-admin-history.php:197
+#: includes/class-wh4u-notifications.php:61
+#: public/class-wh4u-public.php:273
+#: public/class-wh4u-public.php:382
+msgid "Phone"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:695
+#: admin/class-wh4u-admin-domains.php:263
+#: includes/class-wh4u-notifications.php:62
+#: public/class-wh4u-public.php:279
+#: public/class-wh4u-public.php:388
 msgid "Company"
 msgstr ""
 
-#: admin/class-wh4u-admin-domains.php:325
+#: admin/class-wh4u-admin-appearance.php:696
+#: admin/class-wh4u-admin-domains.php:265
+#: includes/class-wh4u-notifications.php:63
+#: public/class-wh4u-public.php:285
+#: public/class-wh4u-public.php:394
 msgid "Address"
 msgstr ""
 
-#: admin/class-wh4u-admin-domains.php:326
+#: admin/class-wh4u-admin-appearance.php:697
+#: admin/class-wh4u-admin-domains.php:266
+#: includes/class-wh4u-notifications.php:64
+#: public/class-wh4u-public.php:291
+#: public/class-wh4u-public.php:400
 msgid "City"
 msgstr ""
 
-#: admin/class-wh4u-admin-domains.php:327
+#: admin/class-wh4u-admin-appearance.php:698
+#: admin/class-wh4u-admin-domains.php:267
+#: public/class-wh4u-public.php:297
+#: public/class-wh4u-public.php:406
 msgid "State / Province"
 msgstr ""
 
-#: admin/class-wh4u-admin-domains.php:328
-msgid "Post Code"
-msgstr ""
-
-#: admin/class-wh4u-admin-domains.php:329
+#: admin/class-wh4u-admin-appearance.php:699
+#: admin/class-wh4u-admin-domains.php:269
+#: public/class-wh4u-public.php:303
+#: public/class-wh4u-public.php:412
 msgid "Country Code"
 msgstr ""
 
-#: admin/class-wh4u-admin-domains.php:330
-msgid "Phone Number"
+#: admin/class-wh4u-admin-appearance.php:700
+#: public/class-wh4u-public.php:309
+#: public/class-wh4u-public.php:418
+msgid "Zip / Postal Code"
 msgstr ""
 
-#: admin/class-wh4u-admin-domains.php:336
-msgid "Contact"
+#: admin/class-wh4u-admin-appearance.php:706
+#: blocks/domain-lookup/index.js:66
+msgid "Registration Form"
 msgstr ""
 
-#: admin/class-wh4u-admin-domains.php:340
-msgid "Copy from Registrant"
+#: admin/class-wh4u-admin-appearance.php:709
+#: blocks/domain-lookup/index.js:68
+msgid "Form Title"
 msgstr ""
 
-#: admin/class-wh4u-admin-domains.php:110 admin/class-wh4u-admin-domains.php:196
-#: admin/class-wh4u-admin-domains.php:273
+#: admin/class-wh4u-admin-appearance.php:715
+#: admin/class-wh4u-admin-appearance.php:865
+#: admin/class-wh4u-admin-dashboard.php:236
+#: public/class-wh4u-public.php:90
+#: public/class-wh4u-public.php:628
+msgid "Register this domain"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:719
+#: blocks/domain-lookup/index.js:77
+msgid "Form Description"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:725
+#: admin/class-wh4u-admin-appearance.php:866
+#: admin/class-wh4u-admin-dashboard.php:241
+#: public/class-wh4u-public.php:91
+#: public/class-wh4u-public.php:629
+msgid "Fill in your details below to secure this domain."
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:729
+msgid "Visible Fields"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:745
+#: public/class-wh4u-public.php:255
+#: public/class-wh4u-public.php:261
+#: public/class-wh4u-public.php:267
+#: public/class-wh4u-public.php:273
+#: public/class-wh4u-public.php:285
+#: public/class-wh4u-public.php:291
+#: public/class-wh4u-public.php:297
+#: public/class-wh4u-public.php:303
+#: public/class-wh4u-public.php:309
+#: public/class-wh4u-public.php:364
+#: public/class-wh4u-public.php:370
+#: public/class-wh4u-public.php:376
+#: public/class-wh4u-public.php:382
+#: public/class-wh4u-public.php:394
+#: public/class-wh4u-public.php:400
+#: public/class-wh4u-public.php:406
+#: public/class-wh4u-public.php:412
+#: public/class-wh4u-public.php:418
+msgid "required"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:755
+msgid "Required fields cannot be hidden. Only \"Company\" can be toggled."
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:759
+msgid "Registration Periods"
+msgstr ""
+
+#. translators: %d: number of years
+#: admin/class-wh4u-admin-appearance.php:766
+#: public/class-wh4u-public.php:321
+#: public/class-wh4u-public.php:430
+#, php-format
+msgid "%d Year"
+msgstr ""
+
+#. translators: %d: number of years
+#: admin/class-wh4u-admin-appearance.php:768
+#: public/class-wh4u-public.php:323
+#: public/class-wh4u-public.php:432
+#, php-format
+msgid "%d Years"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:794
+msgid "Messages"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:797
+msgid "Success Title"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:803
+#: public/class-wh4u-public.php:524
+msgid "Request Submitted!"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:807
+msgid "Success Message"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:812
+#: public/class-wh4u-public.php:525
+msgid "Your domain registration request has been submitted. We will contact you shortly."
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:816
+msgid "\"Search Another\" Button"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:822
+#: public/class-wh4u-public.php:526
+msgid "Search another domain"
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:851
+msgid "Access denied."
+msgstr ""
+
+#: admin/class-wh4u-admin-appearance.php:932
+msgid "Preview"
+msgstr ""
+
+#: admin/class-wh4u-admin-credits.php:23
+#: admin/class-wh4u-admin-dashboard.php:32
+#: admin/class-wh4u-admin-domains.php:23
+#: admin/class-wh4u-admin-domains.php:85
+#: admin/class-wh4u-admin-domains.php:167
+#: admin/class-wh4u-admin-history.php:23
+#: admin/class-wh4u-admin-history.php:151
+#: admin/class-wh4u-admin-history.php:283
+#: admin/class-wh4u-admin-pricing.php:23
+msgid "You do not have sufficient permissions."
+msgstr ""
+
+#: admin/class-wh4u-admin-credits.php:27
+msgid "Credits Balance"
+msgstr ""
+
+#: admin/class-wh4u-admin-credits.php:39
+msgid "Available Credits"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:53
+#: admin/class-wh4u-admin.php:57
+#: admin/class-wh4u-admin.php:58
+msgid "Dashboard"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:61
+msgid "API Connected"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:64
+msgid "URL"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:66
+msgid "Key"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:83
+msgid "API Not Connected"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:85
+msgid "Configure"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:92
+msgid "Credits:"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:101
+msgid "Add Credits"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:114
+msgid "Search Domain Availability"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:119
+#: admin/class-wh4u-admin-domains.php:33
+msgid "Domain Name"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:123
+msgid "example.com or keyword"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:126
+msgid "Check Availability"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:129
+msgid "Suggestions"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:136
+#: admin/class-wh4u-admin-domains.php:68
+#: admin/class-wh4u-admin.php:197
+#: public/class-wh4u-public.php:556
+msgid "Searching..."
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:145
+#: admin/class-wh4u-admin-domains.php:57
+#: admin/class-wh4u-admin-domains.php:104
+#: admin/class-wh4u-admin-domains.php:186
+#: admin/class-wh4u-admin-history.php:84
+#: admin/class-wh4u-admin-history.php:193
+#: includes/class-wh4u-notifications.php:53
+#: includes/class-wh4u-notifications.php:209
+msgid "Domain"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:146
+#: admin/class-wh4u-admin-dashboard.php:292
+#: admin/class-wh4u-admin-domains.php:58
+#: admin/class-wh4u-admin-history.php:86
+#: admin/class-wh4u-admin-history.php:199
+#: admin/class-wh4u-admin-history.php:326
+#: includes/class-wh4u-notifications.php:217
+msgid "Status"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:147
+#: admin/class-wh4u-admin-domains.php:59
+#: admin/class-wh4u-admin-history.php:323
+msgid "Action"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:159
+#: admin/class-wh4u-admin-domains.php:93
+#: admin/class-wh4u-admin-domains.php:152
+#: admin/class-wh4u-admin.php:75
+msgid "Register Domain"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:160
+#: admin/class-wh4u-admin-domains.php:175
+#: admin/class-wh4u-admin-domains.php:238
+#: admin/class-wh4u-admin.php:84
+msgid "Transfer Domain"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:161
+#: admin/class-wh4u-admin-pricing.php:27
+#: admin/class-wh4u-admin.php:93
+msgid "TLD Pricing"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:162
+#: admin/class-wh4u-admin-history.php:71
+#: admin/class-wh4u-admin.php:102
+msgid "Order History"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:163
+#: admin/class-wh4u-admin-settings.php:589
+#: admin/class-wh4u-admin.php:129
+#: admin/class-wh4u-admin.php:130
+msgid "Settings"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:178
+msgid "Frontend Integration"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:181
+msgid "Add a domain search form to any page or post using the shortcode or the Gutenberg block. Shortcode attributes override global Appearance settings."
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:184
+msgid "Basic Usage"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:186
+msgid "Outputs the domain search form with all global Appearance settings applied."
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:188
+msgid "Available Shortcode Attributes"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:192
+msgid "Attribute"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:194
+msgid "Description"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:201
+msgid "Placeholder text inside the search input field."
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:206
+msgid "Label for the search submit button."
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:210
+msgid "(theme default)"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:211
+msgid "Hex color for buttons and accents, e.g. #2271b1."
+msgstr ""
+
+#. translators: %s: list of allowed values
+#: admin/class-wh4u-admin-dashboard.php:219
+#, php-format
+msgid "Visual style of the form card. Values: %s."
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:227
+msgid "Show domain prices in search results. Values: true / false."
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:232
+msgid "Show alternative TLD suggestions when a domain is unavailable. Values: true / false."
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:237
+msgid "Heading displayed above the registration form."
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:242
+msgid "Description text shown below the form title."
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:247
+msgid "Corner rounding in pixels (0 = sharp corners, max 32)."
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:252
+msgid "Examples"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:254
+msgid "Custom text and colors"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:255
+msgid "Find your domain"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:255
+msgid "Go"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:257
+msgid "Flat style with pricing"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:260
+msgid "Minimal style, no suggestions"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:263
+msgid "Custom form text"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:264
+msgid "Secure your domain"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:264
+msgid "Complete the form to register."
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:266
+msgid "Gutenberg Block"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:268
+msgid "In the block editor, click the + inserter and search for \"Domain Lookup\". The block provides the same options as the shortcode attributes above, configurable via the block sidebar panel."
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:271
+msgid "Settings Priority"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:273
+msgid "Shortcode/block attributes take highest priority. If an attribute is not specified, the value from Domains > Settings > Appearance is used. If no Appearance setting is saved, the built-in default applies."
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:276
+msgid "Shortcode / Block attribute (highest)"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:277
+msgid "Global Appearance settings"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:278
+msgid "Built-in defaults (lowest)"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:288
+msgid "Connection Information"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:297
+msgid "Connected"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:302
+msgid "Not Connected"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:308
+msgid "WordPress User"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:312
+#: admin/class-wh4u-admin-reseller.php:43
+msgid "Reseller Email"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:313
+msgid "Not configured"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:317
+msgid "API Endpoint"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:323
+msgid "API Version"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:329
+msgid "API URL"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:331
+#: admin/class-wh4u-admin-reseller.php:52
+msgid "API Key"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:343
+msgid "OK"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:345
+msgid "Missing"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:354
+msgid "Edit Settings"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:357
+msgid "Client Area"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:394
+#: includes/class-wh4u-api-client.php:55
+msgid "API base URL is not configured."
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:411
+#: includes/class-wh4u-api-client.php:77
+msgid "Reseller email is not configured."
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:420
+msgid "API key is not configured."
+msgstr ""
+
+#. translators: %s: error message returned by the API
+#: admin/class-wh4u-admin-dashboard.php:436
+#, php-format
+msgid "API call failed: %s"
+msgstr ""
+
+#: admin/class-wh4u-admin-dashboard.php:441
+msgid "Connected successfully."
+msgstr ""
+
+#: admin/class-wh4u-admin-domains.php:27
+msgid "Domain Search / Availability"
+msgstr ""
+
+#: admin/class-wh4u-admin-domains.php:37
+msgid "Enter a domain name with TLD (e.g. example.com) to check a specific extension, or without (e.g. example) to check all available extensions."
+msgstr ""
+
+#: admin/class-wh4u-admin-domains.php:43
+#: admin/class-wh4u-admin.php:206
+msgid "Search Availability"
+msgstr ""
+
+#: admin/class-wh4u-admin-domains.php:46
+msgid "Get Suggestions"
+msgstr ""
+
+#: admin/class-wh4u-admin-domains.php:53
+msgid "Search Results"
+msgstr ""
+
+#: admin/class-wh4u-admin-domains.php:101
+#: admin/class-wh4u-admin-domains.php:183
+msgid "Domain Details"
+msgstr ""
+
+#: admin/class-wh4u-admin-domains.php:108
+#: public/class-wh4u-public.php:316
+msgid "Registration Period"
+msgstr ""
+
+#: admin/class-wh4u-admin-domains.php:112
+#: admin/class-wh4u-admin-domains.php:198
 msgid "year"
 msgid_plural "years"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/class-wh4u-admin-pricing.php:29
-msgid "Loading pricing data from the API..."
+#: admin/class-wh4u-admin-domains.php:119
+#: admin/class-wh4u-admin-domains.php:205
+msgid "Nameservers"
 msgstr ""
 
-#: admin/class-wh4u-admin-pricing.php:40
-msgid "TLD"
+#: admin/class-wh4u-admin-domains.php:134
+#: admin/class-wh4u-admin-domains.php:220
+msgid "Addons"
 msgstr ""
 
-#: admin/class-wh4u-admin-credits.php:25
-msgid "Credits Balance"
+#: admin/class-wh4u-admin-domains.php:137
+#: admin/class-wh4u-admin-domains.php:223
+msgid "DNS Management"
 msgstr ""
 
-#: admin/class-wh4u-admin-credits.php:37
-msgid "Available Credits"
+#: admin/class-wh4u-admin-domains.php:141
+#: admin/class-wh4u-admin-domains.php:227
+msgid "Email Forwarding"
 msgstr ""
 
-#: admin/class-wh4u-admin-history.php:55 admin/class-wh4u-admin-history.php:167
-msgid "Pending"
+#: admin/class-wh4u-admin-domains.php:145
+#: admin/class-wh4u-admin-domains.php:231
+msgid "ID Protection"
 msgstr ""
 
-#: admin/class-wh4u-admin-history.php:56
-msgid "Pending Manual"
-msgstr ""
-
-#: admin/class-wh4u-admin-history.php:57 admin/class-wh4u-admin-history.php:168
-msgid "Processing"
-msgstr ""
-
-#: admin/class-wh4u-admin-history.php:58 admin/class-wh4u-admin-history.php:169
-msgid "Completed"
-msgstr ""
-
-#: admin/class-wh4u-admin-history.php:59 admin/class-wh4u-admin-history.php:170
-msgid "Failed"
-msgstr ""
-
-#: admin/class-wh4u-admin-history.php:60 admin/class-wh4u-admin-history.php:171
-msgid "Cancelled"
-msgstr ""
-
-#: admin/class-wh4u-admin-history.php:67
-msgid "All"
-msgstr ""
-
-#: admin/class-wh4u-admin-history.php:76 admin/class-wh4u-admin-history.php:180
-msgid "ID"
-msgstr ""
-
-#: admin/class-wh4u-admin-history.php:78
-msgid "Type"
-msgstr ""
-
-#: admin/class-wh4u-admin-history.php:80
-msgid "Period"
-msgstr ""
-
-#: admin/class-wh4u-admin-history.php:81
-msgid "Retries"
-msgstr ""
-
-#: admin/class-wh4u-admin-history.php:82 admin/class-wh4u-admin-history.php:186
-msgid "Error"
-msgstr ""
-
-#: admin/class-wh4u-admin-history.php:83
-msgid "Date"
-msgstr ""
-
-#: admin/class-wh4u-admin-history.php:84 admin/class-wh4u-admin-history.php:188
-msgid "Actions"
-msgstr ""
-
-#: admin/class-wh4u-admin-history.php:89
-msgid "No orders found."
-msgstr ""
-
-#: admin/class-wh4u-admin-history.php:108
-msgid "Process Now"
-msgstr ""
-
-#: admin/class-wh4u-admin-history.php:181
-msgid "Order ID"
-msgstr ""
-
-#: admin/class-wh4u-admin-history.php:183
-msgid "Attempts"
-msgstr ""
-
-#: admin/class-wh4u-admin-history.php:184
-msgid "Max"
-msgstr ""
-
-#: admin/class-wh4u-admin-history.php:187
-msgid "Scheduled"
-msgstr ""
-
-#: admin/class-wh4u-admin-history.php:193
-msgid "No queue items found."
-msgstr ""
-
-#: admin/class-wh4u-admin-history.php:212
-msgid "Retry Now"
-msgstr ""
-
-#: public/class-wh4u-public.php:43 public/class-wh4u-public.php:57
-#: public/class-wh4u-public.php:193
-msgid "e.g. example.com"
-msgstr ""
-
-#: public/class-wh4u-public.php:157
-msgid "Register this domain"
-msgstr ""
-
-#: public/class-wh4u-public.php:158
-msgid "Log in to register"
-msgstr ""
-
-#: public/class-wh4u-public.php:160
-msgid "No results found."
-msgstr ""
-
-#: rest-api/class-wh4u-rest-controller.php:34
-msgid "You must be logged in."
-msgstr ""
-
-#: rest-api/class-wh4u-rest-controller.php:41
-msgid "You do not have permission to access this resource."
-msgstr ""
-
-#: rest-api/class-wh4u-rest-controller.php:60 rest-api/class-wh4u-rest-controller.php:80
-#: rest-api/class-wh4u-rest-domains.php:90
-msgid "Rate limit exceeded. Please try again shortly."
-msgstr ""
-
-#: rest-api/class-wh4u-rest-domains.php:246
-msgid "Could not retrieve TLD list from API."
-msgstr ""
-
-#: rest-api/class-wh4u-rest-domains.php:317
-msgid "No API credentials configured. Please ask the site administrator to set up the plugin."
-msgstr ""
-
-#: rest-api/class-wh4u-rest-orders.php:146 rest-api/class-wh4u-rest-orders.php:305
-#: rest-api/class-wh4u-rest-queue.php:46
-msgid "Rate limit exceeded."
-msgstr ""
-
-#: rest-api/class-wh4u-rest-orders.php:192
-msgid "Order created. The reseller has been notified for manual processing."
-msgstr ""
-
-#: rest-api/class-wh4u-rest-orders.php:252
-msgid "Order queued for retry due to a temporary API issue."
-msgstr ""
-
-#: rest-api/class-wh4u-rest-orders.php:291
-msgid "Domain order completed successfully."
-msgstr ""
-
-#: rest-api/class-wh4u-rest-queue.php:61
-msgid "Queue item not found."
-msgstr ""
-
-#: rest-api/class-wh4u-rest-queue.php:68
-msgid "You cannot retry this item."
-msgstr ""
-
-#: rest-api/class-wh4u-rest-queue.php:77
-msgid "Failed to re-queue item."
-msgstr ""
-
-#: rest-api/class-wh4u-rest-queue.php:83
-msgid "Item re-queued for retry."
-msgstr ""
-
-#: rest-api/class-wh4u-rest-pricing.php:272
-msgid "No API credentials configured."
-msgstr ""
-
-#: includes/class-wh4u-api-client.php:53
-msgid "API base URL is not configured."
-msgstr ""
-
-#: includes/class-wh4u-api-client.php:61
-msgid "Reseller settings not found. Please configure your API credentials."
-msgstr ""
-
-#: includes/class-wh4u-api-client.php:68
-msgid "Failed to decrypt API key. The encryption key may have changed. Please re-save your API key under Domains > My Settings."
-msgstr ""
-
-#: includes/class-wh4u-api-client.php:74
-msgid "Reseller email is not configured."
-msgstr ""
-
-#: includes/class-wh4u-api-client.php:200
-msgid "API request failed."
-msgstr ""
-
-#: includes/class-wh4u-notifications.php:76
-msgid "[WH4U Domains] Order %1$s: %2$s"
-msgstr ""
-
-#: includes/class-wh4u-notifications.php:116
-msgid "Pending Manual Processing"
-msgstr ""
-
-#: includes/class-wh4u-notifications.php:125
-msgid "Domain Order %s"
-msgstr ""
-
-#: includes/class-wh4u-notifications.php:141
-msgid "year(s)"
-msgstr ""
-
-#: admin/class-wh4u-admin-dashboard.php:119
-msgid "example.com or keyword"
-msgstr ""
-
-#: admin/class-wh4u-admin.php:176
-msgid "No pricing data available."
-msgstr ""
-
-#: blocks/domain-lookup/index.js:27
-msgid "Placeholder Text"
-msgstr ""
-
-#: blocks/domain-lookup/index.js:36
-msgid "Button Text"
-msgstr ""
-
-#. ── TRANSFER FRONTEND ──
-
-#: public/class-wh4u-public.php
-msgid "Transfer this domain"
-msgstr ""
-
-#: public/class-wh4u-public.php
-msgid "Fill in your details and the EPP/Auth code to transfer this domain."
-msgstr ""
-
-#: public/class-wh4u-public.php
+#: admin/class-wh4u-admin-domains.php:190
+#: public/class-wh4u-public.php:357
 msgid "EPP / Auth Code"
 msgstr ""
 
-#: public/class-wh4u-public.php
-msgid "Optional -- can be provided later"
-msgstr ""
-
-#: public/class-wh4u-public.php
+#: admin/class-wh4u-admin-domains.php:194
+#: public/class-wh4u-public.php:425
 msgid "Transfer Period"
 msgstr ""
 
-#: public/class-wh4u-public.php
-msgid "Submit Transfer Request"
+#: admin/class-wh4u-admin-domains.php:254
+msgid "Registrant"
 msgstr ""
 
-#: public/class-wh4u-public.php
+#: admin/class-wh4u-admin-domains.php:255
+msgid "Admin"
+msgstr ""
+
+#: admin/class-wh4u-admin-domains.php:256
+msgid "Technical"
+msgstr ""
+
+#: admin/class-wh4u-admin-domains.php:257
+msgid "Billing"
+msgstr ""
+
+#: admin/class-wh4u-admin-domains.php:268
+msgid "Post Code"
+msgstr ""
+
+#: admin/class-wh4u-admin-domains.php:270
+msgid "Phone Number"
+msgstr ""
+
+#. translators: %s: contact type (e.g. Registrant, Admin, Technical, Billing)
+#: admin/class-wh4u-admin-domains.php:278
+#, php-format
+msgid "%s Contact"
+msgstr ""
+
+#: admin/class-wh4u-admin-domains.php:283
+msgid "Copy from Registrant"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:62
+#: admin/class-wh4u-admin-history.php:174
+#: admin/class-wh4u-admin-history.php:308
+#: includes/class-wh4u-notifications.php:193
+msgid "Pending"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:63
+msgid "Pending Manual"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:64
+#: admin/class-wh4u-admin-history.php:309
+#: includes/class-wh4u-notifications.php:195
+msgid "Processing"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:65
+#: admin/class-wh4u-admin-history.php:310
+#: includes/class-wh4u-notifications.php:191
+msgid "Completed"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:66
+#: admin/class-wh4u-admin-history.php:311
+#: includes/class-wh4u-notifications.php:192
+msgid "Failed"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:67
+#: admin/class-wh4u-admin-history.php:312
+msgid "Cancelled"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:74
+#: admin/class-wh4u-admin-history.php:183
+msgid "All"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:83
+#: admin/class-wh4u-admin-history.php:192
+#: admin/class-wh4u-admin-history.php:321
+msgid "ID"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:85
+#: admin/class-wh4u-admin-history.php:194
+#: includes/class-wh4u-notifications.php:213
+msgid "Type"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:87
+#: admin/class-wh4u-admin-history.php:198
+#: includes/class-wh4u-notifications.php:54
+#: includes/class-wh4u-notifications.php:221
+msgid "Period"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:88
+msgid "Retries"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:89
+#: admin/class-wh4u-admin-history.php:327
+#: includes/class-wh4u-notifications.php:233
+msgid "Error"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:90
+#: admin/class-wh4u-admin-history.php:200
+#: includes/class-wh4u-notifications.php:238
+msgid "Date"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:91
+#: admin/class-wh4u-admin-history.php:201
+#: admin/class-wh4u-admin-history.php:329
+msgid "Actions"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:96
+#: wh4u-domains.php:165
+msgid "No orders found."
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:115
+#: admin/class-wh4u-admin.php:209
+msgid "Process Now"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:175
+#: rest-api/class-wh4u-rest-public-orders.php:475
+msgid "Approved"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:176
+#: rest-api/class-wh4u-rest-public-orders.php:476
+msgid "Rejected"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:180
+msgid "Public Registration Orders"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:195
+#: includes/class-wh4u-notifications.php:59
+msgid "Name"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:206
+msgid "No public orders found."
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:220
+#: admin/class-wh4u-admin-history.php:223
+#: admin/class-wh4u-admin-pricing.php:43
+#: admin/class-wh4u-admin.php:76
+#: admin/class-wh4u-admin.php:205
+#: public/class-wh4u-public.php:559
+msgid "Register"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:221
+#: admin/class-wh4u-admin-pricing.php:44
+#: admin/class-wh4u-admin.php:85
+#: public/class-wh4u-public.php:571
 msgid "Transfer"
 msgstr ""
 
-#: public/class-wh4u-public.php
+#. translators: %d: number of years
+#: admin/class-wh4u-admin-history.php:231
+#: includes/class-wh4u-notifications.php:224
+#, php-format
+msgid "%d year"
+msgid_plural "%d years"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/class-wh4u-admin-history.php:242
+#: admin/class-wh4u-admin.php:211
+msgid "Approve"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:245
+#: admin/class-wh4u-admin.php:212
+msgid "Reject"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:316
+#: admin/class-wh4u-admin.php:111
+msgid "Queue Status"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:322
+#: includes/class-wh4u-notifications.php:52
+#: includes/class-wh4u-notifications.php:228
+msgid "Order ID"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:324
+msgid "Attempts"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:325
+msgid "Max"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:328
+msgid "Scheduled"
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:334
+msgid "No queue items found."
+msgstr ""
+
+#: admin/class-wh4u-admin-history.php:353
+#: admin/class-wh4u-admin.php:208
+msgid "Retry Now"
+msgstr ""
+
+#: admin/class-wh4u-admin-pricing.php:31
+msgid "Loading pricing data from the API..."
+msgstr ""
+
+#: admin/class-wh4u-admin-pricing.php:42
+msgid "TLD"
+msgstr ""
+
+#: admin/class-wh4u-admin-reseller.php:29
+msgid "Credentials saved."
+msgstr ""
+
+#: admin/class-wh4u-admin-reseller.php:40
+msgid "API Credentials"
+msgstr ""
+
+#: admin/class-wh4u-admin-reseller.php:48
+msgid "Your email registered with the domain registrar."
+msgstr ""
+
+#: admin/class-wh4u-admin-reseller.php:56
+#: admin/class-wh4u-admin-reseller.php:105
+msgid "(stored, enter new to change)"
+msgstr ""
+
+#: admin/class-wh4u-admin-reseller.php:58
+msgid "Stored encrypted. Leave blank to keep existing key."
+msgstr ""
+
+#: admin/class-wh4u-admin-reseller.php:63
+msgid "Domain Defaults"
+msgstr ""
+
+#: admin/class-wh4u-admin-reseller.php:66
+msgid "Default Nameservers"
+msgstr ""
+
+#: admin/class-wh4u-admin-reseller.php:77
+msgid "Default nameservers for new registrations. NS1 and NS2 are required by most registrars."
+msgstr ""
+
+#: admin/class-wh4u-admin-reseller.php:81
+msgid "Allowed TLDs"
+msgstr ""
+
+#: admin/class-wh4u-admin-reseller.php:84
+msgid "Comma-separated list of allowed TLDs (e.g. .com,.net,.org). Leave empty for all TLDs."
+msgstr ""
+
+#: admin/class-wh4u-admin-reseller.php:89
+msgid "Webhooks"
+msgstr ""
+
+#: admin/class-wh4u-admin-reseller.php:92
+msgid "Webhook URL"
+msgstr ""
+
+#: admin/class-wh4u-admin-reseller.php:97
+msgid "Optional endpoint for order notifications."
+msgstr ""
+
+#: admin/class-wh4u-admin-reseller.php:101
+msgid "Webhook Secret"
+msgstr ""
+
+#: admin/class-wh4u-admin-reseller.php:107
+msgid "Shared secret for HMAC-signing webhook payloads."
+msgstr ""
+
+#: admin/class-wh4u-admin-reseller.php:112
+msgid "Save Credentials"
+msgstr ""
+
+#: admin/class-wh4u-admin-reseller.php:170
+#: admin/class-wh4u-admin-settings.php:578
+msgid "Security check failed."
+msgstr ""
+
+#: admin/class-wh4u-admin-reseller.php:177
+#: public/class-wh4u-public.php:567
+msgid "Please enter a valid email address."
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:37
+msgid "API Configuration"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:44
+msgid "API Base URL"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:52
+msgid "Registration Mode"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:60
+msgid "Shopping Cart Redirect"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:67
+msgid "Cart Type"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:75
+msgid "Cart Base URL"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:83
+msgid "Register URL Template (Custom)"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:91
+msgid "Transfer URL Template (Custom)"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:99
+msgid "Reverse Proxy / IP Detection"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:106
+msgid "Trusted Proxy IP Header"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:114
+msgid "Trusted Proxy IPs"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:122
+msgid "Public Domain Lookup"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:129
+msgid "Designated Reseller for Public Lookups"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:137
+msgid "Cloudflare Turnstile"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:144
+msgid "Site Key"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:152
+msgid "Secret Key"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:254
+msgid "Configure the DomainsReseller API connection and registration behavior."
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:266
+msgid "The base URL for the DomainsReseller API."
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:280
+msgid "Real-time Registration"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:281
+msgid "(API call happens immediately on order submission)"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:286
+msgid "Notification-only"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:287
+msgid "(Store order and notify reseller; process manually via \"Process Now\")"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:295
+msgid "Optional: Send customers to your billing cart (WHMCS, Blesta, ClientExec, Upmind, or custom URL) when they click Register or Transfer. Leave Cart Type empty to use the built-in registration form."
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:303
+msgid "None (use built-in form)"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:308
+msgid "Custom URL template"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:316
+msgid "When set, clicking Register or Transfer will redirect the customer to your cart with the domain pre-filled."
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:328
+msgid "Base URL of your cart (no trailing slash). Used for WHMCS, Blesta, ClientExec, and Upmind."
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:340
+#: admin/class-wh4u-admin-settings.php:352
+msgid "Only for Custom cart type. Use {domain}, {sld}, or {tld} as placeholders."
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:360
+msgid "If your site is behind a reverse proxy (Cloudflare, a load balancer, or nginx), configure which header carries the real client IP for rate-limit purposes. Only enable this when the proxy strips client-supplied values for this header — otherwise rate limits can be bypassed via spoofing."
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:368
+msgid "Disabled (use REMOTE_ADDR only)"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:389
+msgid "One IP per line (no CIDR). The header above is only consulted when the immediate connection comes from one of these IPs."
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:397
+msgid "Choose which reseller's API credentials are used when anonymous visitors perform a domain lookup from the frontend. If no reseller is designated, anonymous domain searches are disabled."
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:411
+msgid "Disabled (anonymous lookups will be rejected)"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:421
+msgid "API calls made for anonymous visitors will be billed against this reseller's account."
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:441
+msgid "Cloudflare dashboard"
+msgstr ""
+
+#. translators: %s: link to Cloudflare Turnstile dashboard
+#: admin/class-wh4u-admin-settings.php:446
+#, php-format
+msgid "Optional: protect public registration and transfer forms with Cloudflare Turnstile (free). Get your keys from the %s."
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:469
+msgid "●●●●●●●● (stored, encrypted)"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:476
+msgid "A secret key is stored. Leave blank to keep it, or enter a new value to replace it."
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:478
+msgid "Leave both fields empty to disable Turnstile protection."
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:567
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:595
+msgid "General"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:600
+msgid "Credentials"
+msgstr ""
+
+#: admin/class-wh4u-admin-settings.php:605
+#: blocks/domain-lookup/index.js:88
+msgid "Appearance"
+msgstr ""
+
+#: admin/class-wh4u-admin.php:43
+msgid "Domains"
+msgstr ""
+
+#: admin/class-wh4u-admin.php:66
+msgid "Search / Availability"
+msgstr ""
+
+#: admin/class-wh4u-admin.php:94
+msgid "Pricing"
+msgstr ""
+
+#: admin/class-wh4u-admin.php:103
+msgid "History"
+msgstr ""
+
+#: admin/class-wh4u-admin.php:112
+msgid "Queue"
+msgstr ""
+
+#: admin/class-wh4u-admin.php:120
+#: admin/class-wh4u-admin.php:121
+msgid "Public Orders"
+msgstr ""
+
+#: admin/class-wh4u-admin.php:198
+msgid "Processing..."
+msgstr ""
+
+#: admin/class-wh4u-admin.php:199
+#: public/class-wh4u-public.php:560
+msgid "An error occurred. Please try again."
+msgstr ""
+
+#: admin/class-wh4u-admin.php:200
+#: public/class-wh4u-public.php:557
+msgid "Available"
+msgstr ""
+
+#: admin/class-wh4u-admin.php:201
+msgid "Unavailable"
+msgstr ""
+
+#: admin/class-wh4u-admin.php:202
+msgid "Are you sure?"
+msgstr ""
+
+#: admin/class-wh4u-admin.php:203
+msgid "Retrying..."
+msgstr ""
+
+#: admin/class-wh4u-admin.php:204
+msgid "Success!"
+msgstr ""
+
+#: admin/class-wh4u-admin.php:207
+msgid "No results found."
+msgstr ""
+
+#: admin/class-wh4u-admin.php:210
+msgid "No pricing data available."
+msgstr ""
+
+#. translators: %s: action name (e.g. "approve" or "reject")
+#: admin/class-wh4u-admin.php:214
+#, php-format
+msgid "Are you sure you want to %s this order?"
+msgstr ""
+
+#: admin/class-wh4u-admin.php:261
+msgid "Domain Management"
+msgstr ""
+
+#: includes/class-wh4u-api-client.php:64
+msgid "Reseller settings not found. Please configure your API credentials."
+msgstr ""
+
+#: includes/class-wh4u-api-client.php:71
+msgid "Failed to decrypt API key. The encryption key may have changed. Please re-save your API key under Domains > My Settings."
+msgstr ""
+
+#: includes/class-wh4u-api-client.php:203
+msgid "API request failed."
+msgstr ""
+
+#: includes/class-wh4u-encryption.php:242
+msgid "WH4U Domains: No strong encryption key source is available. Define WH4U_ENCRYPTION_KEY in wp-config.php or ensure AUTH_KEY and SECURE_AUTH_KEY are configured. Encryption is currently disabled."
+msgstr ""
+
+#: includes/class-wh4u-encryption.php:247
+msgid "WH4U Domains: A legacy database-stored encryption key was detected and is being migrated to a stronger key source. This happens automatically on admin page loads and should complete shortly."
+msgstr ""
+
+#. translators: 1: domain name
+#: includes/class-wh4u-notifications.php:47
+#, php-format
+msgid "[WH4U Domains] New Public Registration Request: %s"
+msgstr ""
+
+#: includes/class-wh4u-notifications.php:65
+msgid "State"
+msgstr ""
+
+#: includes/class-wh4u-notifications.php:66
+msgid "Country"
+msgstr ""
+
+#: includes/class-wh4u-notifications.php:67
+msgid "Zip"
+msgstr ""
+
+#: includes/class-wh4u-notifications.php:71
+msgid "New Public Domain Registration Request"
+msgstr ""
+
+#: includes/class-wh4u-notifications.php:83
+msgid "Review this order in the WordPress admin under Domains > Public Orders."
+msgstr ""
+
+#. translators: 1: event type, 2: domain name
+#: includes/class-wh4u-notifications.php:153
+#, php-format
+msgid "[WH4U Domains] Order %1$s: %2$s"
+msgstr ""
+
+#: includes/class-wh4u-notifications.php:194
+msgid "Pending Manual Processing"
+msgstr ""
+
+#. translators: %s: order status label (e.g. "Completed", "Failed")
+#: includes/class-wh4u-notifications.php:205
+#, php-format
+msgid "Domain Order %s"
+msgstr ""
+
+#: includes/class-wh4u-public-order-processor.php:53
+msgid "No authenticated user found to process the API call."
+msgstr ""
+
+#: includes/class-wh4u-public-order-processor.php:67
+msgid "Missing domain or registration period."
+msgstr ""
+
+#: includes/class-wh4u-public-order-processor.php:183
+msgid "No default nameservers configured. Please set them under Domains > Settings > Credentials."
+msgstr ""
+
+#: includes/class-wh4u-public-order-processor.php:191
+msgid "At least NS1 and NS2 must be configured in your reseller settings."
+msgstr ""
+
+#. translators: %s: theme name
+#: includes/class-wh4u-theme-compat.php:238
+#, php-format
+msgid "Auto-detected from %s"
+msgstr ""
+
+#: public/class-wh4u-public.php:190
+msgid "Domain search"
+msgstr ""
+
+#: public/class-wh4u-public.php:206
+msgid "Domain name"
+msgstr ""
+
+#: public/class-wh4u-public.php:215
+msgid "Popular extensions"
+msgstr ""
+
+#: public/class-wh4u-public.php:304
+#: public/class-wh4u-public.php:413
+msgid "e.g. US"
+msgstr ""
+
+#: public/class-wh4u-public.php:336
+#: public/class-wh4u-public.php:445
+msgid "Back to results"
+msgstr ""
+
+#: public/class-wh4u-public.php:339
+msgid "Submit Registration Request"
+msgstr ""
+
+#: public/class-wh4u-public.php:350
+#: public/class-wh4u-public.php:572
+msgid "Transfer this domain"
+msgstr ""
+
+#: public/class-wh4u-public.php:351
+#: public/class-wh4u-public.php:573
+msgid "Fill in your details and the EPP/Auth code to transfer this domain."
+msgstr ""
+
+#: public/class-wh4u-public.php:358
+msgid "Optional -- can be provided later"
+msgstr ""
+
+#: public/class-wh4u-public.php:448
+msgid "Submit Transfer Request"
+msgstr ""
+
+#: public/class-wh4u-public.php:558
+msgid "Taken"
+msgstr ""
+
+#: public/class-wh4u-public.php:561
+msgid "No results found for this search."
+msgstr ""
+
+#: public/class-wh4u-public.php:563
+msgid "Submitting..."
+msgstr ""
+
+#: public/class-wh4u-public.php:568
+msgid "Please enter a valid phone number."
+msgstr ""
+
+#: public/class-wh4u-public.php:569
+msgid "Please enter a 2-letter country code (e.g. US, GR, DE)."
+msgstr ""
+
+#: public/class-wh4u-public.php:570
+msgid "Please fill in all required fields."
+msgstr ""
+
+#: public/class-wh4u-public.php:574
 msgid "Your domain transfer request has been submitted. We will contact you shortly."
 msgstr ""
 
-#: rest-api/class-wh4u-rest-public-orders.php
+#: public/class-wh4u-public.php:576
+msgid "Please complete the security check."
+msgstr ""
+
+#: rest-api/class-wh4u-rest-controller.php:36
+msgid "You must be logged in."
+msgstr ""
+
+#: rest-api/class-wh4u-rest-controller.php:43
+msgid "You do not have permission to access this resource."
+msgstr ""
+
+#: rest-api/class-wh4u-rest-controller.php:62
+#: rest-api/class-wh4u-rest-controller.php:82
+#: rest-api/class-wh4u-rest-domains.php:117
+msgid "Rate limit exceeded. Please try again shortly."
+msgstr ""
+
+#: rest-api/class-wh4u-rest-domains.php:138
+msgid "Shopping cart redirect is not configured or the URL could not be built."
+msgstr ""
+
+#: rest-api/class-wh4u-rest-domains.php:295
+msgid "Could not retrieve TLD list from API."
+msgstr ""
+
+#: rest-api/class-wh4u-rest-domains.php:366
+msgid "Anonymous domain lookups are not enabled on this site. Please sign in or ask the site administrator to configure a designated reseller under Domains > Settings."
+msgstr ""
+
+#: rest-api/class-wh4u-rest-orders.php:147
+#: rest-api/class-wh4u-rest-orders.php:312
+#: rest-api/class-wh4u-rest-queue.php:48
+msgid "Rate limit exceeded."
+msgstr ""
+
+#: rest-api/class-wh4u-rest-orders.php:194
+msgid "Order created. The reseller has been notified for manual processing."
+msgstr ""
+
+#: rest-api/class-wh4u-rest-orders.php:257
+msgid "Order queued for retry due to a temporary API issue."
+msgstr ""
+
+#: rest-api/class-wh4u-rest-orders.php:298
+msgid "Domain order completed successfully."
+msgstr ""
+
+#: rest-api/class-wh4u-rest-pricing.php:273
+msgid "Public pricing/TLD queries are not enabled on this site."
+msgstr ""
+
+#: rest-api/class-wh4u-rest-public-orders.php:128
+msgid "Too many submissions. Please try again later."
+msgstr ""
+
+#: rest-api/class-wh4u-rest-public-orders.php:266
+#: rest-api/class-wh4u-rest-public-orders.php:366
+msgid "Your request has been submitted."
+msgstr ""
+
+#: rest-api/class-wh4u-rest-public-orders.php:275
+#: rest-api/class-wh4u-rest-public-orders.php:375
+msgid "Security verification failed. Please try again."
+msgstr ""
+
+#: rest-api/class-wh4u-rest-public-orders.php:312
+#: rest-api/class-wh4u-rest-public-orders.php:413
+msgid "Failed to save your request. Please try again."
+msgstr ""
+
+#: rest-api/class-wh4u-rest-public-orders.php:332
+msgid "Your domain registration request has been submitted successfully. We will contact you shortly."
+msgstr ""
+
+#: rest-api/class-wh4u-rest-public-orders.php:424
 msgid "Your domain transfer request has been submitted successfully. We will contact you shortly."
 msgstr ""
 
-#: rest-api/class-wh4u-rest-public-orders.php
+#: rest-api/class-wh4u-rest-public-orders.php:445
+msgid "Public order not found."
+msgstr ""
+
+#: rest-api/class-wh4u-rest-public-orders.php:460
+msgid "Failed to update order status."
+msgstr ""
+
+#. translators: %s: new status label
+#: rest-api/class-wh4u-rest-public-orders.php:485
+#, php-format
+msgid "Order status updated to %s."
+msgstr ""
+
+#: rest-api/class-wh4u-rest-public-orders.php:501
 msgid "Order approved and domain transfer completed successfully."
 msgstr ""
 
-#: rest-api/class-wh4u-rest-public-orders.php
+#: rest-api/class-wh4u-rest-public-orders.php:502
+msgid "Order approved and domain registration completed successfully."
+msgstr ""
+
+#: rest-api/class-wh4u-rest-public-orders.php:505
 msgid "Order approved. Transfer queued for retry due to a temporary API issue."
 msgstr ""
 
-#: rest-api/class-wh4u-rest-public-orders.php
+#: rest-api/class-wh4u-rest-public-orders.php:506
+msgid "Order approved. Registration queued for retry due to a temporary API issue."
+msgstr ""
+
+#. translators: %s: error message
+#: rest-api/class-wh4u-rest-public-orders.php:511
+#, php-format
 msgid "Order approved but transfer failed: %s"
 msgstr ""
 
-#: admin/class-wh4u-admin-appearance.php
-msgid "Show Transfer"
+#. translators: %s: error message
+#: rest-api/class-wh4u-rest-public-orders.php:516
+#, php-format
+msgid "Order approved but registration failed: %s"
 msgstr ""
 
-#: admin/class-wh4u-admin-appearance.php
-msgid "Show \"Transfer\" button on taken domains"
+#: rest-api/class-wh4u-rest-queue.php:64
+msgid "Queue item not found."
+msgstr ""
+
+#: rest-api/class-wh4u-rest-queue.php:71
+msgid "You cannot retry this item."
+msgstr ""
+
+#: rest-api/class-wh4u-rest-queue.php:80
+msgid "Failed to re-queue item."
+msgstr ""
+
+#: rest-api/class-wh4u-rest-queue.php:86
+msgid "Item re-queued for retry."
+msgstr ""
+
+#: wh4u-domains.php:159
+msgctxt "post type general name"
+msgid "Public Orders"
+msgstr ""
+
+#: wh4u-domains.php:160
+msgctxt "post type singular name"
+msgid "Public Order"
+msgstr ""
+
+#: wh4u-domains.php:161
+msgctxt "admin menu"
+msgid "Public Orders"
+msgstr ""
+
+#: wh4u-domains.php:162
+msgid "All Public Orders"
+msgstr ""
+
+#: wh4u-domains.php:163
+msgid "View Order"
+msgstr ""
+
+#: wh4u-domains.php:164
+msgid "Search Orders"
+msgstr ""
+
+#: wh4u-domains.php:166
+msgid "No orders found in Trash."
+msgstr ""
+
+#: wh4u-domains.php:183
+msgctxt "order status"
+msgid "Pending Review"
+msgstr ""
+
+#. translators: %s: number of orders
+#: wh4u-domains.php:189
+#, php-format
+msgid "Pending <span class=\"count\">(%s)</span>"
+msgid_plural "Pending <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: wh4u-domains.php:193
+msgctxt "order status"
+msgid "Approved"
+msgstr ""
+
+#. translators: %s: number of orders
+#: wh4u-domains.php:199
+#, php-format
+msgid "Approved <span class=\"count\">(%s)</span>"
+msgid_plural "Approved <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: wh4u-domains.php:203
+msgctxt "order status"
+msgid "Rejected"
+msgstr ""
+
+#. translators: %s: number of orders
+#: wh4u-domains.php:209
+#, php-format
+msgid "Rejected <span class=\"count\">(%s)</span>"
+msgid_plural "Rejected <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: wh4u-domains.php:227
+msgid "Every Five Minutes"
+msgstr ""
+
+#: blocks/domain-lookup/index.js:37
+msgid "Search Settings"
+msgstr ""
+
+#: blocks/domain-lookup/index.js:42
+#: blocks/domain-lookup/index.js:51
+#: blocks/domain-lookup/index.js:71
+#: blocks/domain-lookup/index.js:80
+msgid "Leave empty to use the global Appearance setting."
+msgstr ""
+
+#: blocks/domain-lookup/index.js:91
+msgid "These settings override the global Appearance tab. Leave at defaults to inherit."
+msgstr ""
+
+#: blocks/domain-lookup/index.js:106
+msgid "Border Radius (px)"
+msgstr ""
+
+#: blocks/domain-lookup/index.js:124
+msgid "Accent Color"
+msgstr ""
+
+#: blocks/domain-lookup/block.json
+msgctxt "block title"
+msgid "Domain Lookup"
+msgstr ""
+
+#: blocks/domain-lookup/block.json
+msgctxt "block description"
+msgid "A domain availability search form powered by WH4U Domains."
+msgstr ""
+
+#: blocks/domain-lookup/block.json
+msgctxt "block keyword"
+msgid "domain"
+msgstr ""
+
+#: blocks/domain-lookup/block.json
+msgctxt "block keyword"
+msgid "search"
+msgstr ""
+
+#: blocks/domain-lookup/block.json
+msgctxt "block keyword"
+msgid "lookup"
+msgstr ""
+
+#: blocks/domain-lookup/block.json
+msgctxt "block keyword"
+msgid "availability"
+msgstr ""
+
+#: blocks/domain-lookup/block.json
+msgctxt "block keyword"
+msgid "whois"
+msgstr ""
+
+#: blocks/domain-lookup/block.json
+msgctxt "block keyword"
+msgid "register"
 msgstr ""

@@ -26,6 +26,13 @@ class WH4U_Deactivator {
 
         wp_clear_scheduled_hook( 'wh4u_process_queue' );
 
+        $prune_timestamp = wp_next_scheduled( 'wh4u_prune_logs' );
+        if ( $prune_timestamp ) {
+            wp_unschedule_event( $prune_timestamp, 'wh4u_prune_logs' );
+        }
+
+        wp_clear_scheduled_hook( 'wh4u_prune_logs' );
+
         flush_rewrite_rules();
     }
 }

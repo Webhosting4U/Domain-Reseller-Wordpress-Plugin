@@ -156,13 +156,20 @@ class WH4U_Admin_Reseller {
 	/**
 	 * Save reseller settings from POST data.
 	 *
-	 * Nonce is verified by the caller (WH4U_Admin_Settings::render_page).
+	 * Nonce is re-verified here as defense-in-depth: the caller
+	 * (WH4U_Admin_Settings::render_page) also checks it, but this guards
+	 * against future callers that might forget.
 	 *
 	 * @param int $user_id WordPress user ID.
 	 * @return true|WP_Error
 	 */
 	public static function save_reseller_settings( $user_id ) {
-		// phpcs:disable WordPress.Security.NonceVerification.Missing -- nonce verified in WH4U_Admin_Settings::render_page()
+		// phpcs:disable WordPress.Security.NonceVerification.Missing -- nonce verified on next line
+		$nonce = isset( $_POST['_wh4u_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['_wh4u_nonce'] ) ) : '';
+		if ( ! wp_verify_nonce( $nonce, 'wh4u_reseller_settings_nonce' ) ) {
+			return new WP_Error( 'invalid_nonce', __( 'Security check failed.', 'wh4u-domains' ) );
+		}
+
 		global $wpdb;
 
 		$email = isset( $_POST['reseller_email'] ) ? sanitize_email( wp_unslash( $_POST['reseller_email'] ) ) : '';

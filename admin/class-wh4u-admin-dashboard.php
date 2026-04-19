@@ -156,17 +156,22 @@ class WH4U_Admin_Dashboard {
                     <div class="wh4u-dash-links">
                         <?php
                         $links = array(
-                            array( 'page' => 'wh4u-domains-register', 'icon' => 'dashicons-plus-alt',      'label' => __( 'Register Domain', 'wh4u-domains' ) ),
-                            array( 'page' => 'wh4u-domains-transfer', 'icon' => 'dashicons-migrate',        'label' => __( 'Transfer Domain', 'wh4u-domains' ) ),
-                            array( 'page' => 'wh4u-domains-pricing',  'icon' => 'dashicons-tag',            'label' => __( 'TLD Pricing', 'wh4u-domains' ) ),
-                            array( 'page' => 'wh4u-domains-history',  'icon' => 'dashicons-list-view',      'label' => __( 'Order History', 'wh4u-domains' ) ),
-                            array( 'page' => 'wh4u-domains-settings', 'icon' => 'dashicons-admin-generic',  'label' => __( 'Settings', 'wh4u-domains' ) ),
+                            array( 'page' => 'wh4u-domains-register', 'icon' => 'dashicons-plus-alt',      'label' => __( 'Register Domain', 'wh4u-domains' ), 'external' => false ),
+                            array( 'page' => 'wh4u-domains-transfer', 'icon' => 'dashicons-migrate',        'label' => __( 'Transfer Domain', 'wh4u-domains' ), 'external' => false ),
+                            array( 'url'  => 'https://webhosting4u.gr/customers/index.php?m=DomainsReseller&mg-page=Prices', 'icon' => 'dashicons-tag', 'label' => __( 'TLD Pricing', 'wh4u-domains' ), 'external' => true ),
+                            array( 'page' => 'wh4u-domains-history',  'icon' => 'dashicons-list-view',      'label' => __( 'Order History', 'wh4u-domains' ), 'external' => false ),
+                            array( 'page' => 'wh4u-domains-settings', 'icon' => 'dashicons-admin-generic',  'label' => __( 'Settings', 'wh4u-domains' ), 'external' => false ),
                         );
                         foreach ( $links as $link ) :
+                            $href       = ! empty( $link['external'] ) ? $link['url'] : admin_url( 'admin.php?page=' . $link['page'] );
+                            $target_rel = ! empty( $link['external'] ) ? ' target="_blank" rel="noopener noreferrer"' : '';
                             ?>
-                            <a href="<?php echo esc_url( admin_url( 'admin.php?page=' . $link['page'] ) ); ?>" class="wh4u-dash-link">
+                            <a href="<?php echo esc_url( $href ); ?>" class="wh4u-dash-link"<?php echo $target_rel; ?>>
                                 <span class="dashicons <?php echo esc_attr( $link['icon'] ); ?>"></span>
                                 <?php echo esc_html( $link['label'] ); ?>
+                                <?php if ( ! empty( $link['external'] ) ) : ?>
+                                    <span class="dashicons dashicons-external" style="font-size:14px;width:14px;height:14px;vertical-align:middle;opacity:0.7;"></span>
+                                <?php endif; ?>
                             </a>
                         <?php endforeach; ?>
                     </div>
@@ -222,11 +227,6 @@ class WH4U_Admin_Dashboard {
                                     ?></td>
                                 </tr>
                                 <tr>
-                                    <td><code>show_pricing</code></td>
-                                    <td><code>false</code></td>
-                                    <td><?php esc_html_e( 'Show domain prices in search results. Values: true / false.', 'wh4u-domains' ); ?></td>
-                                </tr>
-                                <tr>
                                     <td><code>show_suggestions</code></td>
                                     <td><code>true</code></td>
                                     <td><?php esc_html_e( 'Show alternative TLD suggestions when a domain is unavailable. Values: true / false.', 'wh4u-domains' ); ?></td>
@@ -254,8 +254,8 @@ class WH4U_Admin_Dashboard {
                         <h4 style="margin:8px 0 4px;"><?php esc_html_e( 'Custom text and colors', 'wh4u-domains' ); ?></h4>
                         <code class="wh4u-shortcode-display">[wh4u_domain_lookup placeholder="<?php esc_attr_e( 'Find your domain', 'wh4u-domains' ); ?>" button_text="<?php esc_attr_e( 'Go', 'wh4u-domains' ); ?>" accent_color="#e91e63"]</code>
 
-                        <h4 style="margin:12px 0 4px;"><?php esc_html_e( 'Flat style with pricing', 'wh4u-domains' ); ?></h4>
-                        <code class="wh4u-shortcode-display">[wh4u_domain_lookup style_variant="flat" show_pricing="true" border_radius="0"]</code>
+                        <h4 style="margin:12px 0 4px;"><?php esc_html_e( 'Flat style, sharp corners', 'wh4u-domains' ); ?></h4>
+                        <code class="wh4u-shortcode-display">[wh4u_domain_lookup style_variant="flat" border_radius="0"]</code>
 
                         <h4 style="margin:12px 0 4px;"><?php esc_html_e( 'Minimal style, no suggestions', 'wh4u-domains' ); ?></h4>
                         <code class="wh4u-shortcode-display">[wh4u_domain_lookup style_variant="minimal" show_suggestions="false"]</code>
@@ -432,7 +432,8 @@ class WH4U_Admin_Dashboard {
 
         $response = $client->get( '/tlds' );
         if ( is_wp_error( $response ) ) {
-            $result['message'] = __( 'API call failed: ', 'wh4u-domains' ) . $response->get_error_message();
+            /* translators: %s: error message returned by the API */
+            $result['message'] = sprintf( __( 'API call failed: %s', 'wh4u-domains' ), $response->get_error_message() );
             return $result;
         }
 

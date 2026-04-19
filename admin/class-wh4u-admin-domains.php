@@ -273,7 +273,10 @@ class WH4U_Admin_Domains {
         foreach ( $contact_types as $type => $label ) :
             ?>
             <h2>
-                <?php echo esc_html( $label . ' ' . __( 'Contact', 'wh4u-domains' ) ); ?>
+                <?php
+                /* translators: %s: contact type (e.g. Registrant, Admin, Technical, Billing) */
+                echo esc_html( sprintf( __( '%s Contact', 'wh4u-domains' ), $label ) );
+                ?>
                 <?php if ( $type !== 'registrant' ) : ?>
                     <label class="wh4u-copy-contact">
                         <input type="checkbox" class="wh4u-copy-registrant" data-target="<?php echo esc_attr( $type ); ?>" />

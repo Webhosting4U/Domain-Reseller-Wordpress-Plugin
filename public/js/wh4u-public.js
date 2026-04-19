@@ -12,8 +12,6 @@
 	var config = window.wh4uPublic || {};
 	var currentDomain = '';
 	var currentOrderType = 'register';
-	var pricingCache = null;
-	var pricingPromise = null;
 	var placeholderTimer = null;
 	var turnstileWidgets = {};
 
@@ -60,7 +58,6 @@
 
 		initTldChips();
 		initPlaceholderCycling();
-		prefetchPricing();
 		initTurnstile();
 	}
 
@@ -213,43 +210,6 @@
 		}
 	}
 
-	/* ─── Pricing Prefetch ───────────────────────────────────── */
-
-	function prefetchPricing() {
-		var container = document.querySelector( '.wh4u-domains' );
-		if ( ! container || container.getAttribute( 'data-show-pricing' ) !== 'true' ) {
-			return;
-		}
-		pricingPromise = fetchJSON( config.restUrl + 'tlds/pricing', { method: 'GET' } )
-			.then( function( data ) {
-				pricingCache = {};
-				var items = Array.isArray( data ) ? data : [];
-				for ( var i = 0; i < items.length; i++ ) {
-					var tld = items[i].tld || '';
-					if ( tld && ! tld.startsWith( '.' ) ) {
-						tld = '.' + tld;
-					}
-					pricingCache[ tld.toLowerCase() ] = items[i].register || '';
-				}
-				return pricingCache;
-			} )
-			.catch( function() {
-				pricingCache = {};
-				return pricingCache;
-			} );
-	}
-
-	function getPriceForTld( tld ) {
-		if ( ! pricingCache ) {
-			return '';
-		}
-		tld = ( tld || '' ).toLowerCase();
-		if ( ! tld.startsWith( '.' ) ) {
-			tld = '.' + tld;
-		}
-		return pricingCache[ tld ] || '';
-	}
-
 	/* ─── Skeleton Loading ───────────────────────────────────── */
 
 	function showSkeletons() {
@@ -341,9 +301,6 @@
 			return;
 		}
 
-		var showPricing = container.closest( '.wh4u-domains' ) &&
-			container.closest( '.wh4u-domains' ).getAttribute( 'data-show-pricing' ) === 'true';
-
 		items.forEach( function( item, index ) {
 			var domain      = item.domainName || item.domain || item.sld || '';
 			var isAvailable = item.status === 'available' || item.isAvailable === true || item.available === true;
@@ -366,16 +323,6 @@
 			statusEl.className = 'wh4u-domains__result-status wh4u-domains__result-status--' + ( isAvailable ? 'available' : 'unavailable' );
 			statusEl.innerHTML = ( isAvailable ? SVG_CHECK : SVG_X ) + ' ' + escHtml( isAvailable ? config.i18n.available : config.i18n.unavailable );
 			card.appendChild( statusEl );
-
-			if ( showPricing && isAvailable ) {
-				var price = getPriceForTld( nameParts.tld );
-				if ( price ) {
-					var priceEl = document.createElement( 'span' );
-					priceEl.className = 'wh4u-domains__result-price';
-					priceEl.textContent = price + '/yr';
-					card.appendChild( priceEl );
-				}
-			}
 
 			var actionEl = document.createElement( 'div' );
 			actionEl.className = 'wh4u-domains__result-action';

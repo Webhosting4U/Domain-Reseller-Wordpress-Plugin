@@ -40,9 +40,6 @@
 			"type": "string",
 			"enum": [ "elevated", "flat", "bordered", "minimal" ]
 		},
-		"showPricing": {
-			"type": "boolean"
-		},
 		"showSuggestions": {
 			"type": "boolean"
 		},

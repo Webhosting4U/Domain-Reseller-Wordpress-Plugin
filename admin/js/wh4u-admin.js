@@ -304,46 +304,6 @@
             });
     });
 
-    /* ── Pricing Page ────────────────────────── */
-
-    function loadPricing() {
-        if (!$('#wh4u-pricing-table').length) return;
-
-        $('#wh4u-pricing-loading').show();
-
-        api.request('GET', 'tlds/pricing')
-            .done(function(data) {
-                var $tbody = $('#wh4u-pricing-table tbody');
-                $tbody.empty();
-
-                var items = Array.isArray(data) ? data : [];
-
-                if (!items.length) {
-                    $tbody.append('<tr><td colspan="3">' + escHtml(api.i18n.noPricing) + '</td></tr>');
-                } else {
-                    $.each(items, function(_, item) {
-                        $tbody.append(
-                            '<tr>' +
-                            '<td>' + escHtml(item.tld || '') + '</td>' +
-                            '<td>' + escHtml(item.register || '-') + '</td>' +
-                            '<td>' + escHtml(item.transfer || '-') + '</td>' +
-                            '</tr>'
-                        );
-                    });
-                }
-
-                $('#wh4u-pricing-container').show();
-            })
-            .fail(function(xhr) {
-                var msg = (xhr.responseJSON && xhr.responseJSON.message) || api.i18n.error;
-                $('#wh4u-pricing-error p').text(msg);
-                $('#wh4u-pricing-error').show();
-            })
-            .always(function() {
-                $('#wh4u-pricing-loading').hide();
-            });
-    }
-
     /* ── Credits Page ────────────────────────── */
 
     function loadCredits() {
@@ -426,7 +386,6 @@
 
     $(document).ready(function() {
         autoFillDomain();
-        loadPricing();
         loadCredits();
 
         // Store original button text

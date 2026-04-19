@@ -47,7 +47,6 @@ class WH4U_Admin_Appearance {
 			'placeholder'         => '',
 			'button_text'         => '',
 			'show_search_icon'    => true,
-			'show_pricing'        => false,
 			'show_suggestions'    => true,
 			'show_transfer'       => true,
 			'suggestion_count'    => 5,
@@ -171,7 +170,6 @@ class WH4U_Admin_Appearance {
 		}
 
 		$sanitized['show_search_icon'] = ! empty( $input['show_search_icon'] );
-		$sanitized['show_pricing']     = ! empty( $input['show_pricing'] );
 		$sanitized['show_suggestions'] = ! empty( $input['show_suggestions'] );
 		$sanitized['show_transfer']    = ! empty( $input['show_transfer'] );
 
@@ -628,19 +626,6 @@ class WH4U_Admin_Appearance {
 			<h3><?php esc_html_e( 'Domain Results', 'wh4u-domains' ); ?></h3>
 			<table class="form-table">
 				<tr>
-					<th scope="row"><?php esc_html_e( 'Show Pricing', 'wh4u-domains' ); ?></th>
-					<td>
-						<label>
-							<input type="checkbox"
-								   name="<?php echo esc_attr( self::OPTION_KEY ); ?>[show_pricing]"
-								   value="1"
-								   data-preview="show_pricing"
-								   <?php checked( $s['show_pricing'] ); ?> />
-							<?php esc_html_e( 'Display domain pricing in search results', 'wh4u-domains' ); ?>
-						</label>
-					</td>
-				</tr>
-				<tr>
 					<th scope="row"><?php esc_html_e( 'Show Suggestions', 'wh4u-domains' ); ?></th>
 					<td>
 						<label>
@@ -860,7 +845,6 @@ class WH4U_Admin_Appearance {
 			'button_text'      => ! empty( $settings['button_text'] ) ? $settings['button_text'] : __( 'Search', 'wh4u-domains' ),
 			'accent_color'     => $settings['accent_color'],
 			'style_variant'    => $settings['style_variant'],
-			'show_pricing'     => $settings['show_pricing'] ? 'true' : 'false',
 			'show_suggestions' => $settings['show_suggestions'] ? 'true' : 'false',
 			'form_title'       => ! empty( $settings['form_title'] ) ? $settings['form_title'] : __( 'Register this domain', 'wh4u-domains' ),
 			'form_description' => ! empty( $settings['form_description'] ) ? $settings['form_description'] : __( 'Fill in your details below to secure this domain.', 'wh4u-domains' ),

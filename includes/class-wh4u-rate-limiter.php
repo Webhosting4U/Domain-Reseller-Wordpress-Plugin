@@ -114,13 +114,51 @@ class WH4U_Rate_Limiter {
     /**
      * Get client IP address safely.
      *
+     * By default, uses REMOTE_ADDR only. When the site sits behind a reverse
+     * proxy (Cloudflare, nginx, a load balancer), admins can opt into reading
+     * a specific trusted header by setting `trusted_proxy_header` in
+     * wh4u_settings (e.g. 'cf-connecting-ip', 'x-real-ip', 'x-forwarded-for').
+     *
+     * Only the LEFTMOST value of X-Forwarded-For is trusted, and it is only
+     * consulted if REMOTE_ADDR appears in the configured `trusted_proxies`
+     * list (CIDR-free exact IP match). Without both settings, client-supplied
+     * headers are ignored entirely — this is deliberate and must be documented
+     * for admins.
+     *
      * @return string IP address.
      */
     private static function get_client_ip() {
-        if ( ! empty( $_SERVER['REMOTE_ADDR'] ) ) {
-            return sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) );
+        $remote = ! empty( $_SERVER['REMOTE_ADDR'] )
+            ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) )
+            : '0.0.0.0';
+
+        $settings = get_option( 'wh4u_settings', array() );
+        $header   = isset( $settings['trusted_proxy_header'] ) ? strtolower( trim( (string) $settings['trusted_proxy_header'] ) ) : '';
+        $proxies  = isset( $settings['trusted_proxies'] ) ? (array) $settings['trusted_proxies'] : array();
+
+        if ( $header === '' || empty( $proxies ) ) {
+            return $remote;
         }
-        return '0.0.0.0';
+
+        // Only trust the header when the immediate connection (REMOTE_ADDR)
+        // comes from a declared proxy. This prevents client-supplied spoofing.
+        if ( ! in_array( $remote, $proxies, true ) ) {
+            return $remote;
+        }
+
+        $server_key = 'HTTP_' . strtoupper( str_replace( '-', '_', $header ) );
+        if ( empty( $_SERVER[ $server_key ] ) ) {
+            return $remote;
+        }
+
+        $raw  = sanitize_text_field( wp_unslash( $_SERVER[ $server_key ] ) );
+        $left = trim( explode( ',', $raw )[0] );
+
+        if ( filter_var( $left, FILTER_VALIDATE_IP ) ) {
+            return $left;
+        }
+
+        return $remote;
     }
 
     /**

@@ -21,6 +21,55 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WH4U_REST_Public_Orders extends WH4U_REST_Controller {
 
 	/**
+	 * Postmeta keys holding PII that must be encrypted at rest.
+	 *
+	 * @var string[]
+	 */
+	private static $pii_meta_keys = array(
+		'_wh4u_first_name',
+		'_wh4u_last_name',
+		'_wh4u_email',
+		'_wh4u_phone',
+		'_wh4u_company',
+		'_wh4u_address',
+		'_wh4u_city',
+		'_wh4u_state',
+		'_wh4u_country',
+		'_wh4u_zip',
+		'_wh4u_eppcode',
+	);
+
+	/**
+	 * Return the list of postmeta keys that store encrypted PII.
+	 *
+	 * @return string[]
+	 */
+	public static function get_pii_meta_keys() {
+		return self::$pii_meta_keys;
+	}
+
+	/**
+	 * Produce an encrypted copy of a meta array for storage.
+	 *
+	 * Keys listed in self::$pii_meta_keys are passed through
+	 * WH4U_Encryption::encrypt(); other keys (domain, order type, period,
+	 * ip_hash) are stored plaintext because they are operational metadata,
+	 * not registrant PII.
+	 *
+	 * @param array $meta Plaintext meta array.
+	 * @return array Meta array with PII fields encrypted.
+	 */
+	private static function encrypt_pii_meta( $meta ) {
+		$encrypted = $meta;
+		foreach ( self::$pii_meta_keys as $key ) {
+			if ( isset( $encrypted[ $key ] ) && $encrypted[ $key ] !== '' ) {
+				$encrypted[ $key ] = WH4U_Encryption::encrypt( (string) $encrypted[ $key ] );
+			}
+		}
+		return $encrypted;
+	}
+
+	/**
 	 * Register public order route.
 	 *
 	 * @return void
@@ -99,7 +148,7 @@ class WH4U_REST_Public_Orders extends WH4U_REST_Controller {
 					return is_string( $value )
 						&& strlen( $value ) >= 3
 						&& strlen( $value ) <= 253
-						&& preg_match( '/^[a-zA-Z0-9][a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', $value ) === 1;
+						&& preg_match( '/^[a-zA-Z0-9][a-zA-Z0-9.-]+\.[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9]$/', $value ) === 1;
 				},
 			),
 			'regperiod' => array(
@@ -254,7 +303,7 @@ class WH4U_REST_Public_Orders extends WH4U_REST_Controller {
 			'post_type'   => 'wh4u_public_order',
 			'post_title'  => sanitize_text_field( $domain ),
 			'post_status' => 'wh4u-pending',
-			'meta_input'  => $meta,
+			'meta_input'  => self::encrypt_pii_meta( $meta ),
 		), true );
 
 		if ( is_wp_error( $post_id ) ) {
@@ -268,10 +317,12 @@ class WH4U_REST_Public_Orders extends WH4U_REST_Controller {
 		/**
 		 * Fires after a new public domain registration order is stored.
 		 *
-		 * Hooked by WH4U_Notifications to dispatch admin email.
+		 * Hooked by WH4U_Notifications to dispatch admin email. The $meta
+		 * payload is the plaintext values; postmeta itself is encrypted at
+		 * rest. Handlers that need to persist data must encrypt it themselves.
 		 *
 		 * @param int   $post_id WP post ID of the public order.
-		 * @param array $meta    Sanitized order meta values.
+		 * @param array $meta    Sanitized plaintext order meta values.
 		 */
 		do_action( 'wh4u_new_public_order', $post_id, $meta );
 
@@ -353,7 +404,7 @@ class WH4U_REST_Public_Orders extends WH4U_REST_Controller {
 			'post_type'   => 'wh4u_public_order',
 			'post_title'  => sanitize_text_field( $domain ),
 			'post_status' => 'wh4u-pending',
-			'meta_input'  => $meta,
+			'meta_input'  => self::encrypt_pii_meta( $meta ),
 		), true );
 
 		if ( is_wp_error( $post_id ) ) {

@@ -703,10 +703,6 @@
 	.wh4u-domains__tld-chips::-webkit-scrollbar {
 		display: none;
 	}
-
-	.wh4u-domains__result-price {
-		flex-basis: 100%;
-	}
 }
 
 /* ──────────────────────────────────────────────────────────────
@@ -802,17 +798,6 @@
 	transform: scale(0.96);
 }
 
-
-/* ──────────────────────────────────────────────────────────────
-   Pricing Display
-   ────────────────────────────────────────────────────────────── */
-.wh4u-domains__result-price {
-	font-size: 0.875rem;
-	font-weight: 600;
-	color: var(--wh4u-text-secondary);
-	white-space: nowrap;
-	flex-shrink: 0;
-}
 
 /* ──────────────────────────────────────────────────────────────
    Animated Status Icons

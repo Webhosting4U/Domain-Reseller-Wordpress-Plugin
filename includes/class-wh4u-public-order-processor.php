@@ -69,18 +69,18 @@ class WH4U_Public_Order_Processor {
 		}
 
 		$contact = array(
-			'firstname'   => get_post_meta( $post_id, '_wh4u_first_name', true ),
-			'lastname'    => get_post_meta( $post_id, '_wh4u_last_name', true ),
-			'email'       => get_post_meta( $post_id, '_wh4u_email', true ),
-			'address1'    => get_post_meta( $post_id, '_wh4u_address', true ),
-			'city'        => get_post_meta( $post_id, '_wh4u_city', true ),
-			'state'       => get_post_meta( $post_id, '_wh4u_state', true ),
-			'postcode'    => get_post_meta( $post_id, '_wh4u_zip', true ),
-			'country'     => get_post_meta( $post_id, '_wh4u_country', true ),
-			'phonenumber' => get_post_meta( $post_id, '_wh4u_phone', true ),
+			'firstname'   => WH4U_Encryption::maybe_decrypt( get_post_meta( $post_id, '_wh4u_first_name', true ) ),
+			'lastname'    => WH4U_Encryption::maybe_decrypt( get_post_meta( $post_id, '_wh4u_last_name', true ) ),
+			'email'       => WH4U_Encryption::maybe_decrypt( get_post_meta( $post_id, '_wh4u_email', true ) ),
+			'address1'    => WH4U_Encryption::maybe_decrypt( get_post_meta( $post_id, '_wh4u_address', true ) ),
+			'city'        => WH4U_Encryption::maybe_decrypt( get_post_meta( $post_id, '_wh4u_city', true ) ),
+			'state'       => WH4U_Encryption::maybe_decrypt( get_post_meta( $post_id, '_wh4u_state', true ) ),
+			'postcode'    => WH4U_Encryption::maybe_decrypt( get_post_meta( $post_id, '_wh4u_zip', true ) ),
+			'country'     => WH4U_Encryption::maybe_decrypt( get_post_meta( $post_id, '_wh4u_country', true ) ),
+			'phonenumber' => WH4U_Encryption::maybe_decrypt( get_post_meta( $post_id, '_wh4u_phone', true ) ),
 		);
 
-		$company = get_post_meta( $post_id, '_wh4u_company', true );
+		$company = WH4U_Encryption::maybe_decrypt( get_post_meta( $post_id, '_wh4u_company', true ) );
 		if ( ! empty( $company ) ) {
 			$contact['companyname'] = $company;
 		}
@@ -97,7 +97,7 @@ class WH4U_Public_Order_Processor {
 			$api_params   = array(
 				'domain'      => $domain,
 				'regperiod'   => (string) $regperiod,
-				'eppcode'     => get_post_meta( $post_id, '_wh4u_eppcode', true ),
+				'eppcode'     => WH4U_Encryption::maybe_decrypt( get_post_meta( $post_id, '_wh4u_eppcode', true ) ),
 				'contacts'    => array(
 					'registrant' => $contact,
 					'admin'      => $contact,

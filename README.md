@@ -1,8 +1,8 @@
 # WH4U Domains
 
-**WH4U Domains** is a WordPress plugin that turns your site into a front door for domain search, registration, and transfers. It talks to the [DomainsReseller API](https://webhosting4u.gr/) from [WebHosting4U](https://webhosting4u.gr/) so visitors get live availability, pricing context where enabled, and a workflow you control in the admin.
+**WH4U Domains** is a WordPress plugin that turns your site into a front door for domain search, registration, and transfers. It talks to the [DomainsReseller API](https://webhosting4u.gr/) from [WebHosting4U](https://webhosting4u.gr/) so visitors get live availability and a workflow you control in the admin.
 
-[![Stable tag](https://img.shields.io/badge/stable-1.4.1-blue)](https://github.com/Webhosting4U/Domain-Reseller-Wordpress-Plugin)
+[![Stable tag](https://img.shields.io/badge/stable-1.5.5-blue)](https://github.com/Webhosting4U/Domain-Reseller-Wordpress-Plugin)
 [![WordPress](https://img.shields.io/badge/WordPress-6.2%2B-21759b?logo=wordpress&logoColor=white)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4?logo=php&logoColor=white)](https://www.php.net/)
 [![License](https://img.shields.io/badge/license-GPL--3.0-green)](LICENSE)
@@ -50,7 +50,7 @@ Visitors can search immediately. Public registration and transfer requests land 
 | Shortcode | `[wh4u_domain_lookup]` |
 | Block | *Domain Lookup* (Gutenberg) |
 
-Appearance (search bar, chips, pricing display, and related options) is configurable under **Domains → Settings** where your version exposes those screens.
+Appearance (search bar, chips, suggestions, and related options) is configurable under **Domains → Settings** where your version exposes those screens.
 
 ---
 
@@ -62,7 +62,7 @@ If you already bill in WHMCS, Blesta, ClientExec, Upmind, or another system, you
 
 ## Privacy and external services
 
-The plugin must reach **WebHosting4U’s DomainsReseller API** for lookups, orders, TLD lists, and pricing (TLD/pricing responses are cached locally for about **12 hours**).
+The plugin must reach **WebHosting4U’s DomainsReseller API** for lookups, orders, and TLD lists (TLD responses are cached locally for about **12 hours**). TLD-level pricing is browsed through your WHMCS storefront (the dashboard "View Pricing" tile links out to it) rather than rendered inside the plugin.
 
 **Optional:** When Turnstile is enabled, the browser loads Cloudflare’s Turnstile script and the server verifies tokens before accepting public orders.
 
@@ -99,7 +99,7 @@ Yes. Strings are internationalised; a Greek translation ships with the plugin. A
 | `wh4u-domains.php` | Bootstrap, version constants, hooks |
 | `admin/` | Dashboard, settings, appearance, orders |
 | `public/` | Front-end assets and public-facing logic |
-| `rest-api/` | REST routes for domains, orders, pricing, public orders |
+| `rest-api/` | REST routes for domains, orders, credits, queue, public orders |
 | `blocks/domain-lookup/` | Gutenberg block |
 | `languages/` | Translation files |
 
