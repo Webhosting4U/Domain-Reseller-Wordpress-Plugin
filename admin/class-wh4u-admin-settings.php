@@ -292,7 +292,12 @@ class WH4U_Admin_Settings {
 
     /** @return void */
     public static function render_cart_section() {
-        echo '<p>' . esc_html__( 'Optional: Send customers to your billing cart (WHMCS, Blesta, ClientExec, Upmind, or custom URL) when they click Register or Transfer. Leave Cart Type empty to use the built-in registration form.', 'wh4u-domains' ) . '</p>';
+        echo '<p>' . esc_html__( 'When a visitor clicks "Register" or "Transfer" on a domain, you can either:', 'wh4u-domains' ) . '</p>';
+        echo '<ul style="list-style: disc; margin-left: 20px;">';
+        echo '<li>' . esc_html__( 'Show the built-in plugin form (default) — visitors fill in their details on this site.', 'wh4u-domains' ) . '</li>';
+        echo '<li>' . esc_html__( 'Send them to your existing billing cart (WHMCS, Blesta, ClientExec, Upmind, or any custom URL) with the domain already filled in.', 'wh4u-domains' ) . '</li>';
+        echo '</ul>';
+        echo '<p>' . esc_html__( 'To use the built-in form, leave "Cart Type" set to "None". To redirect to a cart, pick its type below and fill in the URL field that appears.', 'wh4u-domains' ) . '</p>';
     }
 
     /** @return void */
@@ -313,7 +318,15 @@ class WH4U_Admin_Settings {
                 <option value="<?php echo esc_attr( $value ); ?>" <?php selected( $cart_type, $value ); ?>><?php echo esc_html( $label ); ?></option>
             <?php endforeach; ?>
         </select>
-        <p class="description"><?php esc_html_e( 'When set, clicking Register or Transfer will redirect the customer to your cart with the domain pre-filled.', 'wh4u-domains' ); ?></p>
+        <p class="description">
+            <?php esc_html_e( 'Choose where customers go after clicking Register or Transfer:', 'wh4u-domains' ); ?>
+            <br />
+            <strong><?php esc_html_e( 'None', 'wh4u-domains' ); ?></strong> — <?php esc_html_e( 'use the built-in form on this site (no redirect).', 'wh4u-domains' ); ?>
+            <br />
+            <strong>WHMCS / Blesta / ClientExec / Upmind</strong> — <?php esc_html_e( 'redirect to your cart automatically. Only fill in the "Cart Base URL" field below.', 'wh4u-domains' ); ?>
+            <br />
+            <strong><?php esc_html_e( 'Custom URL template', 'wh4u-domains' ); ?></strong> — <?php esc_html_e( 'redirect to any URL you choose. Fill in the Register URL and/or Transfer URL fields below.', 'wh4u-domains' ); ?>
+        </p>
         <?php
     }
 
@@ -325,7 +338,12 @@ class WH4U_Admin_Settings {
         <input type="url" name="wh4u_settings[cart_base_url]" id="wh4u_cart_base_url"
                value="<?php echo esc_attr( $value ); ?>"
                class="regular-text" placeholder="https://billing.example.com" />
-        <p class="description"><?php esc_html_e( 'Base URL of your cart (no trailing slash). Used for WHMCS, Blesta, ClientExec, and Upmind.', 'wh4u-domains' ); ?></p>
+        <p class="description">
+            <?php esc_html_e( 'Only for WHMCS, Blesta, ClientExec, or Upmind. Enter the home page address of your billing system — for example:', 'wh4u-domains' ); ?>
+            <code>https://billing.example.com</code>
+            <br />
+            <?php esc_html_e( 'Do not add a trailing slash and do not include "/cart" or "/order" — the plugin adds the right path automatically. Leave empty if you chose "None" or "Custom URL template".', 'wh4u-domains' ); ?>
+        </p>
         <?php
     }
 
@@ -337,7 +355,17 @@ class WH4U_Admin_Settings {
         <input type="url" name="wh4u_settings[cart_register_url]" id="wh4u_cart_register_url"
                value="<?php echo esc_attr( $value ); ?>"
                class="large-text" placeholder="https://billing.example.com/cart.php?a=add&domain=register&sld={sld}&tld={tld}" />
-        <p class="description"><?php esc_html_e( 'Only for Custom cart type. Use {domain}, {sld}, or {tld} as placeholders.', 'wh4u-domains' ); ?></p>
+        <p class="description">
+            <?php esc_html_e( 'Only for "Custom URL template". Paste the full link to your cart\'s registration page. The plugin will replace these placeholders with the customer\'s domain:', 'wh4u-domains' ); ?>
+            <br />
+            <code>{domain}</code> — <?php esc_html_e( 'the full domain (e.g. example.com)', 'wh4u-domains' ); ?>
+            <br />
+            <code>{sld}</code> — <?php esc_html_e( 'the name part only (e.g. example)', 'wh4u-domains' ); ?>
+            <br />
+            <code>{tld}</code> — <?php esc_html_e( 'the extension only (e.g. com)', 'wh4u-domains' ); ?>
+            <br />
+            <strong><?php esc_html_e( 'You must include at least one of these placeholders', 'wh4u-domains' ); ?></strong> — <?php esc_html_e( 'otherwise the redirect will be ignored. Must start with https://.', 'wh4u-domains' ); ?>
+        </p>
         <?php
     }
 
@@ -349,7 +377,11 @@ class WH4U_Admin_Settings {
         <input type="url" name="wh4u_settings[cart_transfer_url]" id="wh4u_cart_transfer_url"
                value="<?php echo esc_attr( $value ); ?>"
                class="large-text" placeholder="https://billing.example.com/cart.php?a=add&domain=transfer&sld={sld}&tld={tld}" />
-        <p class="description"><?php esc_html_e( 'Only for Custom cart type. Use {domain}, {sld}, or {tld} as placeholders.', 'wh4u-domains' ); ?></p>
+        <p class="description">
+            <?php esc_html_e( 'Only for "Custom URL template". Paste the full link to your cart\'s transfer page, using the same placeholders as above:', 'wh4u-domains' ); ?>
+            <code>{domain}</code>, <code>{sld}</code>, <code>{tld}</code>.
+            <?php esc_html_e( 'Leave empty if you don\'t want to redirect transfers (the built-in form will be used for transfers instead).', 'wh4u-domains' ); ?>
+        </p>
         <?php
     }
 

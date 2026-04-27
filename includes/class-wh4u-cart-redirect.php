@@ -71,10 +71,16 @@ class WH4U_Cart_Redirect {
 			return false;
 		}
 		if ( $cart_type === 'custom' ) {
-			$reg = isset( $settings['cart_register_url'] ) ? trim( $settings['cart_register_url'] ) : '';
+			$reg  = isset( $settings['cart_register_url'] ) ? trim( $settings['cart_register_url'] ) : '';
 			$xfer = isset( $settings['cart_transfer_url'] ) ? trim( $settings['cart_transfer_url'] ) : '';
-			return ( $reg !== '' && strpos( $reg, '{domain}' ) !== false )
-				|| ( $xfer !== '' && strpos( $xfer, '{domain}' ) !== false );
+			$has_placeholder = function ( $u ) {
+				return $u !== '' && (
+					strpos( $u, '{domain}' ) !== false
+					|| strpos( $u, '{sld}' ) !== false
+					|| strpos( $u, '{tld}' ) !== false
+				);
+			};
+			return $has_placeholder( $reg ) || $has_placeholder( $xfer );
 		}
 		$base = isset( $settings['cart_base_url'] ) ? trim( $settings['cart_base_url'] ) : '';
 		return $base !== '';

@@ -4,7 +4,7 @@ Tags: domains, domain search, domain registration, reseller, tld
 Requires at least: 6.2
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.5.5
+Stable tag: 1.5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -118,6 +118,10 @@ Yes. The plugin is fully internationalized. A Greek translation is included. Add
 3. Admin Register Domain form with domain details, nameservers, and registrant contact fields.
 
 == Changelog ==
+
+= 1.5.6 =
+* Fix: Custom shopping-cart URL templates that used only `{sld}` and `{tld}` placeholders (the pattern shown in the admin example) were treated as "not configured", so visitors clicking Register or Transfer always saw the built-in plugin form instead of being redirected. `WH4U_Cart_Redirect::is_configured()` now accepts any of `{domain}`, `{sld}`, or `{tld}`.
+* Improved: Shopping Cart Redirect settings page rewritten with clearer, novice-friendly help text — explains when to use each cart type, what each placeholder means, and which fields apply to which cart type.
 
 = 1.5.5 =
 * Removed: TLD Pricing admin page and all pricing-related code paths. The upstream DomainsReseller API `/tlds/pricing` endpoint returns `registrationPrice: null` for TLDs whose registry enforces multi-year registration minimums (notably `.gr`, which requires a 2-year minimum), so a pricing table rendered from this endpoint cannot reliably display prices for every reseller-enabled TLD. Rather than half-showing data, the "View Pricing" tile on the dashboard now links out to the authoritative WHMCS pricing page at `https://webhosting4u.gr/customers/index.php?m=DomainsReseller&mg-page=Prices`
